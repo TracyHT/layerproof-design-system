@@ -33,7 +33,7 @@ export function Header() {
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <img
-              src="/symbol.png"
+              src={`${import.meta.env.BASE_URL}symbol.png`}
               alt="LayerProof symbol"
               className="h-8 w-auto"
             />

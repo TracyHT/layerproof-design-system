@@ -69,7 +69,7 @@ function Header() {
     >
       {/* Logo */}
       <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
-        <img src="/symbol.png" alt="LayerProof" style={{ height: 26, width: 'auto' }} />
+        <img src={`${import.meta.env.BASE_URL}symbol.png`} alt="LayerProof" style={{ height: 26, width: 'auto' }} />
         <span style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 700, fontSize: 16, color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>
           LayerProof Design
         </span>

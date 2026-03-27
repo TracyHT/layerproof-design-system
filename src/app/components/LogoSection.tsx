@@ -18,7 +18,7 @@ const LogoCard = ({
 const FullLogo = ({ symbolFilter, textColor }: { symbolFilter?: string; textColor: string }) => (
   <div className="flex items-center gap-3">
     <img
-      src="/symbol.png"
+      src={`${import.meta.env.BASE_URL}symbol.png`}
       alt="LayerProof symbol"
       className="h-10 w-auto"
       style={symbolFilter ? { filter: symbolFilter } : undefined}
@@ -160,7 +160,7 @@ export function LogoSection() {
                 <span className="absolute text-[10px] font-mono text-white/40" style={{ bottom: 26, right: 4 }}>x</span>
                 {/* Symbol */}
                 <img
-                  src="/symbol.png"
+                  src={`${import.meta.env.BASE_URL}symbol.png`}
                   alt="LayerProof symbol"
                   className="h-16 w-auto relative z-10"
                   style={{ filter: 'brightness(0) invert(1)' }}

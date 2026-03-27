@@ -306,7 +306,7 @@ export function HomePage() {
               >
                 <div className="flex items-center gap-2">
                   <img
-                    src="/symbol.png"
+                    src={`${import.meta.env.BASE_URL}symbol.png`}
                     alt=""
                     style={{ height: 28, filter: "brightness(0) invert(1)" }}
                   />
@@ -769,7 +769,7 @@ export function HomePage() {
                   }}
                 />
                 <img
-                  src="/symbol.png"
+                  src={`${import.meta.env.BASE_URL}symbol.png`}
                   alt=""
                   style={{
                     position: "relative",
