@@ -3,8 +3,6 @@ import { Check } from 'lucide-react';
 
 // ─── Shared helpers ────────────────────────────────────────────────────────────
 
-const A = (s: React.CSSProperties) => s; // identity helper for typing inline styles
-
 const heading: React.CSSProperties = {
   fontFamily: '"Anton", sans-serif',
   textTransform: 'uppercase',
@@ -61,7 +59,7 @@ function GridChip({ name, hex, dark }: { name: string; hex: string; dark?: boole
 
 // ─── Section label ─────────────────────────────────────────────────────────────
 
-function SectionLabel({ tag, title }: { tag: string; title: string }) {
+function SectionLabel({ title }: { title: string }) {
   return (
     <div className="mb-8">
       <p className="text-xs font-semibold tracking-widest uppercase mb-1"
@@ -123,105 +121,39 @@ function UsageSample({
   );
 }
 
+// ─── Data viz swatch ───────────────────────────────────────────────────────────
+
+function DataVizSwatch({ label, hex }: { label: string; hex: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      onClick={() => { navigator.clipboard.writeText(hex); setCopied(true); setTimeout(() => setCopied(false), 1500); }}
+      className="flex flex-col rounded-xl overflow-hidden transition-transform hover:scale-105 focus:outline-none"
+      style={{ border: '1px solid var(--color-border)' }}
+    >
+      <div style={{ background: hex, height: 56 }} />
+      <div className="px-3 py-2" style={{ background: 'var(--color-surface)' }}>
+        <p className="text-xs font-medium" style={{ color: 'var(--color-text-primary)' }}>{label}</p>
+        <p className="text-[11px] font-mono" style={{ color: 'var(--color-text-tertiary)' }}>
+          {copied ? 'Copied!' : hex}
+        </p>
+      </div>
+    </button>
+  );
+}
+
 // ─── Main component ────────────────────────────────────────────────────────────
 
 export function ColorsSection() {
   return (
     <div className="space-y-24" style={{ color: 'var(--color-text-primary)' }}>
 
-      {/* ── CORE PALETTE ──────────────────────────────────── */}
-      <div id="core-palette">
-        <SectionLabel tag="Color" title="Core Palette" />
-        <p className="text-sm mb-6" style={{ color: 'var(--color-text-secondary)' }}>
-          Black and white are the primary drivers of all LayerProof UI. Every surface, text, and border begins here.
-        </p>
-
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-          {[
-            { name: 'Black',    hex: '#000000' },
-            { name: 'Surface',  hex: '#111111' },
-            { name: 'Elevated', hex: '#1c1c1c' },
-            { name: 'Border',   hex: '#2a2a2a' },
-          ].map(s => <GridChip key={s.hex} {...s} />)}
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {[
-            { name: 'Subtle',   hex: '#6b6b6b' },
-            { name: 'Muted',    hex: '#a3a3a3', dark: true },
-            { name: 'Light',    hex: '#d4d4d4', dark: true },
-            { name: 'White',    hex: '#ffffff', dark: true },
-          ].map(s => <GridChip key={s.hex} {...s} />)}
-        </div>
-      </div>
-
-      {/* ── CORE PAIRINGS ─────────────────────────────────── */}
-      <div id="core-pairings">
-        <SectionLabel tag="Color" title="Core Pairings" />
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>
-          There are four core pairings we use with typography.
-        </p>
-        <ol className="text-sm mb-8 space-y-1 list-decimal list-inside" style={{ color: 'var(--color-text-secondary)' }}>
-          <li>White on Black</li>
-          <li>Black on White</li>
-          <li>White on Surface</li>
-          <li>Black on Light</li>
-        </ol>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <PairingCard num="01" bg="#000000" fg="#ffffff" label="White on Black" sublabel="#fff on #000" />
-          <PairingCard num="02" bg="#ffffff" fg="#000000" label="Black on White" sublabel="#000 on #fff" />
-          <PairingCard num="03" bg="#111111" fg="#ffffff" label="White on Surface" sublabel="#fff on #111" />
-          <PairingCard num="04" bg="#f5f5f5" fg="#000000" label="Black on Light" sublabel="#000 on #f5f5f5" />
-        </div>
-
-        {/* Core usage samples */}
-        <p className="text-sm font-semibold mb-4" style={{ color: 'var(--color-text-tertiary)', fontFamily: '"Roboto", sans-serif', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-          In Use
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* 01 — Hero headline */}
-          <UsageSample num="01" bg="#000000">
-            <p style={{ fontFamily: '"Anton", sans-serif', fontSize: '2rem', color: '#ffffff', textTransform: 'uppercase', lineHeight: 1.1 }}>
-              From Dump<br />To Done
-            </p>
-            <p className="mt-2 text-xs" style={{ fontFamily: '"Roboto", sans-serif', color: 'rgba(255,255,255,0.5)' }}>
-              Connect once.
-            </p>
-          </UsageSample>
-
-          {/* 02 — Button pair */}
-          <UsageSample num="02" bg="#111111">
-            <div className="flex flex-col gap-3 mt-4">
-              <button className="rounded-lg px-5 py-2 text-sm font-semibold"
-                style={{ background: '#ffffff', color: '#000000', fontFamily: '"Roboto", sans-serif' }}>
-                Start now →
-              </button>
-              <button className="rounded-lg px-5 py-2 text-sm font-semibold"
-                style={{ background: 'transparent', color: '#ffffff', border: '1px solid #2a2a2a', fontFamily: '"Roboto", sans-serif' }}>
-                Learn more
-              </button>
-            </div>
-          </UsageSample>
-
-          {/* 03 — Card on white */}
-          <UsageSample num="03" bg="#ffffff">
-            <div className="rounded-xl p-4" style={{ background: '#000000' }}>
-              <p style={{ fontFamily: '"Anton", sans-serif', fontSize: '1.1rem', color: '#ffffff', textTransform: 'uppercase' }}>
-                LayerProof
-              </p>
-              <p className="text-xs mt-1" style={{ fontFamily: '"Roboto", sans-serif', color: 'rgba(255,255,255,0.5)' }}>
-                Brand identity system
-              </p>
-            </div>
-          </UsageSample>
-        </div>
-      </div>
-
-      {/* ── SECONDARY PALETTE ─────────────────────────────── */}
-      <div id="secondary-palette">
-        <SectionLabel tag="Color" title="Secondary Palette" />
+      {/* ── ACCENTS ────────────────────────────────────────── */}
+      <div id="color-accents">
+        <SectionLabel title="Accents" />
         <p className="text-sm mb-8" style={{ color: 'var(--color-text-secondary)' }}>
           Yellow and pink are accent-only colors — never use as backgrounds for large areas or primary buttons.
+          Accent colors always pair against black or white, never against each other.
         </p>
 
         {/* Yellow scale */}
@@ -239,14 +171,12 @@ export function ColorsSection() {
               { hex: '#9a7e00' },
               { hex: '#6b5700' },
               { hex: '#3d3000' },
-            ].map((s, i) => (
-              <CopyChip key={s.hex} hex={s.hex} dark={s.dark} />
-            ))}
+            ].map(s => <CopyChip key={s.hex} hex={s.hex} dark={s.dark} />)}
           </div>
         </div>
 
         {/* Pink scale */}
-        <div>
+        <div className="mb-10">
           <p className="text-xs font-semibold tracking-widest uppercase mb-3"
             style={{ fontFamily: '"Roboto", sans-serif', color: 'var(--color-text-tertiary)' }}>Pink</p>
           <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2">
@@ -260,26 +190,13 @@ export function ColorsSection() {
               { hex: '#9a2550' },
               { hex: '#6e1839' },
               { hex: '#440e23' },
-            ].map(s => (
-              <CopyChip key={s.hex} hex={s.hex} dark={s.dark} />
-            ))}
+            ].map(s => <CopyChip key={s.hex} hex={s.hex} dark={s.dark} />)}
           </div>
         </div>
-      </div>
 
-      {/* ── SECONDARY PAIRINGS ────────────────────────────── */}
-      <div id="secondary-pairings">
-        <SectionLabel tag="Color" title="Secondary Pairings" />
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>
-          Accent colors always pair against black or white — never against each other.
-        </p>
-        <ol className="text-sm mb-8 space-y-1 list-decimal list-inside" style={{ color: 'var(--color-text-secondary)' }}>
-          <li>Yellow on Black</li>
-          <li>Pink on Black</li>
-          <li>Black on Yellow</li>
-          <li>White on Pink</li>
-        </ol>
-
+        {/* Accent pairings */}
+        <p className="text-xs font-semibold tracking-widest uppercase mb-4"
+          style={{ fontFamily: '"Roboto", sans-serif', color: 'var(--color-text-tertiary)' }}>Accent Pairings</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           <PairingCard num="01" bg="#000000" fg="#f0d040" label="Yellow on Black" sublabel="#f0d040 on #000" />
           <PairingCard num="02" bg="#000000" fg="#e8336c" label="Pink on Black" sublabel="#e8336c on #000" />
@@ -287,12 +204,11 @@ export function ColorsSection() {
           <PairingCard num="04" bg="#e8336c" fg="#ffffff" label="White on Pink" sublabel="#fff on #e8336c" />
         </div>
 
-        {/* Secondary usage samples */}
+        {/* Accent usage */}
         <p className="text-sm font-semibold mb-4" style={{ color: 'var(--color-text-tertiary)', fontFamily: '"Roboto", sans-serif', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
           In Use
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* 01 — Accent headline */}
           <UsageSample num="01" bg="#000000">
             <p style={{ fontFamily: '"Anton", sans-serif', fontSize: '1.5rem', textTransform: 'uppercase', lineHeight: 1.1 }}>
               <span style={{ color: '#ffffff' }}>From </span>
@@ -302,8 +218,6 @@ export function ColorsSection() {
               <span style={{ color: '#e8336c' }}>Done</span>
             </p>
           </UsageSample>
-
-          {/* 02 — Badge / tag */}
           <UsageSample num="02" bg="#111111">
             <div className="flex flex-wrap gap-2 mt-2">
               <span className="rounded-full px-3 py-1 text-xs font-semibold"
@@ -323,8 +237,6 @@ export function ColorsSection() {
               Tags and status badges
             </p>
           </UsageSample>
-
-          {/* 03 — Accent card */}
           <UsageSample num="03" bg="#000000">
             <div className="rounded-xl overflow-hidden" style={{ border: '1px solid #2a2a2a' }}>
               <div className="h-2" style={{ background: 'linear-gradient(to right, #f0d040, #e8336c)' }} />
@@ -341,29 +253,180 @@ export function ColorsSection() {
         </div>
       </div>
 
-      {/* ── GUIDELINES ────────────────────────────────────── */}
-      <div className="rounded-2xl p-8" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-        <h3 style={{ ...heading, fontSize: '1.25rem', color: 'var(--color-text-primary)', marginBottom: '1.5rem' }}>
-          Usage Guidelines
-        </h3>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <p className="text-sm font-semibold mb-3" style={{ color: '#10b981' }}>DO</p>
-            <ul className="space-y-2 text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-              <li>✓ Use black/white for all primary UI, buttons, and surfaces</li>
-              <li>✓ Yellow-500 on black for highlighted headlines or labels</li>
-              <li>✓ Pink-500 on black for energetic accents and CTAs</li>
-              <li>✓ Use Yellow-600+ when placing yellow on light backgrounds</li>
-            </ul>
+      {/* ── COLOR PICKER SWATCHES ─────────────────────────── */}
+      <div id="color-swatches">
+        <SectionLabel title="Color Picker Swatches" />
+        <p className="text-sm mb-8" style={{ color: 'var(--color-text-secondary)' }}>
+          Neutral swatches used throughout the UI — surfaces, borders, text, and backgrounds. Click any swatch to copy the hex value.
+        </p>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+          {[
+            { name: 'Black',    hex: '#000000' },
+            { name: 'Surface',  hex: '#111111' },
+            { name: 'Elevated', hex: '#1c1c1c' },
+            { name: 'Border',   hex: '#2a2a2a' },
+          ].map(s => <GridChip key={s.hex} {...s} />)}
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+          {[
+            { name: 'Subtle',   hex: '#6b6b6b' },
+            { name: 'Muted',    hex: '#a3a3a3', dark: true },
+            { name: 'Light',    hex: '#d4d4d4', dark: true },
+            { name: 'White',    hex: '#ffffff', dark: true },
+          ].map(s => <GridChip key={s.hex} {...s} />)}
+        </div>
+
+        {/* Semantic feedback */}
+        <p className="text-xs font-semibold tracking-widest uppercase mb-4"
+          style={{ fontFamily: '"Roboto", sans-serif', color: 'var(--color-text-tertiary)' }}>Semantic / Feedback</p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {[
+            { name: 'Success',  hex: '#10b981' },
+            { name: 'Warning',  hex: '#f59e0b', dark: true },
+            { name: 'Error',    hex: '#ef4444' },
+            { name: 'Info',     hex: '#3b82f6' },
+          ].map(s => <GridChip key={s.hex} {...s} />)}
+        </div>
+      </div>
+
+      {/* ── DATA VISUALIZATION ────────────────────────────── */}
+      <div id="color-dataviz">
+        <SectionLabel title="Data Visualization" />
+        <p className="text-sm mb-8" style={{ color: 'var(--color-text-secondary)' }}>
+          A categorical palette optimized for charts, graphs, and data-dense UIs. Each color is distinct under dark backgrounds
+          and maintains sufficient contrast for accessibility.
+        </p>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3 mb-10">
+          {[
+            { label: 'Dataviz-1', hex: '#f0d040' },
+            { label: 'Dataviz-2', hex: '#e8336c' },
+            { label: 'Dataviz-3', hex: '#3b82f6' },
+            { label: 'Dataviz-4', hex: '#10b981' },
+            { label: 'Dataviz-5', hex: '#f97316' },
+            { label: 'Dataviz-6', hex: '#8b5cf6' },
+            { label: 'Dataviz-7', hex: '#06b6d4' },
+            { label: 'Dataviz-8', hex: '#a3a3a3' },
+          ].map(s => <DataVizSwatch key={s.hex} {...s} />)}
+        </div>
+
+        {/* Example chart legend */}
+        <div className="rounded-2xl p-6" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+          <p className="text-xs font-semibold tracking-widest uppercase mb-4"
+            style={{ fontFamily: '"Roboto", sans-serif', color: 'var(--color-text-tertiary)' }}>Example — Chart Legend</p>
+          <div className="flex flex-wrap gap-4">
+            {[
+              { label: 'Revenue',    hex: '#f0d040' },
+              { label: 'Expenses',   hex: '#e8336c' },
+              { label: 'Profit',     hex: '#10b981' },
+              { label: 'Forecasted', hex: '#3b82f6' },
+            ].map(({ label, hex }) => (
+              <div key={label} className="flex items-center gap-2">
+                <div className="rounded-sm" style={{ width: 12, height: 12, background: hex }} />
+                <span className="text-sm" style={{ color: 'var(--color-text-secondary)', fontFamily: '"Roboto", sans-serif' }}>
+                  {label}
+                </span>
+              </div>
+            ))}
           </div>
-          <div>
-            <p className="text-sm font-semibold mb-3" style={{ color: '#ef4444' }}>DON'T</p>
-            <ul className="space-y-2 text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-              <li>✗ Don't pair yellow and pink together in the same element</li>
-              <li>✗ Don't use Yellow-100–400 on white (fails contrast)</li>
-              <li>✗ Don't use accents as large fill backgrounds</li>
-              <li>✗ Don't use semantic colors for branding or decoration</li>
-            </ul>
+          <div className="mt-4 h-16 rounded-lg flex items-end gap-1.5 px-2 pb-2" style={{ background: '#0a0a0a' }}>
+            {[60, 80, 45, 90, 55, 70, 35, 85].map((h, i) => (
+              <div
+                key={i}
+                className="flex-1 rounded-t"
+                style={{
+                  height: `${h}%`,
+                  background: ['#f0d040', '#e8336c', '#10b981', '#3b82f6'][i % 4],
+                  opacity: 0.85,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── COLOR PALETTE ─────────────────────────────────── */}
+      <div id="color-palette">
+        <SectionLabel title="Color Palette" />
+        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+          Black and white are the primary drivers of all LayerProof UI. Four core pairings govern all text-on-background combinations.
+        </p>
+        <ol className="text-sm mb-8 space-y-1 list-decimal list-inside" style={{ color: 'var(--color-text-secondary)' }}>
+          <li>White on Black</li>
+          <li>Black on White</li>
+          <li>White on Surface</li>
+          <li>Black on Light</li>
+        </ol>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <PairingCard num="01" bg="#000000" fg="#ffffff" label="White on Black" sublabel="#fff on #000" />
+          <PairingCard num="02" bg="#ffffff" fg="#000000" label="Black on White" sublabel="#000 on #fff" />
+          <PairingCard num="03" bg="#111111" fg="#ffffff" label="White on Surface" sublabel="#fff on #111" />
+          <PairingCard num="04" bg="#f5f5f5" fg="#000000" label="Black on Light" sublabel="#000 on #f5f5f5" />
+        </div>
+
+        {/* Core usage samples */}
+        <p className="text-sm font-semibold mb-4" style={{ color: 'var(--color-text-tertiary)', fontFamily: '"Roboto", sans-serif', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+          In Use
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+          <UsageSample num="01" bg="#000000">
+            <p style={{ fontFamily: '"Anton", sans-serif', fontSize: '2rem', color: '#ffffff', textTransform: 'uppercase', lineHeight: 1.1 }}>
+              From Dump<br />To Done
+            </p>
+            <p className="mt-2 text-xs" style={{ fontFamily: '"Roboto", sans-serif', color: 'rgba(255,255,255,0.5)' }}>
+              Connect once.
+            </p>
+          </UsageSample>
+          <UsageSample num="02" bg="#111111">
+            <div className="flex flex-col gap-3 mt-4">
+              <button className="rounded-lg px-5 py-2 text-sm font-semibold"
+                style={{ background: '#ffffff', color: '#000000', fontFamily: '"Roboto", sans-serif' }}>
+                Start now →
+              </button>
+              <button className="rounded-lg px-5 py-2 text-sm font-semibold"
+                style={{ background: 'transparent', color: '#ffffff', border: '1px solid #2a2a2a', fontFamily: '"Roboto", sans-serif' }}>
+                Learn more
+              </button>
+            </div>
+          </UsageSample>
+          <UsageSample num="03" bg="#ffffff">
+            <div className="rounded-xl p-4" style={{ background: '#000000' }}>
+              <p style={{ fontFamily: '"Anton", sans-serif', fontSize: '1.1rem', color: '#ffffff', textTransform: 'uppercase' }}>
+                LayerProof
+              </p>
+              <p className="text-xs mt-1" style={{ fontFamily: '"Roboto", sans-serif', color: 'rgba(255,255,255,0.5)' }}>
+                Brand identity system
+              </p>
+            </div>
+          </UsageSample>
+        </div>
+
+        {/* Usage guidelines */}
+        <div className="rounded-2xl p-8" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+          <h3 style={{ ...heading, fontSize: '1.25rem', color: 'var(--color-text-primary)', marginBottom: '1.5rem' }}>
+            Usage Guidelines
+          </h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <p className="text-sm font-semibold mb-3" style={{ color: '#10b981' }}>DO</p>
+              <ul className="space-y-2 text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                <li>✓ Use black/white for all primary UI, buttons, and surfaces</li>
+                <li>✓ Yellow-500 on black for highlighted headlines or labels</li>
+                <li>✓ Pink-500 on black for energetic accents and CTAs</li>
+                <li>✓ Use Yellow-600+ when placing yellow on light backgrounds</li>
+              </ul>
+            </div>
+            <div>
+              <p className="text-sm font-semibold mb-3" style={{ color: '#ef4444' }}>DON'T</p>
+              <ul className="space-y-2 text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                <li>✗ Don't pair yellow and pink together in the same element</li>
+                <li>✗ Don't use Yellow-100–400 on white (fails contrast)</li>
+                <li>✗ Don't use accents as large fill backgrounds</li>
+                <li>✗ Don't use semantic colors for branding or decoration</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

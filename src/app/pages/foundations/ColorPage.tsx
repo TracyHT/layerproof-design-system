@@ -7,10 +7,10 @@ export function ColorPage() {
       title="Color"
       description="The LayerProof color system. Black and white drive all primary UI; yellow and pink are accent-only."
       tocItems={[
-        { id: 'core-palette',       label: 'Core Palette',       level: 1 as const },
-        { id: 'core-pairings',      label: 'Core Pairings',      level: 1 as const },
-        { id: 'secondary-palette',  label: 'Secondary Palette',  level: 1 as const },
-        { id: 'secondary-pairings', label: 'Secondary Pairings', level: 1 as const },
+        { id: 'color-accents',  label: 'Accents',               level: 1 as const },
+        { id: 'color-swatches', label: 'Color picker swatches', level: 1 as const },
+        { id: 'color-dataviz',  label: 'Data Visualization',    level: 1 as const },
+        { id: 'color-palette',  label: 'Color palette',         level: 1 as const },
       ]}
     >
       <ColorsSection />

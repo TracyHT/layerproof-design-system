@@ -511,29 +511,6 @@ export function HomePage() {
               </div>
             </Link>
           </div>
-
-          {/* CTA row */}
-          <div className="flex justify-center gap-4 mt-10">
-            <Button
-              asChild
-              size="lg"
-              className="brand-btn brand-btn-primary rounded-full gap-2"
-            >
-              <Link to="/get-started/designers">
-                Get started <ArrowRight size={14} />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="rounded-full gap-2"
-            >
-              <Link to="/">
-                See what's new <ArrowRight size={14} />
-              </Link>
-            </Button>
-          </div>
         </div>
       </section>
 

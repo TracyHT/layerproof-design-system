@@ -10,6 +10,7 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { GetStartedDesignersPage } from "./pages/GetStartedDesignersPage";
 import { GetStartedDevelopersPage } from "./pages/GetStartedDevelopersPage";
 import { GetStartedBrandPage } from "./pages/GetStartedBrandPage";
+import { GetStartedCheatSheetPage } from "./pages/GetStartedCheatSheetPage";
 // Foundation sub-pages
 import { TokensPage } from "./pages/foundations/TokensPage";
 import { TokensExplainedPage } from "./pages/foundations/TokensExplainedPage";
@@ -43,7 +44,8 @@ export const router = createBrowserRouter([
       { index: true, Component: HomePage },
       { path: "get-started/designers",  Component: GetStartedDesignersPage },
       { path: "get-started/developers", Component: GetStartedDevelopersPage },
-      { path: "get-started/brand",      Component: GetStartedBrandPage },
+      { path: "get-started/brand",        Component: GetStartedBrandPage },
+      { path: "get-started/cheat-sheet", Component: GetStartedCheatSheetPage },
       { path: "brand",        Component: BrandPage },
       { path: "foundations",  Component: FoundationsPage },
       // Foundation sub-pages
