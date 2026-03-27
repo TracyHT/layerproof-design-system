@@ -1,0 +1,109 @@
+/* ============================================================
+   LayerProof Animation System
+   ============================================================
+   Usage:
+     Add class="animate-on-scroll" to any element.
+     The useInView hook swaps it for the specific animation class
+     (e.g. "anim-fade-up") once the element enters the viewport.
+
+   Direct use (no scroll trigger):
+     <div class="anim-fade-up">...</div>
+   ============================================================ */
+
+/* --- Keyframes --- */
+
+@keyframes lp-fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lp-fade-down {
+  from { opacity: 0; transform: translateY(-32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lp-fade-left {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes lp-fade-right {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes lp-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes lp-scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes lp-slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* --- Animation utility classes --- */
+
+.anim-fade-up    { animation: lp-fade-up    var(--anim-duration, 0.6s) var(--anim-easing, cubic-bezier(0.16, 1, 0.3, 1)) var(--anim-delay, 0s) both; }
+.anim-fade-down  { animation: lp-fade-down  var(--anim-duration, 0.6s) var(--anim-easing, cubic-bezier(0.16, 1, 0.3, 1)) var(--anim-delay, 0s) both; }
+.anim-fade-left  { animation: lp-fade-left  var(--anim-duration, 0.6s) var(--anim-easing, cubic-bezier(0.16, 1, 0.3, 1)) var(--anim-delay, 0s) both; }
+.anim-fade-right { animation: lp-fade-right var(--anim-duration, 0.6s) var(--anim-easing, cubic-bezier(0.16, 1, 0.3, 1)) var(--anim-delay, 0s) both; }
+.anim-fade-in    { animation: lp-fade-in    var(--anim-duration, 0.5s) var(--anim-easing, cubic-bezier(0.16, 1, 0.3, 1)) var(--anim-delay, 0s) both; }
+.anim-scale-in   { animation: lp-scale-in   var(--anim-duration, 0.5s) var(--anim-easing, cubic-bezier(0.16, 1, 0.3, 1)) var(--anim-delay, 0s) both; }
+.anim-slide-up   { animation: lp-slide-up   var(--anim-duration, 0.7s) var(--anim-easing, cubic-bezier(0.16, 1, 0.3, 1)) var(--anim-delay, 0s) both; }
+
+/* --- Scroll-triggered: hidden until JS adds the anim-* class --- */
+
+.animate-on-scroll {
+  opacity: 0;
+}
+
+/* Once the hook resolves, the element gets both classes and animates in */
+.animate-on-scroll.anim-fade-up,
+.animate-on-scroll.anim-fade-down,
+.animate-on-scroll.anim-fade-left,
+.animate-on-scroll.anim-fade-right,
+.animate-on-scroll.anim-fade-in,
+.animate-on-scroll.anim-scale-in,
+.animate-on-scroll.anim-slide-up {
+  opacity: 1; /* animation's `both` fill-mode handles the rest */
+}
+
+/* --- Stagger delay helpers (compose with any anim-* class) --- */
+
+.delay-100 { --anim-delay: 0.1s; }
+.delay-200 { --anim-delay: 0.2s; }
+.delay-300 { --anim-delay: 0.3s; }
+.delay-400 { --anim-delay: 0.4s; }
+.delay-500 { --anim-delay: 0.5s; }
+.delay-600 { --anim-delay: 0.6s; }
+.delay-700 { --anim-delay: 0.7s; }
+
+/* --- Duration helpers --- */
+
+.duration-fast   { --anim-duration: 0.35s; }
+.duration-base   { --anim-duration: 0.6s; }
+.duration-slow   { --anim-duration: 0.9s; }
+.duration-slower { --anim-duration: 1.2s; }
+
+/* --- Reduced motion: respect user preference --- */
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-up,
+  .anim-fade-down,
+  .anim-fade-left,
+  .anim-fade-right,
+  .anim-fade-in,
+  .anim-scale-in,
+  .anim-slide-up,
+  .animate-on-scroll {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
