@@ -100,7 +100,7 @@ export function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block px-4 py-3 rounded-lg transition-colors ${
                     isActive
-                      ? "bg-[var(--brand-primary)] text-white"
+                      ? "bg-[var(--brand-primary)] text-[var(--color-background)]"
                       : "bg-[var(--color-surface)] text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-hover)]"
                   }`}
                 >

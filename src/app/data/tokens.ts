@@ -6,34 +6,142 @@ import type React from 'react';
  * This file is the SINGLE SOURCE OF TRUTH for all design token metadata.
  * The actual CSS values live in: src/styles/brand-variables.css
  *
- * ── WORKFLOW: How to update a token ──────────────────────────────────────────
+ * The documentation website reads token values LIVE from the browser at runtime,
+ * so updating brand-variables.css is enough for the site to reflect new values.
+ * You only need to touch this file to update descriptions or add new tokens.
  *
- *  1. UPDATE THE CSS VALUE
- *     Open `src/styles/brand-variables.css` and change the variable value.
- *     Both :root (light) and [data-theme="dark"] blocks if the token is themed.
  *
- *  2. UPDATE THIS FILE
- *     Find the token entry below and update:
- *       - `value`       — new light-mode value
- *       - `dark`        — new dark-mode value (if applicable)
- *       - `description` — if the usage guidance changed
- *     Do NOT change `introduced` — that records when the token first shipped.
+ * ══════════════════════════════════════════════════════════════════════════════
+ * WORKFLOW: How to update branding
+ * ══════════════════════════════════════════════════════════════════════════════
  *
- *  3. ADD A CHANGELOG ENTRY
- *     Add an entry to `tokenChangelog` at the bottom of this file describing
- *     the change (type: 'changed'), which version it landed in, and why.
+ * Use this when you want to change the look-and-feel of the entire design system
+ * — e.g. new accent color, new font, new dark mode palette.
  *
- * ── WORKFLOW: How to add a new token ─────────────────────────────────────────
+ * FILE: src/styles/brand-variables.css
+ * This is the only file you need to edit for value changes.
+ * It has three blocks — edit all three if the token is theme-aware:
+ *   :root { ... }                — light mode defaults
+ *   [data-theme="dark"] { ... }  — dark mode overrides
+ *   @media (prefers-color-scheme: dark) { ... }  — OS-level dark fallback
  *
- *  1. Add the CSS variable to `src/styles/brand-variables.css`
- *  2. Add a Token entry in the correct Section/Subsection below
+ * ── Step 1: Change brand accent color ────────────────────────────────────────
+ *
+ *  The primary accent (currently yellow) drives links, active states, focus
+ *  rings, and the "Latest" badge on What's New. Two values exist:
+ *    --brand-primary  — used on light backgrounds (needs WCAG AA contrast)
+ *    --brand-accent   — full-brightness version used on dark/black surfaces
+ *
+ *  In brand-variables.css, update inside :root:
+ *    --brand-primary:  #YOUR_DARK_VALUE;   ← visible on white, AA contrast
+ *    --brand-accent:   #YOUR_BRIGHT_VALUE; ← vibrant, used on black/dark bg
+ *
+ *  In [data-theme="dark"]:
+ *    --brand-primary:  #YOUR_BRIGHT_VALUE; ← flip to bright for dark bg
+ *    --brand-accent:   #ffffff;            ← or keep white for max contrast
+ *
+ *  Secondary accent (currently pink — used for tags, secondary interactions):
+ *    --brand-secondary: #YOUR_COLOR;       ← update in both :root and dark block
+ *
+ * ── Step 2: Change brand fonts ───────────────────────────────────────────────
+ *
+ *  Three font variables control the entire type system:
+ *    --font-heading  — Anton (all headings, display text, metrics)
+ *    --font-body     — Roboto (prose, labels, captions, UI text)
+ *    --font-mono     — Monaco / Courier New (code blocks, token names)
+ *
+ *  a. Add the new font to the <head> in index.html (Google Fonts link or @font-face)
+ *  b. In brand-variables.css :root, update the variable:
+ *       --font-heading: '"Your Font", fallback, sans-serif';
+ *  c. Open src/app/components/TypographySection.tsx and update the const at the
+ *     top of the file to match (these are used for live previews):
+ *       const anton: React.CSSProperties = { fontFamily: '"Your Font", sans-serif', ... }
+ *  d. Update the Family subsection descriptions in this file (tokens.ts) if needed.
+ *
+ * ── Step 3: Change background / surface colors ───────────────────────────────
+ *
+ *  These control the page and card layers:
+ *    --color-background    — outermost page fill
+ *    --color-surface       — card / panel fill (one level above page)
+ *    --color-surface-hover — hover state for interactive surfaces
+ *
+ *  Update in both :root (light) and [data-theme="dark"] (dark) blocks.
+ *
+ * ── Step 4: Change text colors ───────────────────────────────────────────────
+ *
+ *  Text hierarchy (3 levels + inverse):
+ *    --color-text-primary   — headings, body, default icons
+ *    --color-text-secondary — descriptions, metadata, supporting copy
+ *    --color-text-tertiary  — placeholders, labels, timestamps
+ *    --color-text-inverse   — text on colored / dark surfaces
+ *
+ *  Update in both :root and [data-theme="dark"].
+ *
+ * ── Step 5: Change status / semantic colors ──────────────────────────────────
+ *
+ *  Status colors are grouped as surface / light / default / dark in the
+ *  Brand Theme block at the top of brand-variables.css:
+ *    --danger-*   — error states
+ *    --success-*  — positive / complete states
+ *    --warning-*  — caution states
+ *
+ *  The semantic aliases that components use:
+ *    --color-error, --color-success, --color-warning, --color-info
+ *  Update these too (they should point to the corresponding --*-default value).
+ *
+ * ── Step 6: Verify on the website ────────────────────────────────────────────
+ *
+ *  After editing brand-variables.css, start the dev server (npm run dev) and:
+ *    1. Visit /foundations/tokens   — All Tokens tab shows live values
+ *    2. Visit /foundations/color    — Accent, palette, and status swatches
+ *    3. Visit /foundations/typography — Type scale preview
+ *    4. Toggle dark mode (button in the top-right header) and re-check all three
+ *
+ * ── Step 7: Update Figma ─────────────────────────────────────────────────────
+ *
+ *  Code is now updated. Sync the values back to Figma:
+ *  a. Open the Figma file → Plugins → "Export/Import Variables"
+ *  b. Import the updated values into each collection
+ *     (Brand Theme, Color, Typography, Spacing, Radius)
+ *  c. Or update manually: open each variable and paste the new hex / value
+ *  d. Save the last-synced export as figma-exports/variables.json so future
+ *     diffs are easy (overwrite the existing file).
+ *
+ *
+ * ══════════════════════════════════════════════════════════════════════════════
+ * WORKFLOW: How to update a single token value
+ * ══════════════════════════════════════════════════════════════════════════════
+ *
+ *  1. Open src/styles/brand-variables.css and change the variable value.
+ *     Update both :root (light) and [data-theme="dark"] blocks if themed.
+ *     → The documentation website reflects the change automatically.
+ *
+ *  2. Optional — update this file (tokens.ts) only if:
+ *       - The description / usage guidance changed
+ *       - You want the dark-mode swatch in the docs to show correctly
+ *         (update the `dark` field on the Token entry)
+ *
+ *  3. Add a changelog entry to `tokenChangelog` at the bottom of this file
+ *     (type: 'changed') and to src/app/data/changelog.ts.
+ *
+ *
+ * ══════════════════════════════════════════════════════════════════════════════
+ * WORKFLOW: How to add a new token
+ * ══════════════════════════════════════════════════════════════════════════════
+ *
+ *  1. Add the CSS variable to src/styles/brand-variables.css
+ *     (both :root and dark blocks if theme-aware).
+ *  2. Add a Token entry in the correct Section/Subsection below.
  *     Set `introduced` to the current release version.
- *  3. Add a changelog entry with type: 'added'
+ *  3. Add a changelog entry with type: 'added'.
  *
- * ── WORKFLOW: How to deprecate a token ───────────────────────────────────────
  *
- *  1. Add `deprecated: true` and `replacedBy: '--new-token'` to the entry
- *  2. Add a changelog entry with type: 'deprecated'
+ * ══════════════════════════════════════════════════════════════════════════════
+ * WORKFLOW: How to deprecate a token
+ * ══════════════════════════════════════════════════════════════════════════════
+ *
+ *  1. Add `deprecated: true` and `replacedBy: '--new-token'` to the entry.
+ *  2. Add a changelog entry with type: 'deprecated'.
  *  3. Keep the CSS variable in brand-variables.css for one major version,
  *     then remove it and add a type: 'removed' changelog entry.
  *
@@ -79,6 +187,7 @@ export type Section = {
 // ─── Token sections ───────────────────────────────────────────────────────────
 
 export const sections: Section[] = [
+  // ─── Border ───────────────────────────────────────────────────────────────
   {
     id: 'border',
     label: 'Border',
@@ -147,23 +256,23 @@ export const sections: Section[] = [
         tokens: [
           {
             name: '--brand-primary',
-            value: '#c9a800',
-            dark: '#f0d040',
-            description: 'The primary interactive color for links and active states.',
+            value: '#000000',
+            dark: '#ffffff',
+            description: 'Primary UI action color — black in light mode, white in dark mode. Use for buttons, active nav states, focus rings, and interactive chrome. Not for decorative accents.',
             introduced: '1.0.0',
           },
           {
             name: '--brand-secondary',
             value: '#c43460',
             dark: '#e8336c',
-            description: 'Secondary accent color for links, tags, and supporting interactions.',
+            description: 'Brand pink accent. Use sparingly for brand callouts, category badges, and highlight tags. Not for interactive UI chrome.',
             introduced: '1.0.0',
           },
           {
             name: '--brand-accent',
-            value: '#f0d040',
-            dark: '#ffffff',
-            description: 'Full-brand yellow used for focus rings and highlights.',
+            value: '#FFDE42',
+            dark: '#FFDE42',
+            description: 'Brand yellow accent. Use for logo elements, decorative highlights, category badges, and brand-driven callouts. Not for interactive UI chrome.',
             introduced: '1.0.0',
           },
         ],
@@ -195,9 +304,9 @@ export const sections: Section[] = [
           },
           {
             name: '--brand-primary',
-            value: '#c9a800',
-            dark: '#f0d040',
-            description: 'Use for active-state or accent icons that indicate selection or interaction.',
+            value: '#000000',
+            dark: '#ffffff',
+            description: 'Use for active-state icons that indicate selection or interaction.',
             introduced: '1.0.0',
           },
         ],
@@ -296,7 +405,7 @@ export const sections: Section[] = [
           },
           {
             name: '--brand-accent',
-            value: '#f0d040',
+            value: '#FFDE42',
             dark: '#ffffff',
             description: 'Focus ring and active-state highlight color.',
             introduced: '1.0.0',
@@ -328,10 +437,10 @@ export const sections: Section[] = [
         label: 'Chart',
         tokens: [
           {
-            name: '--brand-primary',
-            value: '#c9a800',
-            dark: '#f0d040',
-            description: 'Primary data series color for charts and data visualizations.',
+            name: '--brand-accent',
+            value: '#FFDE42',
+            dark: '#FFDE42',
+            description: 'Primary data series color for charts and data visualizations — use brand yellow for the first series.',
             introduced: '1.0.0',
           },
           {
@@ -872,6 +981,7 @@ export const tokenChangelog: ChangelogEntry[] = [
       { type: 'added',   token: '--color-surface-hover', note: 'Added hover-state surface for cards and list items.' },
       { type: 'changed', token: '--brand-primary',       note: 'Light-mode value updated from #f0d040 to #c9a800 for WCAG AA contrast on white backgrounds.' },
       { type: 'added',   token: '--radius-2xl',          note: 'New extra-large radius step for hero and feature sections.' },
+      { type: 'changed', token: '--brand-accent / --yellow-*', note: 'Updated accent yellow scale. Default (yellow-500) is now #FFDE42 — brighter and more vibrant. All semantic accent tokens updated in both light and dark modes.' },
     ],
   },
   {

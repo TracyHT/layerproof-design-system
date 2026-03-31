@@ -5,6 +5,23 @@ import type { Token, ChangeType } from '../../data/tokens';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
+/**
+ * Resolve a token's display value.
+ * For simple CSS custom properties (e.g. --color-text-primary), reads the live
+ * computed value from the document so the docs page stays in sync with
+ * brand-variables.css without needing to update tokens.ts.
+ * Falls back to token.value for compound/descriptive tokens.
+ */
+function liveValue(token: Token): string {
+  if (typeof document !== 'undefined' && /^--[\w-]+$/.test(token.name)) {
+    const resolved = getComputedStyle(document.documentElement)
+      .getPropertyValue(token.name)
+      .trim();
+    if (resolved) return resolved;
+  }
+  return token.value;
+}
+
 function isColor(value: string) {
   return /^#[0-9a-f]{3,8}$/i.test(value) || value.startsWith('rgba') || value.startsWith('rgb');
 }
@@ -13,7 +30,7 @@ function tokenMatches(token: Token, query: string): boolean {
   const q = query.toLowerCase();
   return (
     token.name.toLowerCase().includes(q) ||
-    token.value.toLowerCase().includes(q) ||
+    liveValue(token).toLowerCase().includes(q) ||
     token.description.toLowerCase().includes(q)
   );
 }
@@ -45,7 +62,8 @@ function buildTocItems() {
 // ─── Token row ────────────────────────────────────────────────────────────────
 
 function TokenRow({ token, isLast, hasPreview }: { token: Token; isLast: boolean; hasPreview: boolean }) {
-  const showSwatch = isColor(token.value);
+  const resolved = liveValue(token);
+  const showSwatch = isColor(resolved);
   const showDarkSwatch = token.dark && isColor(token.dark);
 
   return (
@@ -117,7 +135,7 @@ function TokenRow({ token, isLast, hasPreview }: { token: Token; isLast: boolean
               height: 32,
               borderRadius: '0.375rem',
               border: '1px solid var(--color-border)',
-              background: showSwatch ? token.value : 'var(--color-surface)',
+              background: showSwatch ? resolved : 'var(--color-surface)',
               flexShrink: 0,
               overflow: 'hidden',
               position: 'relative',
@@ -131,7 +149,7 @@ function TokenRow({ token, isLast, hasPreview }: { token: Token; isLast: boolean
             )}
           </div>
           <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--color-text-secondary)', textAlign: 'right' }}>
-            {token.value.length > 20 ? token.value.slice(0, 20) + '…' : token.value}
+            {resolved.length > 20 ? resolved.slice(0, 20) + '…' : resolved}
           </code>
           {token.dark && (
             <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-text-tertiary)', textAlign: 'right' }}>

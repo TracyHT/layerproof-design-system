@@ -17,14 +17,16 @@ const Code = ({ children }: { children: string }) => (
   </div>
 );
 
-function SplitButton({ label, icon: Icon }: { label: string; icon: React.ElementType }) {
+function SplitButton({ label, icon: Icon, variant = 'default' }: { label: string; icon: React.ElementType; variant?: 'default' | 'accent' }) {
   const [open, setOpen] = useState(false);
+  const dividerColor = variant === 'accent' ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.15)';
   return (
     <div className="relative inline-flex">
-      <Button className="rounded-r-none border-r-0 gap-2" style={{ borderRight: '1px solid rgba(255,255,255,0.15)' }}>
+      <Button variant={variant} className="rounded-r-none border-r-0 gap-2" style={{ borderRight: `1px solid ${dividerColor}` }}>
         <Icon size={15} /> {label}
       </Button>
       <Button
+        variant={variant}
         className="rounded-l-none px-2"
         aria-label="More options"
         onClick={() => setOpen(v => !v)}
@@ -82,11 +84,18 @@ export function ButtonSplitPage() {
         <h2 className="mb-6" style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-2xl)', textTransform: 'uppercase', color: 'var(--color-text-primary)' }}>Examples</h2>
         <div className="space-y-4 mb-6">
           <div className="rounded-xl p-6 flex flex-col gap-4" style={{ border: '1px solid var(--color-border)', background: 'var(--color-surface)' }}>
-            <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--color-text-tertiary)', fontFamily: 'var(--font-body)' }}>Interactive — click the chevron</p>
+            <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--color-text-tertiary)', fontFamily: 'var(--font-body)' }}>Default — interactive, click the chevron</p>
             <div className="flex flex-wrap gap-6 items-center">
               <SplitButton label="Download" icon={Download} />
               <SplitButton label="New item" icon={Plus} />
               <SplitButton label="Send" icon={Send} />
+            </div>
+          </div>
+          <div className="rounded-xl p-6 flex flex-col gap-4" style={{ border: '1px solid var(--color-border)', background: 'var(--color-surface)' }}>
+            <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--color-text-tertiary)', fontFamily: 'var(--font-body)' }}>Accent — primary brand CTA with options</p>
+            <div className="flex flex-wrap gap-6 items-center">
+              <SplitButton label="Create" icon={Plus} variant="accent" />
+              <SplitButton label="Publish" icon={Send} variant="accent" />
             </div>
           </div>
         </div>

@@ -85,7 +85,7 @@ export function TableOfContents() {
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
-                  color: isActive ? '#f0d040' : 'var(--color-text-secondary)',
+                  color: isActive ? 'var(--brand-primary)' : 'var(--color-text-secondary)',
                   fontWeight: isActive ? 500 : 400,
                   transition: 'color 150ms',
                 }}

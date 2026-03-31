@@ -12,7 +12,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "What's new", path: '/' },
+  { label: "What's new", path: '/whats-new' },
   {
     label: 'Get started',
     path: '/get-started',
@@ -194,7 +194,7 @@ function NavNode({ item, depth = 0 }: NavNodeProps) {
             : 'var(--color-text-secondary)',
           background: isDirectlyActive ? 'var(--color-surface)' : 'transparent',
           borderLeft: isDirectlyActive
-            ? '2px solid #f0d040'
+            ? '2px solid var(--brand-primary)'
             : '2px solid transparent',
           textDecoration: 'none',
           transition: 'background 150ms, color 150ms',
@@ -225,8 +225,8 @@ function NavNode({ item, depth = 0 }: NavNodeProps) {
               fontSize: 10,
               padding: '1px 6px',
               borderRadius: 9999,
-              background: 'var(--brand-primary)',
-              color: 'var(--color-text-inverse)',
+              background: 'var(--brand-accent)',
+              color: '#000000',
               fontWeight: 600,
               marginLeft: 4,
             }}

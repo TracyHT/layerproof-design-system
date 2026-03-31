@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      font-size: 13px;
+      background: #000;
+      color: #fff;
+      padding: 20px;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #f0d040;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #6b6b6b;
+      line-height: 1.5;
+    }
+
+    .changes {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 12px;
+      color: #a3a3a3;
+      line-height: 1.8;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .changes .change {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .changes .from { color: #f87171; text-decoration: line-through; }
+    .changes .arrow { color: #404040; }
+    .changes .to   { color: #f0d040; }
+
+    #log {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 11px;
+      font-family: 'Monaco', monospace;
+      color: #a3a3a3;
+      line-height: 1.7;
+      max-height: 120px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    button:disabled { opacity: 0.4; cursor: default; }
+
+    #run-btn {
+      background: #f0d040;
+      color: #000;
+    }
+
+    #cancel-btn {
+      background: #1c1c1c;
+      color: #fff;
+      border: 1px solid #2a2a2a;
+    }
+
+    .done-msg {
+      color: #34d399;
+      font-size: 12px;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="dot"></div>
+    <h1>LayerProof Token Sync</h1>
+  </div>
+
+  <p class="subtitle">Updates Figma styles to match the codebase tokens in <code>brand-variables.css</code>.</p>
+
+  <div class="changes" id="changes-view">
+    <div class="change"><span class="from">Darker Grotesque</span><span class="arrow">→</span><span class="to">Anton</span></div>
+    <div class="change"><span class="from">Figtree</span><span class="arrow">→</span><span class="to">Roboto</span></div>
+    <div class="change"><span class="from">Inter</span><span class="arrow">→</span><span class="to">DM Sans</span></div>
+    <div class="change"><span class="from">Accent blue #0d52ff</span><span class="arrow">→</span><span class="to">Yellow #f0d040</span></div>
+    <div class="change"><span class="from">Blue/600 #0d52ff</span><span class="arrow">→</span><span class="to">Yellow/500 #f0d040</span></div>
+    <div class="change"><span class="from">Blue scale (50–950)</span><span class="arrow">→</span><span class="to">Yellow scale</span></div>
+    <div class="change"><span class="from">Accent/Text default</span><span class="arrow">→</span><span class="to">#c9a800 (yellow-600)</span></div>
+    <div class="change"><span class="from">Accent/Surface default</span><span class="arrow">→</span><span class="to">#f0d040 (yellow-500)</span></div>
+    <div class="change"><span class="from">Pink scale (missing)</span><span class="arrow">→</span><span class="to">Color/Pink/100–900 created</span></div>
+    <div class="change"><span class="from">Secondary tokens (missing)</span><span class="arrow">→</span><span class="to">Secondary/Surface/Text/Divider created</span></div>
+  </div>
+
+  <div id="log"></div>
+  <p class="done-msg" id="done-msg">✅ Sync complete — save your Figma file.</p>
+
+  <div class="buttons">
+    <button id="run-btn">Run Sync</button>
+    <button id="cancel-btn">Cancel</button>
+  </div>
+
+  <script>
+    const runBtn = document.getElementById('run-btn');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const logEl = document.getElementById('log');
+    const changesView = document.getElementById('changes-view');
+    const doneMsg = document.getElementById('done-msg');
+
+    runBtn.addEventListener('click', () => {
+      runBtn.disabled = true;
+      changesView.style.display = 'none';
+      logEl.style.display = 'block';
+      parent.postMessage({ pluginMessage: { type: 'run-sync' } }, '*');
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
+    });
+
+    window.onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+      if (!msg) return;
+
+      if (msg.type === 'log') {
+        const line = document.createElement('div');
+        line.textContent = msg.text;
+        logEl.appendChild(line);
+        logEl.scrollTop = logEl.scrollHeight;
+      }
+
+      if (msg.type === 'done') {
+        doneMsg.style.display = 'block';
+        cancelBtn.textContent = 'Close';
+        cancelBtn.disabled = false;
+      }
+    };
+  </script>
+</body>
+</html>

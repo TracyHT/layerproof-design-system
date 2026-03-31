@@ -35,10 +35,10 @@ export function ComponentsSection() {
           <div className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)]">
             <h4 className="text-sm font-semibold text-[var(--color-text-tertiary)] mb-4 uppercase tracking-wide">Text</h4>
             <div className="space-y-4">
-              <button className="w-full px-4 py-2 text-[var(--brand-primary)] font-medium hover:bg-[var(--color-surface)] rounded-lg transition-all">
+              <button className="w-full px-4 py-2 text-[var(--color-text-primary)] font-medium hover:bg-[var(--color-surface)] rounded-lg transition-all">
                 Text Button
               </button>
-              <button className="w-full px-4 py-2 text-[var(--brand-primary)] font-medium opacity-50 cursor-not-allowed">
+              <button className="w-full px-4 py-2 text-[var(--color-text-primary)] font-medium opacity-50 cursor-not-allowed">
                 Disabled
               </button>
             </div>
@@ -76,26 +76,26 @@ export function ComponentsSection() {
       <div className="mb-16">
         <h3 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-6">Cards</h3>
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)] hover:border-[var(--brand-primary)] hover:shadow-lg transition-all">
+          <div className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)] hover:border-[var(--color-text-primary)] hover:shadow-lg transition-all">
             <h4 className="text-lg font-semibold text-[var(--color-text-primary)] mb-2">Card Title</h4>
             <p className="text-sm text-[var(--color-text-secondary)] mb-4">
               Card content with description text that explains the purpose.
             </p>
-            <button className="text-[var(--brand-primary)] text-sm font-medium">Learn more →</button>
+            <button className="text-[var(--color-text-primary)] text-sm font-medium">Learn more →</button>
           </div>
-          <div className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)] hover:border-[var(--brand-primary)] hover:shadow-lg transition-all">
+          <div className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)] hover:border-[var(--color-text-primary)] hover:shadow-lg transition-all">
             <h4 className="text-lg font-semibold text-[var(--color-text-primary)] mb-2">Card Title</h4>
             <p className="text-sm text-[var(--color-text-secondary)] mb-4">
               Card content with description text that explains the purpose.
             </p>
-            <button className="text-[var(--brand-primary)] text-sm font-medium">Learn more →</button>
+            <button className="text-[var(--color-text-primary)] text-sm font-medium">Learn more →</button>
           </div>
-          <div className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)] hover:border-[var(--brand-primary)] hover:shadow-lg transition-all">
+          <div className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)] hover:border-[var(--color-text-primary)] hover:shadow-lg transition-all">
             <h4 className="text-lg font-semibold text-[var(--color-text-primary)] mb-2">Card Title</h4>
             <p className="text-sm text-[var(--color-text-secondary)] mb-4">
               Card content with description text that explains the purpose.
             </p>
-            <button className="text-[var(--brand-primary)] text-sm font-medium">Learn more →</button>
+            <button className="text-[var(--color-text-primary)] text-sm font-medium">Learn more →</button>
           </div>
         </div>
       </div>
@@ -104,7 +104,7 @@ export function ComponentsSection() {
       <div>
         <h3 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-6">Badges</h3>
         <div className="flex flex-wrap gap-4 bg-[var(--color-surface)] p-8 rounded-lg border border-[var(--color-border)]">
-          <span className="px-3 py-1 bg-[var(--brand-primary)] text-white rounded-full text-sm font-medium">Primary</span>
+          <span className="px-3 py-1 bg-[var(--brand-primary)] text-[var(--color-background)] rounded-full text-sm font-medium">Primary</span>
           <span className="px-3 py-1 bg-[var(--color-success)] text-white rounded-full text-sm font-medium">Success</span>
           <span className="px-3 py-1 bg-[var(--color-warning)] text-white rounded-full text-sm font-medium">Warning</span>
           <span className="px-3 py-1 bg-[var(--color-error)] text-white rounded-full text-sm font-medium">Error</span>

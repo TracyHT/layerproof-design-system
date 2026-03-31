@@ -58,9 +58,10 @@ export function ButtonLinkIconPage() {
             <Button variant="link" className="gap-1.5"><Plus size={14} /> Add item</Button>
           </Demo>
           <Demo label="With other button variants">
-            <Button className="gap-2">Get started <ArrowRight size={14} /></Button>
+            <Button variant="accent" className="gap-2">Get started <ArrowRight size={14} /></Button>
+            <Button className="gap-2">Submit <ArrowRight size={14} /></Button>
+            <Button variant="neutral" className="gap-2">Filter <ChevronRight size={14} /></Button>
             <Button variant="outline" className="gap-2">Download <Download size={14} /></Button>
-            <Button variant="secondary" className="gap-2">Explore <ChevronRight size={14} /></Button>
           </Demo>
           <Demo label="Sizes">
             <Button size="sm" variant="outline" className="gap-1.5">Small <ArrowRight size={12} /></Button>

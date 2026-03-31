@@ -123,19 +123,34 @@ export function ButtonGroupPage() {
             </div>
           </div>
           <div className="rounded-xl p-6 flex flex-col gap-4" style={{ border: '1px solid var(--color-border)', background: 'var(--color-surface)' }}>
-            <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--color-text-tertiary)', fontFamily: 'var(--font-body)' }}>Action group — using Button component</p>
+            <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--color-text-tertiary)', fontFamily: 'var(--font-body)' }}>Action group — outline variant</p>
             <div className="inline-flex">
               <Button variant="outline" className="rounded-r-none border-r-0">Edit</Button>
               <Button variant="outline" className="rounded-none border-r-0">Duplicate</Button>
               <Button variant="outline" className="rounded-l-none">Delete</Button>
             </div>
           </div>
+          <div className="rounded-xl p-6 flex flex-col gap-4" style={{ border: '1px solid var(--color-border)', background: 'var(--color-surface)' }}>
+            <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--color-text-tertiary)', fontFamily: 'var(--font-body)' }}>Action group — neutral variant (toolbar / filter bar)</p>
+            <div className="inline-flex">
+              <Button variant="neutral" className="rounded-r-none border-r-0">All</Button>
+              <Button variant="neutral" className="rounded-none border-r-0">Active</Button>
+              <Button variant="neutral" className="rounded-l-none">Archived</Button>
+            </div>
+          </div>
         </div>
-        <Code>{`{/* Action group with Button */}
+        <Code>{`{/* Outline action group */}
 <div className="inline-flex">
   <Button variant="outline" className="rounded-r-none border-r-0">Edit</Button>
   <Button variant="outline" className="rounded-none border-r-0">Duplicate</Button>
   <Button variant="outline" className="rounded-l-none">Delete</Button>
+</div>
+
+{/* Neutral filter group — toolbar / filter bar */}
+<div className="inline-flex">
+  <Button variant="neutral" className="rounded-r-none border-r-0">All</Button>
+  <Button variant="neutral" className="rounded-none border-r-0">Active</Button>
+  <Button variant="neutral" className="rounded-l-none">Archived</Button>
 </div>`}</Code>
       </section>
 
@@ -147,6 +162,8 @@ export function ButtonGroupPage() {
             { rule: 'All items must be the same size', desc: 'Mixing sizes within a group creates visual misalignment. Use consistent size= and padding values.' },
             { rule: 'Use aria-pressed for toggle groups', desc: 'Multi-select toolbar items should have aria-pressed="true/false" so assistive technology can announce state.' },
             { rule: 'Segment vs. radio — choose by action type', desc: 'Segmented controls switch a view or setting. Radios choose from options. Use the right semantic pattern.' },
+            { rule: 'Use neutral for toolbar and filter groups', desc: 'The neutral variant (gray fill) is the natural choice for grouped controls in toolbars and filter bars — it provides button-shaped affordance without overpowering the surrounding UI.' },
+            { rule: 'Never use accent inside a group', desc: 'The accent variant (yellow) is reserved for a single page-level CTA. Using it inside a button group competes visually and breaks the hierarchy.' },
           ].map(({ rule, desc }) => (
             <div key={rule} className="flex gap-4 rounded-xl p-4" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
               <span className="text-sm font-semibold shrink-0 mt-0.5" style={{ color: 'var(--brand-primary)' }}>→</span>

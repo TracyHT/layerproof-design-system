@@ -29,7 +29,7 @@ const LABEL: React.CSSProperties = {
 const CODE: React.CSSProperties = {
   fontFamily: 'var(--font-mono)',
   fontSize: '0.75rem',
-  color: 'var(--brand-primary)',
+  color: 'var(--brand-accent)',
 };
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
@@ -51,28 +51,32 @@ function Card({ children }: { children: React.ReactNode }) {
 
 // ── Brand Colors ────────────────────────────────────────────────────────────
 const brandColors = [
-  { label: 'Yellow (primary)', token: '--brand-primary', light: '#c9a800', dark: '#f0d040' },
-  { label: 'Pink (secondary)', token: '--brand-secondary', light: '#c43460', dark: '#e8336c' },
-  { label: 'Background', token: '--color-background', light: '#f5f5f5', dark: '#000000' },
-  { label: 'Surface', token: '--color-surface', light: '#ffffff', dark: '#111111' },
-  { label: 'Border', token: '--color-border', light: '#d4d4d4', dark: '#2a2a2a' },
-  { label: 'Text primary', token: '--color-text-primary', light: '#0a0a0a', dark: '#ffffff' },
-  { label: 'Text secondary', token: '--color-text-secondary', light: '#444444', dark: '#a3a3a3' },
-  { label: 'Success', token: '--color-success', light: '#10b981', dark: '#34d399' },
-  { label: 'Warning', token: '--color-warning', light: '#f59e0b', dark: '#fbbf24' },
-  { label: 'Error', token: '--color-error', light: '#ef4444', dark: '#f87171' },
+  { label: 'UI Primary',       token: '--brand-primary',   light: '#000000', dark: '#ffffff',  note: 'Black/white — all UI chrome' },
+  { label: 'Yellow (accent)',  token: '--brand-accent',    light: '#f0d040', dark: '#f0d040',  note: 'Brand yellow — decorative only' },
+  { label: 'Pink (accent)',    token: '--brand-secondary', light: '#c43460', dark: '#e8336c',  note: 'Brand pink — decorative only' },
+  { label: 'Background',       token: '--color-background',light: '#f5f5f5', dark: '#000000',  note: '' },
+  { label: 'Surface',          token: '--color-surface',   light: '#ffffff', dark: '#111111',  note: '' },
+  { label: 'Border',           token: '--color-border',    light: '#d4d4d4', dark: '#2a2a2a',  note: '' },
+  { label: 'Text primary',     token: '--color-text-primary', light: '#1a1a1a', dark: '#ffffff', note: '' },
+  { label: 'Text secondary',   token: '--color-text-secondary', light: '#525252', dark: '#a3a3a3', note: '' },
+  { label: 'Success',          token: '--color-success',   light: '#00a63e', dark: '#00a63e',  note: '' },
+  { label: 'Warning',          token: '--color-warning',   light: '#e17100', dark: '#e17100',  note: '' },
+  { label: 'Error',            token: '--color-error',     light: '#c9000a', dark: '#c9000a',  note: '' },
 ];
 
 // ── Typography ───────────────────────────────────────────────────────────────
 const typeScale = [
-  { label: 'Display / h1', size: '3rem',    token: '--text-5xl',   font: 'Anton',  sample: 'Display Heading' },
-  { label: 'h1',           size: '2.25rem', token: '--text-4xl',   font: 'Anton',  sample: 'Section Title' },
-  { label: 'h2',           size: '1.875rem',token: '--text-3xl',   font: 'Anton',  sample: 'Sub Title' },
-  { label: 'h3',           size: '1.5rem',  token: '--text-2xl',   font: 'Anton',  sample: 'Group Label' },
-  { label: 'Large body',   size: '1.125rem',token: '--text-lg',    font: 'Roboto', sample: 'Lead paragraph text' },
-  { label: 'Body',         size: '1rem',    token: '--text-base',  font: 'Roboto', sample: 'Default body text' },
-  { label: 'Small',        size: '0.875rem',token: '--text-sm',    font: 'Roboto', sample: 'Supporting text' },
-  { label: 'Caption',      size: '0.75rem', token: '--text-xs',    font: 'Roboto', sample: 'Labels, captions' },
+  { label: 'Display',    size: '5rem',     token: '--text-display', font: 'Anton',  sample: 'Display' },
+  { label: 'Heading 1',  size: '3.875rem', token: '--text-h1',      font: 'Anton',  sample: 'Heading One' },
+  { label: 'Heading 2',  size: '3.5rem',   token: '--text-h2',      font: 'Anton',  sample: 'Heading Two' },
+  { label: 'Heading 3',  size: '3rem',     token: '--text-h3',      font: 'Anton',  sample: 'Heading Three' },
+  { label: 'Heading 4',  size: '2.5rem',   token: '--text-h4',      font: 'Anton',  sample: 'Heading Four' },
+  { label: 'Heading 5',  size: '2rem',     token: '--text-h5',      font: 'Anton',  sample: 'Heading Five' },
+  { label: 'Heading 6',  size: '1.75rem',  token: '--text-h6',      font: 'Anton',  sample: 'Heading Six' },
+  { label: 'Body Large', size: '1.125rem', token: '--text-body-lg', font: 'Roboto', sample: 'Lead paragraph text' },
+  { label: 'Body',       size: '1rem',     token: '--text-body',    font: 'Roboto', sample: 'Default body text' },
+  { label: 'Body Small', size: '0.875rem', token: '--text-body-sm', font: 'Roboto', sample: 'Supporting text' },
+  { label: 'Caption',    size: '0.75rem',  token: '--text-body-xs', font: 'Roboto', sample: 'Labels, captions' },
 ];
 
 // ── Spacing ───────────────────────────────────────────────────────────────────
@@ -89,12 +93,14 @@ const spacing = [
 
 // ── Radius ────────────────────────────────────────────────────────────────────
 const radii = [
-  { token: '--radius-sm',   value: '0.375rem', use: 'Badges, chips' },
-  { token: '--radius-md',   value: '0.5rem',   use: 'Buttons, inputs' },
-  { token: '--radius-lg',   value: '0.75rem',  use: 'Cards, panels' },
-  { token: '--radius-xl',   value: '1rem',     use: 'Large cards' },
-  { token: '--radius-2xl',  value: '1.5rem',   use: 'Feature sections' },
-  { token: '--radius-full', value: '9999px',   use: 'Pills, avatars' },
+  { token: '--radius-none', value: '0',        use: 'Square corners' },
+  { token: '--radius-xsm',  value: '0.125rem', use: 'Subtle rounding' },
+  { token: '--radius-sm',   value: '0.25rem',  use: 'Badges, chips' },
+  { token: '--radius-md',   value: '0.375rem', use: 'Buttons, inputs' },
+  { token: '--radius-lg',   value: '0.5rem',   use: 'Cards, panels' },
+  { token: '--radius-xl',   value: '0.75rem',  use: 'Large cards' },
+  { token: '--radius-2xl',  value: '1rem',     use: 'Feature sections' },
+  { token: '--radius-full', value: '1000px',   use: 'Pills, avatars' },
 ];
 
 // ── Shadows ───────────────────────────────────────────────────────────────────
@@ -127,16 +133,20 @@ export function GetStartedCheatSheetPage() {
 
       {/* Brand Colors */}
       <Section id="cs-brand" title="Brand Colors">
+        <p style={{ ...LABEL, marginBottom: '1rem', fontSize: '0.8125rem', color: 'var(--color-text-secondary)' }}>
+          UI chrome uses black/white only. Yellow and pink are accent-only — never use them for buttons, links, or interactive states.
+        </p>
         <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))' }}>
-          {brandColors.map(({ label, token, light, dark }) => (
+          {brandColors.map(({ label, token, light, dark, note }) => (
             <div key={token}>
-              <div
-                className="rounded-lg w-full"
-                style={{ height: 48, background: dark, border: '1px solid var(--color-border)' }}
-              />
+              <div className="rounded-lg w-full flex overflow-hidden" style={{ height: 48, border: '1px solid var(--color-border)' }}>
+                <div style={{ flex: 1, background: light }} />
+                <div style={{ flex: 1, background: dark }} />
+              </div>
               <p style={{ ...LABEL, color: 'var(--color-text-primary)', fontSize: '0.8125rem', marginTop: '0.5rem' }}>{label}</p>
               <p style={LABEL}><code style={CODE}>{token}</code></p>
-              <p style={LABEL}>{dark} · {light}</p>
+              <p style={LABEL}>{light} / {dark}</p>
+              {note && <p style={{ ...LABEL, color: 'var(--color-text-tertiary)', fontStyle: 'italic' }}>{note}</p>}
             </div>
           ))}
         </div>
@@ -180,7 +190,7 @@ export function GetStartedCheatSheetPage() {
                   style={{
                     height: 20,
                     width: `calc(${value} * 3)`,
-                    background: 'var(--brand-primary)',
+                    background: 'var(--brand-accent)',
                     borderRadius: 3,
                     minWidth: 4,
                     flexShrink: 0,
@@ -269,7 +279,7 @@ export function GetStartedCheatSheetPage() {
               <button style={{ background: 'transparent', color: 'var(--color-text-primary)', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '0.875rem', padding: '0.5rem 1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border)', cursor: 'pointer' }}>
                 Secondary
               </button>
-              <button style={{ background: 'transparent', color: 'var(--brand-primary)', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '0.875rem', padding: '0.5rem 1.25rem', borderRadius: 'var(--radius-md)', border: 'none', cursor: 'pointer' }}>
+              <button style={{ background: 'transparent', color: 'var(--color-text-primary)', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '0.875rem', padding: '0.5rem 1.25rem', borderRadius: 'var(--radius-md)', border: 'none', cursor: 'pointer' }}>
                 Ghost
               </button>
               <button style={{ background: 'var(--color-error)', color: '#ffffff', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '0.875rem', padding: '0.5rem 1.25rem', borderRadius: 'var(--radius-md)', border: 'none', cursor: 'pointer' }}>

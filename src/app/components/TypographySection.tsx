@@ -6,15 +6,19 @@ const dmSans: React.CSSProperties = { fontFamily: '"DM Sans", sans-serif' };
 const mono: React.CSSProperties = { fontFamily: 'var(--font-mono)' };
 
 const typeScale = [
-  { label: 'Display',     size: '3.75rem', weight: '400', lh: '1.1', font: anton,  sample: 'Display Heading' },
-  { label: 'Heading 1',  size: '3rem',    weight: '400', lh: '1.2', font: anton,  sample: 'Heading One' },
-  { label: 'Heading 2',  size: '2.25rem', weight: '400', lh: '1.2', font: anton,  sample: 'Heading Two' },
-  { label: 'Heading 3',  size: '1.875rem',weight: '400', lh: '1.3', font: anton,  sample: 'Heading Three' },
-  { label: 'Heading 4',  size: '1.5rem',  weight: '400', lh: '1.4', font: anton,  sample: 'Heading Four' },
-  { label: 'Body Large', size: '1.125rem',weight: '400', lh: '1.6', font: roboto, sample: 'The quick brown fox jumps over the lazy dog.' },
-  { label: 'Body',       size: '1rem',    weight: '400', lh: '1.6', font: roboto, sample: 'The quick brown fox jumps over the lazy dog.' },
-  { label: 'Body Small', size: '0.875rem',weight: '400', lh: '1.5', font: roboto, sample: 'The quick brown fox jumps over the lazy dog.' },
-  { label: 'Caption',    size: '0.75rem', weight: '400', lh: '1.5', font: roboto, sample: 'Caption / label text' },
+  // Heading scale — Figma Typography > Font size > Display + Heading
+  { label: 'Display',    size: 'var(--text-display)', weight: '700', lh: '1.2',   ls: 'var(--ls-display)', font: anton,  sample: 'Display Heading' },
+  { label: 'Heading 1',  size: 'var(--text-h1)',      weight: '700', lh: '1.226', ls: 'var(--ls-h1)',      font: anton,  sample: 'Heading One' },
+  { label: 'Heading 2',  size: 'var(--text-h2)',      weight: '700', lh: '1.178', ls: 'var(--ls-h2)',      font: anton,  sample: 'Heading Two' },
+  { label: 'Heading 3',  size: 'var(--text-h3)',      weight: '700', lh: '1.208', ls: 'var(--ls-h3)',      font: anton,  sample: 'Heading Three' },
+  { label: 'Heading 4',  size: 'var(--text-h4)',      weight: '700', lh: '1.2',   ls: 'var(--ls-h4)',      font: anton,  sample: 'Heading Four' },
+  { label: 'Heading 5',  size: 'var(--text-h5)',      weight: '600', lh: '1.25',  ls: 'var(--ls-h5)',      font: anton,  sample: 'Heading Five' },
+  { label: 'Heading 6',  size: 'var(--text-h6)',      weight: '600', lh: '1.143', ls: 'var(--ls-h6)',      font: anton,  sample: 'Heading Six' },
+  // Body scale — Figma Typography > Font size > Body
+  { label: 'Body Large',  size: 'var(--text-body-lg)',  weight: '400', lh: '1.667', ls: '-0.14px', font: roboto, sample: 'The quick brown fox jumps over the lazy dog.' },
+  { label: 'Body',        size: 'var(--text-body)',     weight: '400', lh: '1.5',   ls: '-0.14px', font: roboto, sample: 'The quick brown fox jumps over the lazy dog.' },
+  { label: 'Body Small',  size: 'var(--text-body-sm)',  weight: '400', lh: '1.428', ls: '-0.12px', font: roboto, sample: 'The quick brown fox jumps over the lazy dog.' },
+  { label: 'Caption',     size: 'var(--text-body-xs)',  weight: '400', lh: '1.333', ls: '-0.1px',  font: roboto, sample: 'Caption / label text' },
 ];
 
 const fonts = [
@@ -133,16 +137,16 @@ export function TypographySection() {
           <p className="text-xs font-semibold tracking-widest uppercase mb-4"
             style={{ ...mono, color: 'var(--color-text-tertiary)' }}>Type Scale</p>
           <div className="divide-y" style={{ borderColor: 'var(--color-border)' }}>
-            {typeScale.map(({ label, size, weight, lh, font, sample }) => (
+            {typeScale.map(({ label, size, weight, lh, ls, font, sample }) => (
               <div key={label} className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 py-6">
                 <div className="flex-1">
-                  <p style={{ ...font, fontSize: size, fontWeight: weight, lineHeight: lh, color: 'var(--color-text-primary)' }}>
+                  <p style={{ ...font, fontSize: size, fontWeight: weight, lineHeight: lh, letterSpacing: ls, color: 'var(--color-text-primary)' }}>
                     {sample}
                   </p>
                 </div>
-                <div className="shrink-0 text-right" style={{ minWidth: '200px' }}>
+                <div className="shrink-0 text-right" style={{ minWidth: '220px' }}>
                   <p className="text-xs" style={{ ...mono, color: 'var(--color-text-tertiary)' }}>
-                    {size} / {weight} / {lh}lh
+                    {size} / w{weight} / {lh}lh
                   </p>
                   <p className="text-xs mt-0.5" style={{ ...mono, color: 'var(--color-text-tertiary)' }}>
                     {label}

@@ -44,9 +44,11 @@ export function ButtonIconPage() {
         <div className="space-y-4 mb-6">
           <Demo label="All variants">
             <Button size="icon" aria-label="Add"><Plus size={16} /></Button>
+            <Button size="icon" variant="accent" aria-label="Bookmark"><Check size={16} /></Button>
+            <Button size="icon" variant="neutral" aria-label="Settings"><Settings size={16} /></Button>
             <Button size="icon" variant="outline" aria-label="Download"><Download size={16} /></Button>
             <Button size="icon" variant="secondary" aria-label="Search"><Search size={16} /></Button>
-            <Button size="icon" variant="ghost" aria-label="Settings"><Settings size={16} /></Button>
+            <Button size="icon" variant="ghost" aria-label="More"><Settings size={16} /></Button>
             <Button size="icon" variant="destructive" aria-label="Delete"><Trash2 size={16} /></Button>
           </Demo>
           <Demo label="Sizes — sm / default / lg">
@@ -78,6 +80,8 @@ export function ButtonIconPage() {
             { rule: 'Minimum 44×44px touch target', desc: 'The default size="icon" is 36px. Add padding or use size="lg" equivalent for touch interfaces.' },
             { rule: 'Use tooltips for discoverability', desc: 'Wrap icon buttons in a Tooltip so sighted users can discover the action on hover.' },
             { rule: 'Reserve for known iconography', desc: 'Only use icons that are universally understood (close, search, add). Avoid ambiguous icons without labels.' },
+            { rule: 'Use accent for a single bookmark/star CTA', desc: 'The accent variant is appropriate for one high-emphasis icon action per view — e.g. a "Save" or "Favourite" star. Do not use multiple accent icon buttons in the same toolbar.' },
+            { rule: 'Use neutral for toolbar controls', desc: 'The neutral variant (gray fill) is the natural choice for icon buttons in toolbars and filter bars where you need affordance without full visual weight.' },
           ].map(({ rule, desc }) => (
             <div key={rule} className="flex gap-4 rounded-xl p-4" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
               <span className="text-sm font-semibold shrink-0 mt-0.5" style={{ color: 'var(--brand-primary)', fontFamily: 'var(--font-body)' }}>→</span>

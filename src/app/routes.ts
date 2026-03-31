@@ -11,6 +11,7 @@ import { GetStartedDesignersPage } from "./pages/GetStartedDesignersPage";
 import { GetStartedDevelopersPage } from "./pages/GetStartedDevelopersPage";
 import { GetStartedBrandPage } from "./pages/GetStartedBrandPage";
 import { GetStartedCheatSheetPage } from "./pages/GetStartedCheatSheetPage";
+import { WhatsNewPage } from "./pages/WhatsNewPage";
 // Foundation sub-pages
 import { TokensPage } from "./pages/foundations/TokensPage";
 import { TokensExplainedPage } from "./pages/foundations/TokensExplainedPage";
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
     Component: RootLayout,
     children: [
       { index: true, Component: HomePage },
+      { path: "whats-new", Component: WhatsNewPage },
       { path: "get-started/designers",  Component: GetStartedDesignersPage },
       { path: "get-started/developers", Component: GetStartedDevelopersPage },
       { path: "get-started/brand",        Component: GetStartedBrandPage },

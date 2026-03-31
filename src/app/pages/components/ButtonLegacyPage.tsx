@@ -92,20 +92,22 @@ export function ButtonLegacyPage() {
       <section id="migration" className="mb-16">
         <h2 className="mb-6" style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-2xl)', textTransform: 'uppercase', color: 'var(--color-text-primary)' }}>Migration Guide</h2>
         <p className="text-sm mb-6" style={{ color: 'var(--color-text-secondary)', fontFamily: 'var(--font-body)' }}>
-          Replace <code className="text-xs px-1 py-0.5 rounded" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>brand-btn brand-btn-primary</code> with the <code className="text-xs px-1 py-0.5 rounded" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>Button</code> component. The equivalent variant is <code className="text-xs px-1 py-0.5 rounded" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>default</code> (dark bg, white text) or pair with the brand-btn classes via className for the white-on-black style.
+          Replace <code className="text-xs px-1 py-0.5 rounded" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>brand-btn brand-btn-primary</code> with the <code className="text-xs px-1 py-0.5 rounded" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>Button</code> component. Choose the variant that matches the button's role: <code className="text-xs px-1 py-0.5 rounded" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>default</code> for standard primary actions, <code className="text-xs px-1 py-0.5 rounded" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>accent</code> for brand-colored hero CTAs (#FFDE42, WCAG AAA), and <code className="text-xs px-1 py-0.5 rounded" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>neutral</code> for low-emphasis toolbar or filter controls.
         </p>
         <Code>{`{/* Before (legacy) */}
 <button className="brand-btn brand-btn-primary">
   Submit
 </button>
 
-{/* After (current) */}
+{/* After — standard primary action */}
 import { Button } from '@/components/ui/button';
-
 <Button>Submit</Button>
 
-{/* After — preserving white/black brand style */}
-<Button className="brand-btn brand-btn-primary">Submit</Button>`}</Code>
+{/* After — brand-colored hero CTA (yellow, WCAG AAA) */}
+<Button variant="accent">Get started</Button>
+
+{/* After — low-emphasis toolbar / filter control */}
+<Button variant="neutral">Filter</Button>`}</Code>
 
         <div className="mt-6 p-5 rounded-xl flex items-center justify-between gap-4"
           style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
