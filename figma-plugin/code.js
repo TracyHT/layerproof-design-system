@@ -1,5 +1,9 @@
-// LayerProof Token Sync Plugin v2
-// Variable aliasing + light/dark mode + Secondary (pink) tokens
+// LayerProof Token Sync Plugin v3
+// Variable aliasing + light/dark mode
+// Covers: Yellow, Pink, Gray palette scales
+//         Accent, Secondary, Neutral semantic aliases
+//         Danger, Success, Warning status tokens
+//         Font / text style overrides
 
 // ─── Color scales ─────────────────────────────────────────────────────────────
 
@@ -27,6 +31,24 @@ var PINK = {
   "900": { r: 0x44/255, g: 0x0e/255, b: 0x23/255, a: 1 },
 };
 
+// Gray scale — matches CSS neutral token values exactly
+// Stops 550, 850, 910, 950 are non-standard but required for precise dark-mode aliasing
+var GRAY = {
+  "100": { r: 0xf4/255, g: 0xf4/255, b: 0xf4/255, a: 1 }, // #f4f4f4 — updated to match Figma
+  "200": { r: 0xe5/255, g: 0xe5/255, b: 0xe5/255, a: 1 }, // #e5e5e5
+  "300": { r: 0xd4/255, g: 0xd4/255, b: 0xd4/255, a: 1 }, // #d4d4d4
+  "400": { r: 0xa3/255, g: 0xa3/255, b: 0xa3/255, a: 1 }, // #a3a3a3
+  "500": { r: 0x73/255, g: 0x73/255, b: 0x73/255, a: 1 }, // #737373
+  "550": { r: 0x6b/255, g: 0x6b/255, b: 0x6b/255, a: 1 }, // #6b6b6b — text tertiary dark
+  "600": { r: 0x52/255, g: 0x52/255, b: 0x52/255, a: 1 }, // #525252
+  "700": { r: 0x40/255, g: 0x40/255, b: 0x40/255, a: 1 }, // #404040
+  "800": { r: 0x2a/255, g: 0x2a/255, b: 0x2a/255, a: 1 }, // #2a2a2a — surface disable dark
+  "850": { r: 0x1c/255, g: 0x1c/255, b: 0x1c/255, a: 1 }, // #1c1c1c — surface hover dark
+  "900": { r: 0x1a/255, g: 0x1a/255, b: 0x1a/255, a: 1 }, // #1a1a1a — primary text light
+  "910": { r: 0x11/255, g: 0x11/255, b: 0x11/255, a: 1 }, // #111111 — surface dark
+  "950": { r: 0x00/255, g: 0x00/255, b: 0x00/255, a: 1 }, // #000000 — black
+};
+
 // ─── Alias tables ─────────────────────────────────────────────────────────────
 // Format: [variableName, lightModeAliasTarget, darkModeAliasTarget]
 // __BLACK__ / __WHITE__ = look up Brand Theme black/white variable, fallback to raw
@@ -38,6 +60,7 @@ var ACCENT_ALIASES = [
   ["Accent/Surface/default",    "Color/Yellow/500", "Color/Yellow/500"],
   ["Accent/Surface/dark",       "Color/Yellow/800", "Color/Yellow/200"],
   ["Accent/Surface/darker",     "Color/Yellow/900", "Color/Yellow/100"],
+  ["Accent/Surface/btn-hover",  "Color/Yellow/600", "Color/Yellow/600"],
   ["Accent/Text-Icon/default",  "Color/Yellow/800", "Color/Yellow/500"],
   ["Accent/Text-Icon/on-color", "__BLACK__",        "__BLACK__"],
   ["Accent/Text-Icon/disable",  "Color/Yellow/300", "Color/Yellow/700"],
@@ -61,6 +84,73 @@ var SECONDARY_ALIASES = [
   ["Secondary/Divider/light",      "Color/Pink/200", "Color/Pink/800"],
   ["Secondary/Divider/disable",    "Color/Pink/300", "Color/Pink/700"],
   ["Secondary/Divider/on-color",   "__WHITE__",      "__WHITE__"],
+];
+
+// Neutral aliases — maps Gray scale stops to semantic neutral tokens
+// Light: low-numbered stops (light surfaces)  →  Dark: high-numbered stops (dark surfaces), inverted
+var NEUTRAL_ALIASES = [
+  // Surface (7 variables)
+  ["Neutral/Surface/disable",    "Color/Gray/200", "Color/Gray/800"],
+  ["Neutral/Surface/surface",    "Color/Gray/100", "Color/Gray/950"],
+  ["Neutral/Surface/lighter",    "Color/Gray/300", "Color/Gray/910"],
+  ["Neutral/Surface/light",      "Color/Gray/500", "Color/Gray/850"],
+  ["Neutral/Surface/default",    "Color/Gray/900", "__WHITE__"],
+  ["Neutral/Surface/dark",       "Color/Gray/700", "Color/Gray/400"],
+  ["Neutral/Surface/darker",     "Color/Gray/700", "Color/Gray/550"],
+  // Text-Icon (5 variables)
+  ["Neutral/Text-Icon/on-color", "__WHITE__",       "__BLACK__"],
+  ["Neutral/Text-Icon/disable",  "Color/Gray/400",  "Color/Gray/700"],
+  ["Neutral/Text-Icon/tertiary", "Color/Gray/500",  "Color/Gray/550"],
+  ["Neutral/Text-Icon/secondary","Color/Gray/600",  "Color/Gray/400"],
+  ["Neutral/Text-Icon/primary",  "Color/Gray/900",  "__WHITE__"],
+  // Divider (2 variables)
+  ["Neutral/Divider/light",      "Color/Gray/200",  "Color/Gray/850"],
+  ["Neutral/Divider/default",    "Color/Gray/300",  "Color/Gray/800"],
+];
+
+// Status tokens (Danger / Success / Warning) — raw RGBA, not aliases
+// Format: [varName, lightRGBA, darkRGBA]
+// Dark surfaces use low alpha to tint without overwhelming the dark background
+var STATUS_VARS = [
+  // Danger (4)
+  ["Danger/surface",
+    { r: 0xfe/255, g: 0xf2/255, b: 0xf2/255, a: 1    },
+    { r: 199/255,  g: 0,        b: 10/255,   a: 0.12 }],
+  ["Danger/light",
+    { r: 0xfe/255, g: 0xc8/255, b: 0xc8/255, a: 1 },
+    { r: 0xf8/255, g: 0x71/255, b: 0x71/255, a: 1 }],
+  ["Danger/default",
+    { r: 0xc9/255, g: 0,        b: 0x0a/255, a: 1 },
+    { r: 0xf8/255, g: 0x71/255, b: 0x71/255, a: 1 }],
+  ["Danger/dark",
+    { r: 0x70/255, g: 0,        b: 0x05/255, a: 1 },
+    { r: 0xfc/255, g: 0xa5/255, b: 0xa5/255, a: 1 }],
+  // Success (4)
+  ["Success/surface",
+    { r: 0xf0/255, g: 0xfd/255, b: 0xf4/255, a: 1    },
+    { r: 0,        g: 166/255,  b: 62/255,   a: 0.12 }],
+  ["Success/light",
+    { r: 0xb9/255, g: 0xf8/255, b: 0xcf/255, a: 1 },
+    { r: 0x34/255, g: 0xd3/255, b: 0x99/255, a: 1 }],
+  ["Success/default",
+    { r: 0,        g: 0xa6/255, b: 0x3e/255, a: 1 },
+    { r: 0x34/255, g: 0xd3/255, b: 0x99/255, a: 1 }],
+  ["Success/dark",
+    { r: 0x0d/255, g: 0x54/255, b: 0x2b/255, a: 1 },
+    { r: 0x6e/255, g: 0xe7/255, b: 0xb7/255, a: 1 }],
+  // Warning (4)
+  ["Warning/surface",
+    { r: 0xff/255, g: 0xfa/255, b: 0xe8/255, a: 1    },
+    { r: 225/255,  g: 113/255,  b: 0,        a: 0.12 }],
+  ["Warning/light",
+    { r: 0xfe/255, g: 0xe6/255, b: 0x85/255, a: 1 },
+    { r: 0xfb/255, g: 0xbf/255, b: 0x24/255, a: 1 }],
+  ["Warning/default",
+    { r: 0xe1/255, g: 0x71/255, b: 0,        a: 1 },
+    { r: 0xfb/255, g: 0xbf/255, b: 0x24/255, a: 1 }],
+  ["Warning/dark",
+    { r: 0x7b/255, g: 0x33/255, b: 0x06/255, a: 1 },
+    { r: 0xfd/255, g: 0xe6/255, b: 0x8a/255, a: 1 }],
 ];
 
 // ─── Font overrides ───────────────────────────────────────────────────────────
@@ -219,7 +309,7 @@ function discoverCollections() {
   };
 }
 
-// ─── Step 3+4: Sync palette variables (Yellow + Pink) ────────────────────────
+// ─── Step 3+4: Sync palette variables (Yellow + Pink + Gray) ─────────────────
 // Palette vars are reference values — same raw RGBA in every mode
 
 function syncPaletteVars(ctx) {
@@ -230,6 +320,7 @@ function syncPaletteVars(ctx) {
   for (var i = 0; i < allVars.length; i++) byName[allVars[i].name] = allVars[i];
 
   var defs = [
+    // Yellow scale
     ["Color/Yellow/100", YELLOW["100"]],
     ["Color/Yellow/200", YELLOW["200"]],
     ["Color/Yellow/300", YELLOW["300"]],
@@ -239,6 +330,7 @@ function syncPaletteVars(ctx) {
     ["Color/Yellow/700", YELLOW["700"]],
     ["Color/Yellow/800", YELLOW["800"]],
     ["Color/Yellow/900", YELLOW["900"]],
+    // Pink scale
     ["Color/Pink/100",   PINK["100"]],
     ["Color/Pink/200",   PINK["200"]],
     ["Color/Pink/300",   PINK["300"]],
@@ -248,6 +340,20 @@ function syncPaletteVars(ctx) {
     ["Color/Pink/700",   PINK["700"]],
     ["Color/Pink/800",   PINK["800"]],
     ["Color/Pink/900",   PINK["900"]],
+    // Gray scale — matches CSS neutral token exact hex values
+    ["Color/Gray/100",   GRAY["100"]],
+    ["Color/Gray/200",   GRAY["200"]],
+    ["Color/Gray/300",   GRAY["300"]],
+    ["Color/Gray/400",   GRAY["400"]],
+    ["Color/Gray/500",   GRAY["500"]],
+    ["Color/Gray/550",   GRAY["550"]],
+    ["Color/Gray/600",   GRAY["600"]],
+    ["Color/Gray/700",   GRAY["700"]],
+    ["Color/Gray/800",   GRAY["800"]],
+    ["Color/Gray/850",   GRAY["850"]],
+    ["Color/Gray/900",   GRAY["900"]],
+    ["Color/Gray/910",   GRAY["910"]],
+    ["Color/Gray/950",   GRAY["950"]],
   ];
 
   var created = 0, updated = 0;
@@ -314,6 +420,39 @@ function syncSemanticVars(ctx, aliasDefs, label) {
   }
 
   post("  " + label + ": " + created + " created, " + updated + " updated, " + aliased + " alias values set");
+}
+
+// ─── Sync raw RGBA status variables (Danger / Success / Warning) ──────────────
+// Status colors are custom values that don't map cleanly to a palette scale,
+// so we set raw RGBA directly rather than using aliases.
+
+function syncRawStatusVars(ctx) {
+  if (!ctx.themeColl) { post("  ERROR: no theme collection found"); return; }
+
+  var allVars = figma.variables.getLocalVariables("COLOR");
+  var byName  = {};
+  for (var i = 0; i < allVars.length; i++) byName[allVars[i].name] = allVars[i];
+
+  var created = 0, updated = 0;
+
+  for (var i = 0; i < STATUS_VARS.length; i++) {
+    var varName  = STATUS_VARS[i][0];
+    var lightVal = STATUS_VARS[i][1];
+    var darkVal  = STATUS_VARS[i][2];
+
+    var v = byName[varName];
+    if (!v) {
+      v = figma.variables.createVariable(varName, ctx.themeColl, "COLOR");
+      created++;
+    } else {
+      updated++;
+    }
+
+    v.setValueForMode(ctx.themeLightId, lightVal);
+    if (ctx.themeDarkId) v.setValueForMode(ctx.themeDarkId, darkVal);
+  }
+
+  post("  Status vars: " + created + " created, " + updated + " updated");
 }
 
 // ─── Update paint styles (Blue stops → Yellow) ───────────────────────────────
@@ -400,11 +539,11 @@ function updateTextStyles() {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-figma.showUI(__html__, { width: 420, height: 380 });
+figma.showUI(__html__, { width: 420, height: 420 });
 
 figma.ui.onmessage = function(msg) {
   if (msg.type === "run-sync") {
-    post("Starting LayerProof token sync v2...");
+    post("Starting LayerProof token sync v3...");
 
     post("Renaming Blue → Yellow...");
     renameBlueVariables();
@@ -412,7 +551,7 @@ figma.ui.onmessage = function(msg) {
     post("Discovering collections and modes...");
     var ctx = discoverCollections();
 
-    post("Syncing palette variables (Yellow + Pink)...");
+    post("Syncing palette variables (Yellow + Pink + Gray)...");
     syncPaletteVars(ctx);
 
     post("Syncing Accent aliases (yellow theme)...");
@@ -420,6 +559,12 @@ figma.ui.onmessage = function(msg) {
 
     post("Syncing Secondary aliases (pink theme)...");
     syncSemanticVars(ctx, SECONDARY_ALIASES, "Secondary");
+
+    post("Syncing Neutral aliases (gray theme)...");
+    syncSemanticVars(ctx, NEUTRAL_ALIASES, "Neutral");
+
+    post("Syncing status tokens (Danger / Success / Warning)...");
+    syncRawStatusVars(ctx);
 
     post("Updating paint styles...");
     updatePaintStyles();

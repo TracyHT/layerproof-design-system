@@ -79,7 +79,6 @@ const navItems: NavItem[] = [
           { label: 'Link icon button', path: '/components/button/link-icon' },
           { label: 'Split button',     path: '/components/button/split' },
           { label: 'Button group',     path: '/components/button/group' },
-          { label: 'Button (legacy)',  path: '/components/button/legacy', badge: 'Caution' },
         ],
       },
     ],
@@ -241,67 +240,116 @@ function NavNode({ item, depth = 0 }: NavNodeProps) {
   // Has children — collapsible section
   const sectionActive = active && location.pathname.startsWith(item.path || '##');
 
+  const chevron = (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      style={{
+        transform: open ? 'rotate(90deg)' : 'rotate(0deg)',
+        transition: 'transform 200ms',
+        flexShrink: 0,
+        opacity: 0.6,
+      }}
+    >
+      <path
+        d="M4 2L8 6L4 10"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+
+  const rowStyle = {
+    fontSize: depth === 0 ? 15 : 13,
+    fontWeight: sectionActive ? 600 : depth === 0 ? 500 : 400,
+    color: sectionActive ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+    transition: 'background 150ms, color 150ms',
+  } as const;
+
   return (
     <div>
-      <button
-        onClick={() => setOpen((v) => !v)}
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-          paddingLeft,
-          paddingRight: 12,
-          paddingTop: 6,
-          paddingBottom: 6,
-          fontSize: depth === 0 ? 15 : 13,
-          fontWeight: sectionActive ? 600 : depth === 0 ? 500 : 400,
-          color: sectionActive
-            ? 'var(--color-text-primary)'
-            : 'var(--color-text-secondary)',
-          background: 'transparent',
-          border: 'none',
-          cursor: 'pointer',
-          textAlign: 'left',
-          transition: 'background 150ms, color 150ms',
-          borderRadius: 4,
-          borderLeft: '2px solid transparent',
-        }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.background =
-            'var(--color-surface-hover)';
-          (e.currentTarget as HTMLButtonElement).style.color =
-            'var(--color-text-primary)';
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.background = 'transparent';
-          (e.currentTarget as HTMLButtonElement).style.color = sectionActive
-            ? 'var(--color-text-primary)'
-            : 'var(--color-text-secondary)';
-        }}
-      >
-        <span>{item.label}</span>
-        <svg
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          style={{
-            transform: open ? 'rotate(90deg)' : 'rotate(0deg)',
-            transition: 'transform 200ms',
-            flexShrink: 0,
-            opacity: 0.6,
+      {item.path ? (
+        // Parent with path: link label + separate chevron toggle
+        <div
+          style={{ display: 'flex', alignItems: 'center', borderRadius: 4 }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLDivElement).style.background = 'var(--color-surface-hover)';
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLDivElement).style.background = 'transparent';
           }}
         >
-          <path
-            d="M4 2L8 6L4 10"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
+          <Link
+            to={item.path}
+            style={{
+              flex: 1,
+              paddingLeft,
+              paddingTop: 6,
+              paddingBottom: 6,
+              textDecoration: 'none',
+              ...rowStyle,
+            }}
+          >
+            {item.label}
+          </Link>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            style={{
+              paddingRight: 12,
+              paddingTop: 6,
+              paddingBottom: 6,
+              paddingLeft: 6,
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              color: sectionActive ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            {chevron}
+          </button>
+        </div>
+      ) : (
+        // Parent without path: full-width toggle button
+        <button
+          onClick={() => setOpen((v) => !v)}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            paddingLeft,
+            paddingRight: 12,
+            paddingTop: 6,
+            paddingBottom: 6,
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            textAlign: 'left',
+            borderRadius: 4,
+            borderLeft: '2px solid transparent',
+            ...rowStyle,
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.background = 'var(--color-surface-hover)';
+            (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-text-primary)';
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.background = 'transparent';
+            (e.currentTarget as HTMLButtonElement).style.color = sectionActive
+              ? 'var(--color-text-primary)'
+              : 'var(--color-text-secondary)';
+          }}
+        >
+          <span>{item.label}</span>
+          {chevron}
+        </button>
+      )}
       {open && (
         <div>
           {item.children!.map((child) => (
