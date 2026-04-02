@@ -168,7 +168,7 @@ function LayoutInner() {
         >
           <div style={{
             width: '100%',
-            maxWidth: 800,
+            maxWidth: isDS ? 800 : 'none',
             padding: isDS ? '48px 40px' : '0',
           }}>
             <Outlet />

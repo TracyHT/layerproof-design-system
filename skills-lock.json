@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "skills": {
+    "exports": {
+      "source": "compilet-dev/agent-skill-layerproof",
+      "sourceType": "github",
+      "computedHash": "d06c980eb03812052bf9dd027f1d9ad78c350621244e030bbbd876b50be8f284"
+    },
+    "jobs": {
+      "source": "compilet-dev/agent-skill-layerproof",
+      "sourceType": "github",
+      "computedHash": "bb54405069c3f6f2f6af60529734a4642d6bf0393c0840a5a0cfc39d781903a8"
+    },
+    "project-files": {
+      "source": "compilet-dev/agent-skill-layerproof",
+      "sourceType": "github",
+      "computedHash": "e1f9f602e85d66c061165f6011ab17c2c3e60f060cb8d2d3523dc7fb60eedd30"
+    },
+    "projects": {
+      "source": "compilet-dev/agent-skill-layerproof",
+      "sourceType": "github",
+      "computedHash": "5121453abcac06bc2d177ee0b1b17c3b14d4bd484c166fca1affd0695ac0bc87"
+    },
+    "public-files": {
+      "source": "compilet-dev/agent-skill-layerproof",
+      "sourceType": "github",
+      "computedHash": "ff035066fceae0deeb13c74145cff3ed6758f28a28a68be8ef200cf5537c29f4"
+    },
+    "slide-decks": {
+      "source": "compilet-dev/agent-skill-layerproof",
+      "sourceType": "github",
+      "computedHash": "adb0a6dfa4b4a3de43db2a2509d2783a42521596c40080bc3b7de3b489014aae"
+    },
+    "slides": {
+      "source": "compilet-dev/agent-skill-layerproof",
+      "sourceType": "github",
+      "computedHash": "7b4b4ed23fc536f6f5cd44b45d1ef8c9722a06577df3578a90b0cc7b726d82cc"
+    },
+    "social-campaigns": {
+      "source": "compilet-dev/agent-skill-layerproof",
+      "sourceType": "github",
+      "computedHash": "5d743cd8566357a862ce04190c96a73db915e7d462356f26b3753b5936b8e83f"
+    },
+    "themes": {
+      "source": "compilet-dev/agent-skill-layerproof",
+      "sourceType": "github",
+      "computedHash": "6991accdc37ccdbb9cd85fb5a491127d37541b9a1e123df8b031971c06c3bc54"
+    },
+    "workspaces": {
+      "source": "compilet-dev/agent-skill-layerproof",
+      "sourceType": "github",
+      "computedHash": "8c80cc8174522f7f17fa543373a0cc5944bb925917c7af98f1163ee45f3b5907"
+    }
+  }
+}

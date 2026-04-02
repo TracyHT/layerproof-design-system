@@ -2,71 +2,204 @@ import { Link } from "react-router";
 import { ArrowRight, Palette, Layout, Box, FileText } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
+import { useInView } from "../hooks/useInView";
+import { GridPattern } from "../components/ui/grid-pattern";
 
 export function HomePage() {
+  // Bento refs
+  const bentoTitleRef = useInView<HTMLHeadingElement>({
+    animation: "anim-fade-up",
+  });
+  const colorCardRef = useInView<HTMLAnchorElement>({
+    animation: "anim-scale-in",
+  });
+  const typoCardRef = useInView<HTMLAnchorElement>({
+    animation: "anim-scale-in delay-100",
+  });
+  const logosCardRef = useInView<HTMLAnchorElement>({
+    animation: "anim-scale-in delay-200",
+  });
+  const bannerCardRef = useInView<HTMLAnchorElement>({
+    animation: "anim-scale-in delay-200",
+  });
+  const tokensCardRef = useInView<HTMLAnchorElement>({
+    animation: "anim-scale-in delay-300",
+  });
+  const componentsCardRef = useInView<HTMLAnchorElement>({
+    animation: "anim-scale-in delay-300",
+  });
+
+  // Get Started refs
+  const gsTitleRef = useInView<HTMLHeadingElement>({
+    animation: "anim-fade-up",
+  });
+  const gsCard1Ref = useInView<HTMLAnchorElement>({
+    animation: "anim-fade-up delay-100",
+  });
+  const gsCard2Ref = useInView<HTMLAnchorElement>({
+    animation: "anim-fade-up delay-200",
+  });
+  const gsCard3Ref = useInView<HTMLAnchorElement>({
+    animation: "anim-fade-up delay-300",
+  });
+
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 py-24 md:py-32">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1
-              style={{
-                fontFamily: "var(--font-heading)",
-                fontSize: "clamp(3rem, 8vw, 5rem)",
-                textTransform: "uppercase",
-                color: "var(--color-text-primary)",
-                lineHeight: 1.05,
-              }}
-            >
-              LayerProof
-              <br />
-              Design System
-            </h1>
-            <p
-              className="mt-6 mb-10 text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "var(--color-text-secondary)",
-              }}
-            >
-              A comprehensive design system built on precision, authority, and
-              clarity.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="brand-btn brand-btn-primary gap-2"
-              >
-                <Link to="/foundations">
-                  Explore The System
-                  <ArrowRight size={16} />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="ghost"
+      <section
+        className="relative overflow-hidden"
+        style={{
+          background: `
+            radial-gradient(ellipse 90% 80% at 75% 30%, color-mix(in srgb, var(--brand-secondary) 22%, transparent), transparent 65%),
+            radial-gradient(ellipse 70% 60% at 85% 85%, color-mix(in srgb, var(--brand-accent) 18%, transparent), transparent 60%),
+            radial-gradient(ellipse 50% 50% at 60% 60%, color-mix(in srgb, var(--brand-primary) 10%, transparent), transparent 55%),
+            var(--color-background)
+          `,
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "stretch",
+        }}
+      >
+        {/* Grid pattern */}
+        <GridPattern
+          hoverable
+          className="inset-x-0 inset-y-[-20%] h-[140%] skew-y-6"
+          style={{
+            color: "var(--color-border)",
+            maskImage:
+              "radial-gradient(ellipse 80% 70% at 60% 50%, white 30%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 80% 70% at 60% 50%, white 30%, transparent 100%)",
+            zIndex: 0,
+          }}
+        />
+
+        {/* ── Left: hero text ── */}
+        <div
+          className="relative flex flex-col justify-center"
+          style={{
+            width: "100%",
+            maxWidth: 580,
+            padding: "100px 48px 100px 64px",
+            flexShrink: 0,
+            zIndex: 1,
+          }}
+        >
+          {/* Blur mask behind text */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backdropFilter: "blur(2px)",
+              WebkitBackdropFilter: "blur(2px)",
+              maskImage:
+                "radial-gradient(ellipse 90% 80% at 40% 50%, black 60%, transparent 100%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 90% 80% at 40% 50%, black 60%, transparent 100%)",
+            }}
+          />
+          {/* Release note badge */}
+          <Link
+            to="/whats-new"
+            className="inline-flex items-center justify-between gap-4 mb-10 anim-fade-down self-start"
+            style={{
+              background: "var(--accent-surface-disable)",
+              borderRadius: 12,
+              padding: "10px 16px",
+              textDecoration: "none",
+              minWidth: 260,
+            }}
+          >
+            <div style={{ textAlign: "left" }}>
+              <p
                 style={{
-                  background: "transparent",
-                  border: "1px solid rgba(255,255,255,0.35)",
-                  color: "var(--color-text-primary)",
+                  fontFamily: "var(--font-body)",
+                  fontWeight: 700,
+                  fontSize: "0.8rem",
+                  color: "var(--accent-text-default)",
+                  marginBottom: 2,
                 }}
               >
-                <Link to="/resources">Download Resources</Link>
-              </Button>
+                Release Note
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "0.8rem",
+                  color: "var(--accent-text-default)",
+                  opacity: 0.7,
+                }}
+              >
+                Checkout the latest release v1.2.0
+              </p>
             </div>
+            <ArrowRight
+              size={16}
+              style={{ color: "var(--accent-text-default)", flexShrink: 0 }}
+            />
+          </Link>
+
+          <h1
+            className="anim-fade-down delay-100"
+            style={{
+              fontFamily: "var(--font-heading)",
+              fontSize: "clamp(3rem, 6vw, 5.5rem)",
+              textTransform: "uppercase",
+              color: "var(--color-text-primary)",
+              lineHeight: 1.0,
+              marginBottom: 24,
+            }}
+          >
+            LayerProof
+            <br />
+            <span
+              style={{
+                background: "var(--brand-secondary)",
+                color: "#ffffff",
+                padding: "0 0.15em",
+                display: "inline-block",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Design System
+            </span>
+          </h1>
+
+          <p
+            className="anim-fade-up delay-200"
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "1.125rem",
+              lineHeight: 1.7,
+              color: "var(--color-text-secondary)",
+              marginBottom: 36,
+              maxWidth: 400,
+            }}
+          >
+            A comprehensive design system built on precision, authority, and
+            clarity.
+          </p>
+
+          <div className="flex flex-wrap gap-3 anim-scale-in delay-300">
+            <Button asChild size="lg" variant="accent">
+              <Link to="/foundations">
+                Explore The System
+                <ArrowRight size={16} />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link to="/resources">Download Resources</Link>
+            </Button>
           </div>
         </div>
 
-        {/* Decorative gradient */}
+        {/* Bottom fade into next section */}
         <div
-          className="absolute inset-0 -z-10"
+          className="absolute bottom-0 left-0 right-0 pointer-events-none"
           style={{
-            background: `radial-gradient(ellipse at 20% 60%, var(--brand-primary) 0%, transparent 50%),
-                         radial-gradient(ellipse at 80% 30%, var(--brand-secondary) 0%, transparent 50%)`,
-            opacity: 0.05,
+            height: 100,
+            background:
+              "linear-gradient(to bottom, transparent, var(--color-background))",
+            zIndex: 2,
           }}
         />
       </section>
@@ -78,7 +211,8 @@ export function HomePage() {
       >
         <div className="max-w-5xl mx-auto">
           <h2
-            className="text-center mb-14"
+            ref={bentoTitleRef}
+            className="text-center mb-14 animate-on-scroll"
             style={{
               fontFamily: "var(--font-heading)",
               fontSize: "clamp(2rem, 5vw, 3.25rem)",
@@ -103,6 +237,7 @@ export function HomePage() {
           >
             {/* ── Color — col 1, rows 1-2 ── */}
             <Link
+              ref={colorCardRef}
               to="/foundations/color"
               style={{
                 textDecoration: "none",
@@ -111,7 +246,7 @@ export function HomePage() {
                 background: "var(--color-surface)",
                 border: "1px solid var(--color-border)",
               }}
-              className="group rounded-2xl p-5 flex flex-col transition-opacity hover:opacity-80"
+              className="group rounded-2xl p-5 flex flex-col transition-all hover:-translate-y-1 hover:shadow-lg animate-on-scroll"
             >
               <div className="flex items-center gap-2 mb-5">
                 <div
@@ -178,6 +313,7 @@ export function HomePage() {
 
             {/* ── Typography — col 2, row 1 ── */}
             <Link
+              ref={typoCardRef}
               to="/foundations/typography"
               style={{
                 textDecoration: "none",
@@ -186,7 +322,7 @@ export function HomePage() {
                 background: "var(--color-surface)",
                 border: "1px solid var(--color-border)",
               }}
-              className="group rounded-2xl p-5 flex flex-col transition-opacity hover:opacity-80"
+              className="group rounded-2xl p-5 flex flex-col transition-all hover:-translate-y-1 hover:shadow-lg animate-on-scroll"
             >
               <div className="flex items-center gap-2 mb-4">
                 <div
@@ -264,6 +400,7 @@ export function HomePage() {
 
             {/* ── Logos — col 3, row 1 ── */}
             <Link
+              ref={logosCardRef}
               to="/foundations/logos"
               style={{
                 textDecoration: "none",
@@ -272,7 +409,7 @@ export function HomePage() {
                 background: "var(--color-surface)",
                 border: "1px solid var(--color-border)",
               }}
-              className="group rounded-2xl p-5 flex flex-col transition-opacity hover:opacity-80"
+              className="group rounded-2xl p-5 flex flex-col transition-all hover:-translate-y-1 hover:shadow-lg animate-on-scroll"
             >
               <div className="flex items-center gap-2 mb-4">
                 <div
@@ -326,6 +463,7 @@ export function HomePage() {
 
             {/* ── Banner — col 2, row 2 ── */}
             <Link
+              ref={bannerCardRef}
               to="/foundations"
               style={{
                 textDecoration: "none",
@@ -336,7 +474,7 @@ export function HomePage() {
                 position: "relative",
                 overflow: "hidden",
               }}
-              className="group rounded-2xl flex items-center justify-center transition-opacity hover:opacity-80"
+              className="group rounded-2xl flex items-center justify-center transition-all hover:-translate-y-1 hover:shadow-lg animate-on-scroll"
             >
               {/* dot grid */}
               <div
@@ -368,6 +506,7 @@ export function HomePage() {
 
             {/* ── Tokens — col 3, rows 2-3 ── */}
             <Link
+              ref={tokensCardRef}
               to="/foundations/tokens"
               style={{
                 textDecoration: "none",
@@ -376,7 +515,7 @@ export function HomePage() {
                 background: "var(--color-surface)",
                 border: "1px solid var(--color-border)",
               }}
-              className="group rounded-2xl p-5 flex flex-col transition-opacity hover:opacity-80"
+              className="group rounded-2xl p-5 flex flex-col transition-all hover:-translate-y-1 hover:shadow-lg animate-on-scroll"
             >
               <div className="flex items-center gap-2 mb-4">
                 <div
@@ -438,6 +577,7 @@ export function HomePage() {
 
             {/* ── Components — col 1-2, row 3 ── */}
             <Link
+              ref={componentsCardRef}
               to="/components"
               style={{
                 textDecoration: "none",
@@ -446,7 +586,7 @@ export function HomePage() {
                 background: "var(--color-surface)",
                 border: "1px solid var(--color-border)",
               }}
-              className="group rounded-2xl p-5 transition-opacity hover:opacity-80"
+              className="group rounded-2xl p-5 transition-all hover:-translate-y-1 hover:shadow-lg animate-on-scroll"
             >
               <div className="flex items-center gap-2 mb-4">
                 <div
@@ -514,21 +654,12 @@ export function HomePage() {
 
           {/* CTA row */}
           <div className="flex justify-center gap-4 mt-10">
-            <Button
-              asChild
-              size="lg"
-              className="brand-btn brand-btn-primary rounded-full gap-2"
-            >
+            <Button asChild size="lg" variant="default">
               <Link to="/get-started/designers">
                 Get started <ArrowRight size={14} />
               </Link>
             </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="rounded-full gap-2"
-            >
+            <Button asChild size="lg" variant="outline">
               <Link to="/">
                 See what's new <ArrowRight size={14} />
               </Link>
@@ -537,54 +668,12 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ── Stats ── */}
-      <section
-        className="py-20 px-8"
-        style={{
-          borderTop: "1px solid var(--color-border)",
-          borderBottom: "1px solid var(--color-border)",
-        }}
-      >
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { number: "50+", label: "Design Tokens" },
-              { number: "12+", label: "UI Components" },
-              { number: "4", label: "Color Palettes" },
-              { number: "100%", label: "Accessible" },
-            ].map((stat) => (
-              <div key={stat.label} className="p-6">
-                <div
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    fontSize: "var(--text-5xl)",
-                    color: "var(--brand-primary)",
-                    lineHeight: 1.1,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {stat.number}
-                </div>
-                <div
-                  className="mt-2 text-sm"
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    color: "var(--color-text-secondary)",
-                  }}
-                >
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Get Started — 3 roles ── */}
       <section className="py-20 px-8">
         <div className="max-w-5xl mx-auto">
           <h2
-            className="mb-8"
+            ref={gsTitleRef}
+            className="mb-8 animate-on-scroll"
             style={{
               fontFamily: "var(--font-heading)",
               fontSize: "var(--text-4xl)",
@@ -598,13 +687,14 @@ export function HomePage() {
           <div className="grid md:grid-cols-3 gap-5">
             {/* Designers */}
             <Link
+              ref={gsCard1Ref}
               to="/get-started/designers"
               style={{
                 textDecoration: "none",
                 background: "var(--color-surface)",
                 border: "1px solid var(--color-border)",
               }}
-              className="group rounded-2xl overflow-hidden flex flex-col transition-opacity hover:opacity-90"
+              className="group rounded-2xl overflow-hidden flex flex-col transition-opacity hover:opacity-90 animate-on-scroll"
             >
               <div
                 className="relative flex items-center justify-center overflow-hidden"
@@ -643,7 +733,7 @@ export function HomePage() {
                   Aa
                 </span>
               </div>
-              <div className="p-5">
+              <div className="p-5 flex flex-col gap-3">
                 <p
                   className="font-semibold mb-1"
                   style={{
@@ -662,18 +752,26 @@ export function HomePage() {
                 >
                   Figma libraries, design tokens, and brand guidelines.
                 </p>
+                <Button
+                  size="sm"
+                  variant="accent-ghost"
+                  className="self-start gap-1"
+                >
+                  Explore Figma libraries <ArrowRight size={12} />
+                </Button>
               </div>
             </Link>
 
             {/* Developers */}
             <Link
+              ref={gsCard2Ref}
               to="/get-started/developers"
               style={{
                 textDecoration: "none",
                 background: "var(--color-surface)",
                 border: "1px solid var(--color-border)",
               }}
-              className="group rounded-2xl overflow-hidden flex flex-col transition-opacity hover:opacity-90"
+              className="group rounded-2xl overflow-hidden flex flex-col transition-opacity hover:opacity-90 animate-on-scroll"
             >
               <div
                 className="relative flex items-center justify-center overflow-hidden"
@@ -710,7 +808,7 @@ export function HomePage() {
                   }}
                 >{`</>`}</span>
               </div>
-              <div className="p-5">
+              <div className="p-5 flex flex-col gap-3">
                 <p
                   className="font-semibold mb-1"
                   style={{
@@ -729,18 +827,22 @@ export function HomePage() {
                 >
                   Environment setup, token integration, and component guides.
                 </p>
+                <Button size="sm" variant="ghost" className="self-start gap-1">
+                  View setup guide <ArrowRight size={12} />
+                </Button>
               </div>
             </Link>
 
             {/* Brand teams */}
             <Link
+              ref={gsCard3Ref}
               to="/get-started/brand"
               style={{
                 textDecoration: "none",
                 background: "var(--color-surface)",
                 border: "1px solid var(--color-border)",
               }}
-              className="group rounded-2xl overflow-hidden flex flex-col transition-opacity hover:opacity-90"
+              className="group rounded-2xl overflow-hidden flex flex-col transition-opacity hover:opacity-90 animate-on-scroll"
             >
               <div
                 className="relative flex items-center justify-center overflow-hidden"
@@ -780,7 +882,7 @@ export function HomePage() {
                   }}
                 />
               </div>
-              <div className="p-5">
+              <div className="p-5 flex flex-col gap-3">
                 <p
                   className="font-semibold mb-1"
                   style={{
@@ -799,6 +901,9 @@ export function HomePage() {
                 >
                   Voice & tone, logo rules, and content standards.
                 </p>
+                <Button size="sm" variant="ghost" className="self-start gap-1">
+                  Brand guidelines <ArrowRight size={12} />
+                </Button>
               </div>
             </Link>
           </div>

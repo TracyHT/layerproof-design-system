@@ -5,16 +5,16 @@
 
 :root {
   /* === BRAND PALETTE === */
-  --brand-primary: #000000;   /* primary UI action — black on light bg */
-  --brand-secondary: #c43460; /* pink — brand accent */
-  --brand-accent: #FFDE42;    /* yellow — brand accent highlight */
+  --brand-primary: #000000; /* primary UI action — black on light bg */
+  --brand-secondary: #e8336c; /* pink — brand accent */
+  --brand-accent: #ffde42; /* yellow — brand accent highlight */
 
   /* Yellow scale (Figma: Color > Accent replaces Blue) */
   --yellow-100: #fffde8;
   --yellow-200: #fff8c0;
   --yellow-300: #fff094;
   --yellow-400: #ffe860;
-  --yellow-500: #FFDE42;
+  --yellow-500: #ffde42;
   --yellow-600: #e6c200;
   --yellow-700: #b89900;
   --yellow-800: #7a6600;
@@ -32,102 +32,102 @@
   --pink-900: #440e23;
 
   /* === NEUTRAL SURFACES (Figma: Ref > Gray + Color collection) === */
-  --color-background: #f5f5f5;   /* Figma: Color > Neutral Background */
-  --color-surface: #ffffff;       /* Figma: Color > Foreground Background */
+  --color-background: #ffffff; /* Figma: Color > Neutral Background */
+  --color-surface: #f5f5f5; /* Figma: Color > Foreground Background */
   --color-surface-hover: #ecedee; /* Figma: Color > Accent Background */
-  --color-border: #d4d4d4;        /* Figma: Ref > gray-300 */
-  --color-border-hover: #a3a3a3;  /* Figma: Ref > gray-400 */
+  --color-border: #d4d4d4; /* Figma: Ref > gray-300 */
+  --color-border-hover: #a3a3a3; /* Figma: Ref > gray-400 */
 
   /* === TEXT / ICON (Figma: Brand Theme > Neutral > Text-Icon) === */
-  --color-text-primary: #1a1a1a;   /* gray-900 */
+  --color-text-primary: #1a1a1a; /* gray-900 */
   --color-text-secondary: #525252; /* gray-600 */
-  --color-text-tertiary: #737373;  /* gray-500 */
-  --color-text-inverse: #ffffff;   /* on-color */
+  --color-text-tertiary: #737373; /* gray-500 */
+  --color-text-inverse: #ffffff; /* on-color */
 
   /* === BRAND THEME SEMANTIC TOKENS (mirrors Figma: Brand Theme collection) === */
 
   /* Neutral > Surface */
-  --neutral-surface-disable: #e5e5e5;  /* gray-200 */
-  --neutral-surface-surface: #f4f4f4;  /* gray-100 — synced from Figma */
-  --neutral-surface-lighter: #d4d4d4;  /* gray-300 */
-  --neutral-surface-light:   #737373;  /* gray-500 */
-  --neutral-surface-default: #1a1a1a;  /* gray-900 */
-  --neutral-surface-dark:    #404040;  /* gray-700 */
-  --neutral-surface-darker:  #404040;  /* gray-700 */
+  --neutral-surface-disable: #e5e5e5; /* gray-200 */
+  --neutral-surface-surface: #f4f4f4; /* gray-100 — synced from Figma */
+  --neutral-surface-lighter: #d4d4d4; /* gray-300 */
+  --neutral-surface-light: #737373; /* gray-500 */
+  --neutral-surface-default: #1a1a1a; /* gray-900 */
+  --neutral-surface-dark: #404040; /* gray-700 */
+  --neutral-surface-darker: #404040; /* gray-700 */
 
   /* Neutral > Text-Icon */
-  --neutral-text-on-color:  #ffffff;  /* white on dark */
-  --neutral-text-disable:   #a3a3a3;  /* gray-400 */
-  --neutral-text-tertiary:  #737373;  /* gray-500 */
-  --neutral-text-secondary: #525252;  /* gray-600 */
-  --neutral-text-primary:   #1a1a1a;  /* gray-900 */
+  --neutral-text-on-color: #ffffff; /* white on dark */
+  --neutral-text-disable: #a3a3a3; /* gray-400 */
+  --neutral-text-tertiary: #737373; /* gray-500 */
+  --neutral-text-secondary: #525252; /* gray-600 */
+  --neutral-text-primary: #1a1a1a; /* gray-900 */
 
   /* Neutral > Divider */
-  --neutral-divider-light:   #e5e5e5; /* gray-200 */
+  --neutral-divider-light: #e5e5e5; /* gray-200 */
   --neutral-divider-default: #d4d4d4; /* gray-300 */
 
   /* Accent > Surface (yellow replaces blue) */
-  --accent-surface-disable:   #fffde8;  /* yellow-100 */
-  --accent-surface-surface:   #fff8c0;  /* yellow-200 */
-  --accent-surface-light:     #fff094;  /* yellow-300 */
-  --accent-surface-default:   #FFDE42;  /* yellow-500 = brand accent */
-  --accent-surface-dark:      #7a6600;  /* yellow-800 */
-  --accent-surface-darker:    #3d3300;  /* yellow-900 */
-  --accent-surface-btn-hover: #e6c200;  /* yellow-600 — hover state */
+  --accent-surface-disable: #fffde8; /* yellow-100 */
+  --accent-surface-surface: #fff8c0; /* yellow-200 */
+  --accent-surface-light: #fff094; /* yellow-300 */
+  --accent-surface-default: #ffde42; /* yellow-500 = brand accent */
+  --accent-surface-dark: #7a6600; /* yellow-800 */
+  --accent-surface-darker: #3d3300; /* yellow-900 */
+  --accent-surface-btn-hover: #e6c200; /* yellow-600 — hover state */
 
   /* Accent > Text-Icon */
-  --accent-text-disable:   #fff094;  /* yellow-300 */
-  --accent-text-default:   #7a6600;  /* yellow-800 */
-  --accent-text-on-color:  #000000;  /* black on yellow */
+  --accent-text-disable: #fff094; /* yellow-300 */
+  --accent-text-default: #7a6600; /* yellow-800 */
+  --accent-text-on-color: #000000; /* black on yellow */
 
   /* Accent > Divider */
-  --accent-divider-disable:  #fff094;  /* yellow-300 */
-  --accent-divider-light:    #fff8c0;  /* yellow-200 */
-  --accent-divider-default:  #FFDE42;  /* yellow-500 */
-  --accent-divider-on-color: #000000;  /* black */
+  --accent-divider-disable: #fff094; /* yellow-300 */
+  --accent-divider-light: #fff8c0; /* yellow-200 */
+  --accent-divider-default: #ffde42; /* yellow-500 */
+  --accent-divider-on-color: #000000; /* black */
 
   /* Secondary > Surface (pink) */
-  --secondary-surface-disable: #fde8ef;  /* pink-100 */
-  --secondary-surface-surface: #fbc5d8;  /* pink-200 */
-  --secondary-surface-light:   #f598bb;  /* pink-300 */
-  --secondary-surface-default: #c43460;  /* pink-600 */
-  --secondary-surface-dark:    #6e1839;  /* pink-800 */
-  --secondary-surface-darker:  #440e23;  /* pink-900 */
+  --secondary-surface-disable: #fde8ef; /* pink-100 */
+  --secondary-surface-surface: #fbc5d8; /* pink-200 */
+  --secondary-surface-light: #f598bb; /* pink-300 */
+  --secondary-surface-default: #c43460; /* pink-600 */
+  --secondary-surface-dark: #6e1839; /* pink-800 */
+  --secondary-surface-darker: #440e23; /* pink-900 */
 
   /* Secondary > Text-Icon */
-  --secondary-text-on-color:  #ffffff;
-  --secondary-text-disable:   #f598bb;  /* pink-300 */
-  --secondary-text-default:   #c43460;  /* pink-600 */
+  --secondary-text-on-color: #ffffff;
+  --secondary-text-disable: #f598bb; /* pink-300 */
+  --secondary-text-default: #c43460; /* pink-600 */
 
   /* Secondary > Divider */
-  --secondary-divider-disable:  #f598bb;  /* pink-300 */
-  --secondary-divider-light:    #fbc5d8;  /* pink-200 */
-  --secondary-divider-default:  #c43460;  /* pink-600 */
+  --secondary-divider-disable: #f598bb; /* pink-300 */
+  --secondary-divider-light: #fbc5d8; /* pink-200 */
+  --secondary-divider-default: #c43460; /* pink-600 */
   --secondary-divider-on-color: #ffffff;
 
   /* Danger (Figma: Brand Theme > Danger — Red scale) */
-  --danger-surface: #fef2f2;  /* Red.50  */
-  --danger-light:   #fec8c8;  /* Red.200 */
-  --danger-default: #c9000a;  /* Red.600 */
-  --danger-dark:    #700005;  /* Red.900 */
+  --danger-surface: #fef2f2; /* Red.50  */
+  --danger-light: #fec8c8; /* Red.200 */
+  --danger-default: #c9000a; /* Red.600 */
+  --danger-dark: #700005; /* Red.900 */
 
   /* Success (Figma: Brand Theme > Success — Green scale) */
-  --success-surface: #f0fdf4;  /* Green.50  */
-  --success-light:   #b9f8cf;  /* Green.200 */
-  --success-default: #00a63e;  /* Green.600 */
-  --success-dark:    #0d542b;  /* Green.900 */
+  --success-surface: #f0fdf4; /* Green.50  */
+  --success-light: #b9f8cf; /* Green.200 */
+  --success-default: #00a63e; /* Green.600 */
+  --success-dark: #0d542b; /* Green.900 */
 
   /* Warning (Figma: Brand Theme > Warning — Amber scale) */
-  --warning-surface: #fffae8;  /* Amber.50  */
-  --warning-light:   #fee685;  /* Amber.200 */
-  --warning-default: #e17100;  /* Amber.600 */
-  --warning-dark:    #7b3306;  /* Amber.900 */
+  --warning-surface: #fffae8; /* Amber.50  */
+  --warning-light: #fee685; /* Amber.200 */
+  --warning-default: #e17100; /* Amber.600 */
+  --warning-dark: #7b3306; /* Amber.900 */
 
   /* Legacy status aliases */
   --color-success: #00a63e;
   --color-warning: #e17100;
-  --color-error:   #c9000a;
-  --color-info:    #0d52ff;
+  --color-error: #c9000a;
+  --color-info: #0d52ff;
 
   /* === SHADOW COLORS === */
   --shadow-color: rgba(0, 0, 0, 0.1);
@@ -137,134 +137,137 @@
   /* === TYPOGRAPHY (Figma: Typography collection) === */
 
   /* Font families — code brand fonts (Anton for headings, Roboto for body) */
-  --font-heading: "Anton", Impact, sans-serif;           /* Figma: Font family > Heading */
-  --font-body: "Roboto", sans-serif;                     /* Figma: Font family > Body / Label / Subheading */
-  --font-mono: "Monaco", "Courier New", monospace;       /* Figma: Font family > Code */
+  --font-heading:
+    "Anton", Impact, sans-serif; /* Figma: Font family > Heading */
+  --font-body:
+    "Roboto", sans-serif; /* Figma: Font family > Body / Label / Subheading */
+  --font-mono:
+    "Monaco", "Courier New", monospace; /* Figma: Font family > Code */
 
   /* Heading scale (Figma: Typography > Font size > Heading + Display) */
-  --text-display:   5rem;      /* 80px  — Figma Display.display */
-  --text-display-x: 6rem;      /* 96px  — Figma Display.display-x */
-  --text-h1:        3.875rem;  /* 62px  — Figma Heading.H1 */
-  --text-h2:        3.5rem;    /* 56px  — Figma Heading.H2 */
-  --text-h3:        3rem;      /* 48px  — Figma Heading.H3 */
-  --text-h4:        2.5rem;    /* 40px  — Figma Heading.H4 */
-  --text-h5:        2rem;      /* 32px  — Figma Heading.H5 */
-  --text-h6:        1.75rem;   /* 28px  — Figma Heading.H6 */
+  --text-display: 5rem; /* 80px  — Figma Display.display */
+  --text-display-x: 6rem; /* 96px  — Figma Display.display-x */
+  --text-h1: 3.875rem; /* 62px  — Figma Heading.H1 */
+  --text-h2: 3.5rem; /* 56px  — Figma Heading.H2 */
+  --text-h3: 3rem; /* 48px  — Figma Heading.H3 */
+  --text-h4: 2.5rem; /* 40px  — Figma Heading.H4 */
+  --text-h5: 2rem; /* 32px  — Figma Heading.H5 */
+  --text-h6: 1.75rem; /* 28px  — Figma Heading.H6 */
 
   /* Subheading scale (Figma: Typography > Font size > Subheading) */
-  --text-subheading-2xl: 1.5rem;    /* 24px */
-  --text-subheading-xl:  1.25rem;   /* 20px */
-  --text-subheading-lg:  1.125rem;  /* 18px */
-  --text-subheading:     1rem;      /* 16px */
-  --text-subheading-sm:  0.875rem;  /* 14px */
-  --text-subheading-xs:  0.75rem;   /* 12px */
+  --text-subheading-2xl: 1.5rem; /* 24px */
+  --text-subheading-xl: 1.25rem; /* 20px */
+  --text-subheading-lg: 1.125rem; /* 18px */
+  --text-subheading: 1rem; /* 16px */
+  --text-subheading-sm: 0.875rem; /* 14px */
+  --text-subheading-xs: 0.75rem; /* 12px */
 
   /* Body scale (Figma: Typography > Font size > Body) */
-  --text-body-2xl: 1.5rem;     /* 24px */
-  --text-body-xl:  1.25rem;    /* 20px */
-  --text-body-lg:  1.125rem;   /* 18px */
-  --text-body:     1rem;       /* 16px */
-  --text-body-sm:  0.875rem;   /* 14px */
-  --text-body-xs:  0.75rem;    /* 12px */
-  --text-body-2xs: 0.6875rem;  /* 11px */
+  --text-body-2xl: 1.5rem; /* 24px */
+  --text-body-xl: 1.25rem; /* 20px */
+  --text-body-lg: 1.125rem; /* 18px */
+  --text-body: 1rem; /* 16px */
+  --text-body-sm: 0.875rem; /* 14px */
+  --text-body-xs: 0.75rem; /* 12px */
+  --text-body-2xs: 0.6875rem; /* 11px */
 
   /* Legacy body aliases (kept for backward compatibility) */
-  --text-xs:   0.75rem;
-  --text-sm:   0.875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
   --text-base: 1rem;
-  --text-lg:   1.125rem;
-  --text-xl:   1.25rem;
-  --text-2xl:  1.5rem;
-  --text-3xl:  1.875rem;
-  --text-4xl:  2.25rem;
-  --text-5xl:  3rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
 
   /* Font weights (Figma: Typography > Font weight) */
-  --fw-bold:     700;  /* Bold */
-  --fw-semibold: 600;  /* Semi-bold */
-  --fw-medium:   500;  /* Medium */
-  --fw-regular:  400;  /* Regular */
+  --fw-bold: 700; /* Bold */
+  --fw-semibold: 600; /* Semi-bold */
+  --fw-medium: 500; /* Medium */
+  --fw-regular: 400; /* Regular */
 
   /* Line heights (Figma: Typography > Line height) */
-  --lh-display:   6rem;     /* 96px  */
-  --lh-display-x: 7rem;     /* 112px */
-  --lh-h1:        4.75rem;  /* 76px  */
-  --lh-h2:        4.125rem; /* 66px  */
-  --lh-h3:        3.625rem; /* 58px  */
-  --lh-h4:        3rem;     /* 48px  */
-  --lh-h5:        2.5rem;   /* 40px  */
-  --lh-h6:        2rem;     /* 32px  */
+  --lh-display: 6rem; /* 96px  */
+  --lh-display-x: 7rem; /* 112px */
+  --lh-h1: 4.75rem; /* 76px  */
+  --lh-h2: 4.125rem; /* 66px  */
+  --lh-h3: 3.625rem; /* 58px  */
+  --lh-h4: 3rem; /* 48px  */
+  --lh-h5: 2.5rem; /* 40px  */
+  --lh-h6: 2rem; /* 32px  */
 
   /* Letter spacing (Figma: Typography > Letter spacing) */
-  --ls-display: -0.0125em;  /* -1px  on 80px */
-  --ls-h1:      -0.013em;   /* -0.8px on 62px */
-  --ls-h2:      -0.011em;   /* -0.6px on 56px */
-  --ls-h3:      -0.0104em;  /* -0.5px on 48px */
-  --ls-h4:      -0.01em;    /* -0.4px on 40px */
-  --ls-h5:      -0.0094em;  /* -0.3px on 32px */
-  --ls-h6:      -0.0071em;  /* -0.2px on 28px */
+  --ls-display: -0.0125em; /* -1px  on 80px */
+  --ls-h1: -0.013em; /* -0.8px on 62px */
+  --ls-h2: -0.011em; /* -0.6px on 56px */
+  --ls-h3: -0.0104em; /* -0.5px on 48px */
+  --ls-h4: -0.01em; /* -0.4px on 40px */
+  --ls-h5: -0.0094em; /* -0.3px on 32px */
+  --ls-h6: -0.0071em; /* -0.2px on 28px */
 
   /* === SPACING (Figma: Spacing > Spacing, numeric 4px grid) === */
 
   /* Named scale (existing — kept for compatibility) */
-  --spacing-xs:  0.25rem;  /* 4px   — space-4  */
-  --spacing-sm:  0.5rem;   /* 8px   — space-6  */
-  --spacing-md:  1rem;     /* 16px  — space-10 */
-  --spacing-lg:  1.5rem;   /* 24px  — space-12 */
-  --spacing-xl:  2rem;     /* 32px  — space-14 */
-  --spacing-2xl: 3rem;     /* 48px  — space-17 */
-  --spacing-3xl: 4rem;     /* 64px  — space-19 */
-  --spacing-4xl: 6rem;     /* 96px  — space-23 */
+  --spacing-xs: 0.25rem; /* 4px   — space-4  */
+  --spacing-sm: 0.5rem; /* 8px   — space-6  */
+  --spacing-md: 1rem; /* 16px  — space-10 */
+  --spacing-lg: 1.5rem; /* 24px  — space-12 */
+  --spacing-xl: 2rem; /* 32px  — space-14 */
+  --spacing-2xl: 3rem; /* 48px  — space-17 */
+  --spacing-3xl: 4rem; /* 64px  — space-19 */
+  --spacing-4xl: 6rem; /* 96px  — space-23 */
 
   /* Numeric scale (Figma: Spacing > Spacing — Compact mode) */
-  --space-1:  0;            /* 0px   */
-  --space-2:  0.0625rem;    /* 1px   */
-  --space-3:  0.125rem;     /* 2px   */
-  --space-4:  0.25rem;      /* 4px   */
-  --space-5:  0.375rem;     /* 6px   */
-  --space-6:  0.5rem;       /* 8px   */
-  --space-7:  0.625rem;     /* 10px  */
-  --space-8:  0.75rem;      /* 12px  */
-  --space-9:  0.875rem;     /* 14px  */
-  --space-10: 1rem;         /* 16px  */
-  --space-11: 1.25rem;      /* 20px  */
-  --space-12: 1.5rem;       /* 24px  */
-  --space-13: 1.75rem;      /* 28px  */
-  --space-14: 2rem;         /* 32px  */
-  --space-15: 2.25rem;      /* 36px  */
-  --space-16: 2.5rem;       /* 40px  */
-  --space-17: 3rem;         /* 48px  */
-  --space-18: 3.5rem;       /* 56px  */
-  --space-19: 4rem;         /* 64px  */
-  --space-20: 4.5rem;       /* 72px  */
-  --space-21: 5rem;         /* 80px  */
-  --space-22: 5.5rem;       /* 88px  */
-  --space-23: 6rem;         /* 96px  */
-  --space-24: 6.5rem;       /* 104px */
-  --space-25: 7rem;         /* 112px */
-  --space-26: 8rem;         /* 128px */
-  --space-27: 9rem;         /* 144px */
-  --space-28: 10rem;        /* 160px */
-  --space-29: 11rem;        /* 176px */
-  --space-30: 12rem;        /* 192px */
-  --space-31: 13rem;        /* 208px */
-  --space-32: 15rem;        /* 240px */
-  --space-33: 18rem;        /* 288px */
-  --space-34: 20rem;        /* 320px */
-  --space-35: 24rem;        /* 384px */
+  --space-1: 0; /* 0px   */
+  --space-2: 0.0625rem; /* 1px   */
+  --space-3: 0.125rem; /* 2px   */
+  --space-4: 0.25rem; /* 4px   */
+  --space-5: 0.375rem; /* 6px   */
+  --space-6: 0.5rem; /* 8px   */
+  --space-7: 0.625rem; /* 10px  */
+  --space-8: 0.75rem; /* 12px  */
+  --space-9: 0.875rem; /* 14px  */
+  --space-10: 1rem; /* 16px  */
+  --space-11: 1.25rem; /* 20px  */
+  --space-12: 1.5rem; /* 24px  */
+  --space-13: 1.75rem; /* 28px  */
+  --space-14: 2rem; /* 32px  */
+  --space-15: 2.25rem; /* 36px  */
+  --space-16: 2.5rem; /* 40px  */
+  --space-17: 3rem; /* 48px  */
+  --space-18: 3.5rem; /* 56px  */
+  --space-19: 4rem; /* 64px  */
+  --space-20: 4.5rem; /* 72px  */
+  --space-21: 5rem; /* 80px  */
+  --space-22: 5.5rem; /* 88px  */
+  --space-23: 6rem; /* 96px  */
+  --space-24: 6.5rem; /* 104px */
+  --space-25: 7rem; /* 112px */
+  --space-26: 8rem; /* 128px */
+  --space-27: 9rem; /* 144px */
+  --space-28: 10rem; /* 160px */
+  --space-29: 11rem; /* 176px */
+  --space-30: 12rem; /* 192px */
+  --space-31: 13rem; /* 208px */
+  --space-32: 15rem; /* 240px */
+  --space-33: 18rem; /* 288px */
+  --space-34: 20rem; /* 320px */
+  --space-35: 24rem; /* 384px */
 
   /* === BORDER RADIUS (Figma: Radius collection + Spacing > Radius) === */
-  --radius-none: 0;           /* Radius-1:    0px  */
-  --radius-xsm:  0.125rem;    /* Radius-2:    2px  */
-  --radius-sm:   0.25rem;     /* Radius-3/sm: 4px  */
-  --radius-md:   0.375rem;    /* Radius-4/md: 6px  */
-  --radius-lg:   0.5rem;      /* Radius-5/lg: 8px  */
-  --radius-xl:   0.75rem;     /* Radius-7/xl: 12px */
-  --radius-2xl:  1rem;        /* Radius-8:    16px */
-  --radius-3xl:  1.25rem;     /* Radius-9:    20px */
-  --radius-4xl:  1.5rem;      /* Radius-10:   24px */
-  --radius-5xl:  1.875rem;    /* Radius-11:   30px */
-  --radius-full: 9999px;      /* Radius-Full: 1000px */
+  --radius-none: 0; /* Radius-1:    0px  */
+  --radius-xsm: 0.125rem; /* Radius-2:    2px  */
+  --radius-sm: 0.25rem; /* Radius-3/sm: 4px  */
+  --radius-md: 0.375rem; /* Radius-4/md: 6px  */
+  --radius-lg: 0.5rem; /* Radius-5/lg: 8px  */
+  --radius-xl: 0.75rem; /* Radius-7/xl: 12px */
+  --radius-2xl: 1rem; /* Radius-8:    16px */
+  --radius-3xl: 1.25rem; /* Radius-9:    20px */
+  --radius-4xl: 1.5rem; /* Radius-10:   24px */
+  --radius-5xl: 1.875rem; /* Radius-11:   30px */
+  --radius-full: 9999px; /* Radius-Full: 1000px */
 
   /* === SHADOWS === */
   --shadow-sm: 0 1px 2px 0 var(--shadow-color);
@@ -281,19 +284,19 @@
   --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   /* === LAYOUT === */
-  --sidebar-width:   280px;
-  --header-height:   70px;
-  --container-max:   1200px;
+  --sidebar-width: 280px;
+  --header-height: 70px;
+  --container-max: 1200px;
 }
 
 /* ── LIGHT MODE (explicit — resets tokens when nested inside a dark page) ── */
 [data-theme="light"] {
   --brand-primary: #000000;
-  --brand-secondary: #c43460;
-  --brand-accent: #FFDE42;
+  --brand-secondary: #e8336c;
+  --brand-accent: #ffde42;
 
-  --color-background: #f5f5f5;
-  --color-surface: #ffffff;
+  --color-background: #ffffff;
+  --color-surface: #f5f5f5;
   --color-surface-hover: #ecedee;
   --color-border: #d4d4d4;
   --color-border-hover: #a3a3a3;
@@ -306,80 +309,80 @@
   --neutral-surface-disable: #e5e5e5;
   --neutral-surface-surface: #f4f4f4;
   --neutral-surface-lighter: #d4d4d4;
-  --neutral-surface-light:   #737373;
+  --neutral-surface-light: #737373;
   --neutral-surface-default: #1a1a1a;
-  --neutral-surface-dark:    #404040;
-  --neutral-surface-darker:  #404040;
+  --neutral-surface-dark: #404040;
+  --neutral-surface-darker: #404040;
 
-  --neutral-text-on-color:  #ffffff;
-  --neutral-text-disable:   #a3a3a3;
-  --neutral-text-tertiary:  #737373;
+  --neutral-text-on-color: #ffffff;
+  --neutral-text-disable: #a3a3a3;
+  --neutral-text-tertiary: #737373;
   --neutral-text-secondary: #525252;
-  --neutral-text-primary:   #1a1a1a;
+  --neutral-text-primary: #1a1a1a;
 
-  --neutral-divider-light:   #e5e5e5;
+  --neutral-divider-light: #e5e5e5;
   --neutral-divider-default: #d4d4d4;
 
-  --accent-surface-disable:   #fffde8;
-  --accent-surface-surface:   #fff8c0;
-  --accent-surface-light:     #fff094;
-  --accent-surface-default:   #FFDE42;
-  --accent-surface-dark:      #7a6600;
-  --accent-surface-darker:    #3d3300;
+  --accent-surface-disable: #fffde8;
+  --accent-surface-surface: #fff8c0;
+  --accent-surface-light: #fff094;
+  --accent-surface-default: #ffde42;
+  --accent-surface-dark: #7a6600;
+  --accent-surface-darker: #3d3300;
   --accent-surface-btn-hover: #e6c200;
 
-  --accent-text-disable:   #fff094;
-  --accent-text-default:   #7a6600;
-  --accent-text-on-color:  #000000;
+  --accent-text-disable: #fff094;
+  --accent-text-default: #7a6600;
+  --accent-text-on-color: #000000;
 
-  --accent-divider-disable:  #fff094;
-  --accent-divider-light:    #fff8c0;
-  --accent-divider-default:  #FFDE42;
+  --accent-divider-disable: #fff094;
+  --accent-divider-light: #fff8c0;
+  --accent-divider-default: #ffde42;
   --accent-divider-on-color: #000000;
 
   --secondary-surface-disable: #fde8ef;
   --secondary-surface-surface: #fbc5d8;
-  --secondary-surface-light:   #f598bb;
+  --secondary-surface-light: #f598bb;
   --secondary-surface-default: #c43460;
-  --secondary-surface-dark:    #6e1839;
-  --secondary-surface-darker:  #440e23;
+  --secondary-surface-dark: #6e1839;
+  --secondary-surface-darker: #440e23;
 
-  --secondary-text-on-color:  #ffffff;
-  --secondary-text-disable:   #f598bb;
-  --secondary-text-default:   #c43460;
+  --secondary-text-on-color: #ffffff;
+  --secondary-text-disable: #f598bb;
+  --secondary-text-default: #c43460;
 
-  --secondary-divider-disable:  #f598bb;
-  --secondary-divider-light:    #fbc5d8;
-  --secondary-divider-default:  #c43460;
+  --secondary-divider-disable: #f598bb;
+  --secondary-divider-light: #fbc5d8;
+  --secondary-divider-default: #c43460;
   --secondary-divider-on-color: #ffffff;
 
   --danger-surface: #fef2f2;
-  --danger-light:   #fec8c8;
+  --danger-light: #fec8c8;
   --danger-default: #c9000a;
-  --danger-dark:    #700005;
+  --danger-dark: #700005;
 
   --success-surface: #f0fdf4;
-  --success-light:   #b9f8cf;
+  --success-light: #b9f8cf;
   --success-default: #00a63e;
-  --success-dark:    #0d542b;
+  --success-dark: #0d542b;
 
   --warning-surface: #fffae8;
-  --warning-light:   #fee685;
+  --warning-light: #fee685;
   --warning-default: #e17100;
-  --warning-dark:    #7b3306;
+  --warning-dark: #7b3306;
 
   --color-success: #00a63e;
   --color-warning: #e17100;
-  --color-error:   #c9000a;
-  --color-info:    #0d52ff;
+  --color-error: #c9000a;
+  --color-info: #0d52ff;
 }
 
 /* ── DARK MODE (priority — LayerProof brand: black bg, yellow accent, white text) ── */
 [data-theme="dark"] {
   /* Brand */
-  --brand-primary: #ffffff;    /* primary UI action — white on dark bg */
-  --brand-secondary: #e8336c;  /* hot pink — brand accent */
-  --brand-accent: #FFDE42;     /* yellow — brand accent highlight */
+  --brand-primary: #ffffff; /* primary UI action — white on dark bg */
+  --brand-secondary: #e8336c; /* hot pink — brand accent */
+  --brand-accent: #ffde42; /* yellow — brand accent highlight */
 
   /* Neutral surfaces */
   --color-background: #000000;
@@ -398,85 +401,85 @@
   --neutral-surface-disable: #2a2a2a;
   --neutral-surface-surface: #000000;
   --neutral-surface-lighter: #111111;
-  --neutral-surface-light:   #1c1c1c;
+  --neutral-surface-light: #1c1c1c;
   --neutral-surface-default: #ffffff;
-  --neutral-surface-dark:    #a3a3a3;
-  --neutral-surface-darker:  #6b6b6b;
+  --neutral-surface-dark: #a3a3a3;
+  --neutral-surface-darker: #6b6b6b;
 
   /* Brand Theme > Neutral > Text-Icon (dark) */
-  --neutral-text-on-color:  #000000;
-  --neutral-text-disable:   #404040;
-  --neutral-text-tertiary:  #6b6b6b;
+  --neutral-text-on-color: #000000;
+  --neutral-text-disable: #404040;
+  --neutral-text-tertiary: #6b6b6b;
   --neutral-text-secondary: #a3a3a3;
-  --neutral-text-primary:   #ffffff;
+  --neutral-text-primary: #ffffff;
 
   /* Brand Theme > Neutral > Divider (dark) */
-  --neutral-divider-light:   #1c1c1c;
+  --neutral-divider-light: #1c1c1c;
   --neutral-divider-default: #2a2a2a;
 
   /* Brand Theme > Accent > Surface (yellow dark) */
-  --accent-surface-disable:   #3d3300;  /* yellow-900 */
-  --accent-surface-surface:   #7a6600;  /* yellow-800 */
-  --accent-surface-light:     #b89900;  /* yellow-700 */
-  --accent-surface-default:   #FFDE42;  /* yellow-500 */
-  --accent-surface-dark:      #fff8c0;  /* yellow-200 */
-  --accent-surface-darker:    #fffde8;  /* yellow-100 */
-  --accent-surface-btn-hover: #e6c200;  /* yellow-600 — hover state */
+  --accent-surface-disable: #3d3300; /* yellow-900 */
+  --accent-surface-surface: #7a6600; /* yellow-800 */
+  --accent-surface-light: #b89900; /* yellow-700 */
+  --accent-surface-default: #ffde42; /* yellow-500 */
+  --accent-surface-dark: #fff8c0; /* yellow-200 */
+  --accent-surface-darker: #fffde8; /* yellow-100 */
+  --accent-surface-btn-hover: #e6c200; /* yellow-600 — hover state */
 
   /* Brand Theme > Accent > Text-Icon (dark) */
-  --accent-text-disable:   #b89900;  /* yellow-700 */
-  --accent-text-default:   #FFDE42;  /* yellow-500 */
-  --accent-text-on-color:  #000000;
+  --accent-text-disable: #b89900; /* yellow-700 */
+  --accent-text-default: #ffde42; /* yellow-500 */
+  --accent-text-on-color: #000000;
 
   /* Brand Theme > Accent > Divider (dark) */
-  --accent-divider-disable:  #b89900;  /* yellow-700 */
-  --accent-divider-light:    #e6c200;  /* yellow-600 */
-  --accent-divider-default:  #FFDE42;  /* yellow-500 */
+  --accent-divider-disable: #b89900; /* yellow-700 */
+  --accent-divider-light: #e6c200; /* yellow-600 */
+  --accent-divider-default: #ffde42; /* yellow-500 */
   --accent-divider-on-color: #000000;
 
   /* Brand Theme > Secondary > Surface (pink dark) */
-  --secondary-surface-disable: #440e23;  /* pink-900 */
-  --secondary-surface-surface: #6e1839;  /* pink-800 */
-  --secondary-surface-light:   #9a2550;  /* pink-700 */
-  --secondary-surface-default: #e8336c;  /* pink-500 */
-  --secondary-surface-dark:    #fbc5d8;  /* pink-200 */
-  --secondary-surface-darker:  #fde8ef;  /* pink-100 */
+  --secondary-surface-disable: #440e23; /* pink-900 */
+  --secondary-surface-surface: #6e1839; /* pink-800 */
+  --secondary-surface-light: #9a2550; /* pink-700 */
+  --secondary-surface-default: #e8336c; /* pink-500 */
+  --secondary-surface-dark: #fbc5d8; /* pink-200 */
+  --secondary-surface-darker: #fde8ef; /* pink-100 */
 
   /* Brand Theme > Secondary > Text-Icon (pink dark) */
-  --secondary-text-on-color:  #ffffff;
-  --secondary-text-disable:   #9a2550;  /* pink-700 */
-  --secondary-text-default:   #e8336c;  /* pink-500 */
+  --secondary-text-on-color: #ffffff;
+  --secondary-text-disable: #9a2550; /* pink-700 */
+  --secondary-text-default: #e8336c; /* pink-500 */
 
   /* Brand Theme > Secondary > Divider (pink dark) */
-  --secondary-divider-disable:  #9a2550;  /* pink-700 */
-  --secondary-divider-light:    #6e1839;  /* pink-800 */
-  --secondary-divider-default:  #e8336c;  /* pink-500 */
+  --secondary-divider-disable: #9a2550; /* pink-700 */
+  --secondary-divider-light: #6e1839; /* pink-800 */
+  --secondary-divider-default: #e8336c; /* pink-500 */
   --secondary-divider-on-color: #ffffff;
 
   /* Status (vivid for dark bg) */
-  --danger-surface:  rgba(199, 0, 10, 0.12);
-  --danger-light:    #f87171;
-  --danger-default:  #f87171;
-  --danger-dark:     #fca5a5;
+  --danger-surface: rgba(199, 0, 10, 0.12);
+  --danger-light: #f87171;
+  --danger-default: #f87171;
+  --danger-dark: #fca5a5;
 
   --success-surface: rgba(0, 166, 62, 0.12);
-  --success-light:   #34d399;
+  --success-light: #34d399;
   --success-default: #34d399;
-  --success-dark:    #6ee7b7;
+  --success-dark: #6ee7b7;
 
   --warning-surface: rgba(225, 113, 0, 0.12);
-  --warning-light:   #fbbf24;
+  --warning-light: #fbbf24;
   --warning-default: #fbbf24;
-  --warning-dark:    #fde68a;
+  --warning-dark: #fde68a;
 
   /* Legacy aliases */
   --color-success: #34d399;
   --color-warning: #fbbf24;
-  --color-error:   #f87171;
-  --color-info:    #60a5fa;
+  --color-error: #f87171;
+  --color-info: #60a5fa;
 
   /* Shadows for dark mode */
-  --shadow-color:    rgba(0, 0, 0, 0.5);
+  --shadow-color: rgba(0, 0, 0, 0.5);
   --shadow-color-md: rgba(0, 0, 0, 0.65);
   --shadow-color-lg: rgba(0, 0, 0, 0.8);
 }
