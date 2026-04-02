@@ -32,7 +32,6 @@ import { ElevationPage } from "./pages/foundations/ElevationPage";
 import { ButtonPage } from "./pages/components/ButtonPage";
 import { ButtonIconPage } from "./pages/components/ButtonIconPage";
 import { ButtonLinkPage } from "./pages/components/ButtonLinkPage";
-import { ButtonLinkIconPage } from "./pages/components/ButtonLinkIconPage";
 import { ButtonSplitPage } from "./pages/components/ButtonSplitPage";
 import { ButtonGroupPage } from "./pages/components/ButtonGroupPage";
 
@@ -69,7 +68,6 @@ export const router = createBrowserRouter([
       { path: "components/button",             Component: ButtonPage },
       { path: "components/button/icon",        Component: ButtonIconPage },
       { path: "components/button/link",        Component: ButtonLinkPage },
-      { path: "components/button/link-icon",   Component: ButtonLinkIconPage },
       { path: "components/button/split",       Component: ButtonSplitPage },
       { path: "components/button/group",       Component: ButtonGroupPage },
       { path: "layout",       Component: LayoutPage },

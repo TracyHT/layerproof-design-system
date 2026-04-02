@@ -9,18 +9,44 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline:
-          "border bg-background text-foreground hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        // ── Neutral hierarchy ──────────────────────────────────────────────────────
+        default:
+          "bg-[var(--neutral-surface-default)] text-[var(--neutral-text-on-color)] hover:bg-[var(--neutral-surface-dark)] focus-visible:ring-[var(--neutral-surface-default)]/20",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "bg-[var(--neutral-surface-surface)] text-[var(--neutral-text-secondary)] hover:bg-[var(--neutral-surface-lighter)] focus-visible:ring-[var(--neutral-surface-default)]/20",
+        outline:
+          "border border-[var(--neutral-divider-default)] bg-transparent text-[var(--neutral-text-secondary)] hover:bg-[var(--neutral-surface-disable)] focus-visible:ring-[var(--neutral-surface-default)]/20",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
-        accent: "bg-[var(--accent-surface-default)] text-[var(--accent-text-on-color)] hover:bg-[var(--accent-surface-btn-hover)] focus-visible:ring-[var(--accent-surface-default)]/50",
-        neutral: "bg-[var(--neutral-surface-disable)] text-[var(--neutral-text-primary)] hover:bg-[var(--neutral-surface-lighter)] focus-visible:ring-[var(--neutral-surface-default)]/20",
+          "bg-transparent text-[var(--neutral-text-secondary)] hover:bg-[var(--neutral-surface-disable)]",
+        link: "bg-transparent text-[var(--neutral-text-secondary)] underline-offset-4 hover:underline",
+
+        // ── Accent hierarchy ───────────────────────────────────────────────────────
+        accent:
+          "bg-[var(--accent-surface-default)] text-[var(--accent-text-on-color)] hover:bg-[var(--accent-surface-btn-hover)] focus-visible:ring-[var(--accent-surface-default)]/50",
+        "accent-secondary":
+          "bg-[var(--accent-surface-surface)] text-[var(--accent-text-default)] hover:bg-[var(--accent-surface-light)] focus-visible:ring-[var(--accent-surface-default)]/30",
+        "accent-ghost":
+          "bg-transparent text-[var(--accent-text-default)] hover:bg-[var(--accent-surface-surface)]",
+        "accent-outline":
+          "border border-[var(--accent-divider-default)] bg-transparent text-[var(--accent-text-default)] hover:bg-[var(--accent-surface-surface)] focus-visible:ring-[var(--accent-surface-default)]/30",
+        "accent-link":
+          "bg-transparent text-[var(--accent-text-default)] underline-offset-4 hover:underline",
+
+        // ── Danger hierarchy ───────────────────────────────────────────────────────
+        destructive:
+          "bg-[var(--danger-default)] text-[var(--neutral-text-on-color)] hover:bg-[var(--danger-dark)] focus-visible:ring-[var(--danger-default)]/30",
+        "destructive-secondary":
+          "bg-[var(--danger-surface)] text-[var(--danger-default)] hover:bg-[var(--danger-light)] focus-visible:ring-[var(--danger-default)]/20",
+        "destructive-outline":
+          "border border-[var(--danger-default)] bg-transparent text-[var(--danger-default)] hover:bg-[var(--danger-surface)] focus-visible:ring-[var(--danger-default)]/20",
+        "destructive-ghost":
+          "bg-transparent text-[var(--danger-default)] hover:bg-[var(--danger-surface)]",
+        "destructive-link":
+          "bg-transparent text-[var(--danger-default)] underline-offset-4 hover:underline",
+
+        // ── Preserved ─────────────────────────────────────────────────────────────
+        neutral:
+          "bg-[var(--neutral-surface-disable)] text-[var(--neutral-text-secondary)] hover:bg-[var(--neutral-surface-lighter)] focus-visible:ring-[var(--neutral-surface-default)]/20",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

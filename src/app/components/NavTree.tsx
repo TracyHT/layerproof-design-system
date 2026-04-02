@@ -76,7 +76,6 @@ const navItems: NavItem[] = [
         children: [
           { label: 'Icon button',      path: '/components/button/icon' },
           { label: 'Link button',      path: '/components/button/link' },
-          { label: 'Link icon button', path: '/components/button/link-icon' },
           { label: 'Split button',     path: '/components/button/split' },
           { label: 'Button group',     path: '/components/button/group' },
         ],

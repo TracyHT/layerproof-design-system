@@ -32,13 +32,7 @@ export function ComponentShell({
       <section className="mb-0">
         <h1
           style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 48,
-            fontWeight: 700,
             color: 'var(--color-text-primary)',
-            lineHeight: 1.1,
-            textTransform: 'none',
-            letterSpacing: '-0.02em',
             marginBottom: 12,
           }}
         >

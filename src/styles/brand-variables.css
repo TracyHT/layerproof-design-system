@@ -286,6 +286,94 @@
   --container-max:   1200px;
 }
 
+/* ── LIGHT MODE (explicit — resets tokens when nested inside a dark page) ── */
+[data-theme="light"] {
+  --brand-primary: #000000;
+  --brand-secondary: #c43460;
+  --brand-accent: #FFDE42;
+
+  --color-background: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-surface-hover: #ecedee;
+  --color-border: #d4d4d4;
+  --color-border-hover: #a3a3a3;
+
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #525252;
+  --color-text-tertiary: #737373;
+  --color-text-inverse: #ffffff;
+
+  --neutral-surface-disable: #e5e5e5;
+  --neutral-surface-surface: #f4f4f4;
+  --neutral-surface-lighter: #d4d4d4;
+  --neutral-surface-light:   #737373;
+  --neutral-surface-default: #1a1a1a;
+  --neutral-surface-dark:    #404040;
+  --neutral-surface-darker:  #404040;
+
+  --neutral-text-on-color:  #ffffff;
+  --neutral-text-disable:   #a3a3a3;
+  --neutral-text-tertiary:  #737373;
+  --neutral-text-secondary: #525252;
+  --neutral-text-primary:   #1a1a1a;
+
+  --neutral-divider-light:   #e5e5e5;
+  --neutral-divider-default: #d4d4d4;
+
+  --accent-surface-disable:   #fffde8;
+  --accent-surface-surface:   #fff8c0;
+  --accent-surface-light:     #fff094;
+  --accent-surface-default:   #FFDE42;
+  --accent-surface-dark:      #7a6600;
+  --accent-surface-darker:    #3d3300;
+  --accent-surface-btn-hover: #e6c200;
+
+  --accent-text-disable:   #fff094;
+  --accent-text-default:   #7a6600;
+  --accent-text-on-color:  #000000;
+
+  --accent-divider-disable:  #fff094;
+  --accent-divider-light:    #fff8c0;
+  --accent-divider-default:  #FFDE42;
+  --accent-divider-on-color: #000000;
+
+  --secondary-surface-disable: #fde8ef;
+  --secondary-surface-surface: #fbc5d8;
+  --secondary-surface-light:   #f598bb;
+  --secondary-surface-default: #c43460;
+  --secondary-surface-dark:    #6e1839;
+  --secondary-surface-darker:  #440e23;
+
+  --secondary-text-on-color:  #ffffff;
+  --secondary-text-disable:   #f598bb;
+  --secondary-text-default:   #c43460;
+
+  --secondary-divider-disable:  #f598bb;
+  --secondary-divider-light:    #fbc5d8;
+  --secondary-divider-default:  #c43460;
+  --secondary-divider-on-color: #ffffff;
+
+  --danger-surface: #fef2f2;
+  --danger-light:   #fec8c8;
+  --danger-default: #c9000a;
+  --danger-dark:    #700005;
+
+  --success-surface: #f0fdf4;
+  --success-light:   #b9f8cf;
+  --success-default: #00a63e;
+  --success-dark:    #0d542b;
+
+  --warning-surface: #fffae8;
+  --warning-light:   #fee685;
+  --warning-default: #e17100;
+  --warning-dark:    #7b3306;
+
+  --color-success: #00a63e;
+  --color-warning: #e17100;
+  --color-error:   #c9000a;
+  --color-info:    #0d52ff;
+}
+
 /* ── DARK MODE (priority — LayerProof brand: black bg, yellow accent, white text) ── */
 [data-theme="dark"] {
   /* Brand */
