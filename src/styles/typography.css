@@ -1,0 +1,69 @@
+:root {
+  /* Font families */
+  --font-heading: "Anton", Impact, sans-serif;
+  --font-body:    "Roboto", sans-serif;
+  --font-mono:    "Monaco", "Courier New", monospace;
+
+  /* Display / Heading sizes */
+  --text-display:   5rem;       /* 80px */
+  --text-display-x: 6rem;       /* 96px */
+  --text-h1:        3.875rem;   /* 62px */
+  --text-h2:        3.5rem;     /* 56px */
+  --text-h3:        3rem;       /* 48px */
+  --text-h4:        2.5rem;     /* 40px */
+  --text-h5:        2rem;       /* 32px */
+  --text-h6:        1.75rem;    /* 28px */
+
+  /* Subheading sizes */
+  --text-subheading-2xl: 1.5rem;
+  --text-subheading-xl:  1.25rem;
+  --text-subheading-lg:  1.125rem;
+  --text-subheading:     1rem;
+  --text-subheading-sm:  0.875rem;
+  --text-subheading-xs:  0.75rem;
+
+  /* Body sizes */
+  --text-body-2xl: 1.5rem;
+  --text-body-xl:  1.25rem;
+  --text-body-lg:  1.125rem;
+  --text-body:     1rem;
+  --text-body-sm:  0.875rem;
+  --text-body-xs:  0.75rem;
+  --text-body-2xs: 0.6875rem;  /* 11px */
+
+  /* Legacy aliases */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+
+  /* Font weights */
+  --fw-bold:     700;
+  --fw-semibold: 600;
+  --fw-medium:   500;
+  --fw-regular:  400;
+
+  /* Line heights */
+  --lh-display:   6rem;
+  --lh-display-x: 7rem;
+  --lh-h1:        4.75rem;
+  --lh-h2:        4.125rem;
+  --lh-h3:        3.625rem;
+  --lh-h4:        3rem;
+  --lh-h5:        2.5rem;
+  --lh-h6:        2rem;
+
+  /* Letter spacing */
+  --ls-display: -0.0125em;
+  --ls-h1:      -0.013em;
+  --ls-h2:      -0.011em;
+  --ls-h3:      -0.0104em;
+  --ls-h4:      -0.01em;
+  --ls-h5:      -0.0094em;
+  --ls-h6:      -0.0071em;
+}

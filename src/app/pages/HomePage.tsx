@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowRight, Palette, Layout, Box, FileText } from "lucide-react";
+import { ArrowRight, Palette, Layout, Box } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { useInView } from "../hooks/useInView";
@@ -254,14 +254,10 @@ export function HomePage() {
                   style={{
                     width: 36,
                     height: 36,
-                    background: "var(--color-text-primary)",
-                    border: "1px solid var(--color-border)",
+                    background: "var(--accent-surface-light)",
                   }}
                 >
-                  <Palette
-                    size={16}
-                    style={{ color: "var(--brand-primary)" }}
-                  />
+                  <Palette size={16} style={{ color: "var(--accent-surface-dark)" }} />
                 </div>
                 <span
                   style={{
@@ -330,15 +326,14 @@ export function HomePage() {
                   style={{
                     width: 36,
                     height: 36,
-                    background: "var(--color-text-primary)",
-                    border: "1px solid var(--color-border)",
+                    background: "var(--secondary-surface-light)",
                   }}
                 >
                   <span
                     style={{
                       fontFamily: "var(--font-heading)",
                       fontSize: 13,
-                      color: "var(--color-text-inverse)",
+                      color: "var(--secondary-surface-dark)",
                     }}
                   >
                     Tt
@@ -418,12 +413,12 @@ export function HomePage() {
                     width: 36,
                     height: 36,
                     background: "var(--color-text-primary)",
-                    border: "1px solid var(--color-border)",
                   }}
                 >
-                  <FileText
-                    size={16}
-                    style={{ color: "var(--color-text-inverse)" }}
+                  <img
+                    src={`${import.meta.env.BASE_URL}symbol.png`}
+                    alt=""
+                    style={{ height: 20, width: "auto", filter: "brightness(0) invert(1)" }}
                   />
                 </div>
                 <span
@@ -523,13 +518,12 @@ export function HomePage() {
                   style={{
                     width: 36,
                     height: 36,
-                    background: "var(--color-text-primary)",
-                    border: "1px solid var(--color-border)",
+                    background: "var(--accent-surface-light)",
                   }}
                 >
                   <Box
                     size={16}
-                    style={{ color: "var(--color-text-inverse)" }}
+                    style={{ color: "var(--accent-surface-dark)" }}
                   />
                 </div>
                 <span
@@ -594,13 +588,12 @@ export function HomePage() {
                   style={{
                     width: 36,
                     height: 36,
-                    background: "var(--color-text-primary)",
-                    border: "1px solid var(--color-border)",
+                    background: "var(--secondary-surface-light)",
                   }}
                 >
                   <Layout
                     size={16}
-                    style={{ color: "var(--brand-secondary)" }}
+                    style={{ color: "var(--secondary-surface-dark)" }}
                   />
                 </div>
                 <span

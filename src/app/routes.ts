@@ -14,6 +14,7 @@ import { GetStartedCheatSheetPage } from "./pages/GetStartedCheatSheetPage";
 import { WhatsNewPage } from "./pages/WhatsNewPage";
 // Foundation sub-pages
 import { TokensPage } from "./pages/foundations/TokensPage";
+import { PrimitivesPage } from "./pages/foundations/PrimitivesPage";
 import { TokensExplainedPage } from "./pages/foundations/TokensExplainedPage";
 import { TokensCodePage } from "./pages/foundations/TokensCodePage";
 import { TokensDesignPage } from "./pages/foundations/TokensDesignPage";
@@ -23,6 +24,9 @@ import { ContentPage } from "./pages/foundations/ContentPage";
 import { SpacingPage } from "./pages/foundations/SpacingPage";
 import { GridPage } from "./pages/foundations/GridPage";
 import { ColorPage } from "./pages/foundations/ColorPage";
+import { ColorAccentsPage } from "./pages/foundations/ColorAccentsPage";
+import { ColorDataVizPage } from "./pages/foundations/ColorDataVizPage";
+import { ColorPalettePage } from "./pages/foundations/ColorPalettePage";
 import { TypographyPage } from "./pages/foundations/TypographyPage";
 import { IconographyPage } from "./pages/foundations/IconographyPage";
 import { IllustrationsPage } from "./pages/foundations/IllustrationsPage";
@@ -49,6 +53,7 @@ export const router = createBrowserRouter([
       { path: "brand",        Component: BrandPage },
       { path: "foundations",  Component: FoundationsPage },
       // Foundation sub-pages
+      { path: "foundations/primitives",         Component: PrimitivesPage },
       { path: "foundations/tokens",            Component: TokensPage },
       { path: "foundations/tokens/explained",  Component: TokensExplainedPage },
       { path: "foundations/tokens/code",       Component: TokensCodePage },
@@ -59,6 +64,9 @@ export const router = createBrowserRouter([
       { path: "foundations/spacing",           Component: SpacingPage },
       { path: "foundations/grid",              Component: GridPage },
       { path: "foundations/color",             Component: ColorPage },
+      { path: "foundations/color/accents",    Component: ColorAccentsPage },
+      { path: "foundations/color/dataviz",    Component: ColorDataVizPage },
+      { path: "foundations/color/palette",    Component: ColorPalettePage },
       { path: "foundations/typography",        Component: TypographyPage },
       { path: "foundations/iconography",       Component: IconographyPage },
       { path: "foundations/illustrations",     Component: IllustrationsPage },

@@ -2,12 +2,12 @@ import { useId, useRef, useState } from "react";
 import { cn } from "./utils";
 
 const HOVER_COLORS = [
-  "#fff8c0", // yellow-200
-  "#fff094", // yellow-300
-  "#FFDE42", // yellow-500 (brand accent)
-  "#ffd6eb", // pink-100
-  "#ffb3d9", // pink-200
-  "#ff85c2", // pink-300
+  "rgba(255, 248, 192, 0.5)", // yellow-200
+  "rgba(255, 240, 148, 0.5)", // yellow-300
+  "rgba(255, 222, 66, 0.8)", // yellow-500 (brand accent)
+  "rgba(255, 214, 235, 0.5)", // pink-100
+  "rgba(255, 179, 217, 0.5)", // pink-200
+  "rgba(255, 133, 194, 1)", // pink-300
 ];
 
 interface GridPatternProps extends React.SVGProps<SVGSVGElement> {
@@ -35,7 +35,10 @@ export function GridPattern({
 }: GridPatternProps) {
   const id = useId();
   const svgRef = useRef<SVGSVGElement>(null);
-  const [hovered, setHovered] = useState<{ cell: [number, number]; color: string } | null>(null);
+  const [hovered, setHovered] = useState<{
+    cell: [number, number];
+    color: string;
+  } | null>(null);
 
   function handleMouseMove(e: React.MouseEvent<SVGSVGElement>) {
     const svg = svgRef.current;
@@ -54,7 +57,8 @@ export function GridPattern({
 
     setHovered((prev) => {
       if (prev?.cell[0] === cx && prev?.cell[1] === cy) return prev;
-      const color = HOVER_COLORS[Math.floor(Math.random() * HOVER_COLORS.length)];
+      const color =
+        HOVER_COLORS[Math.floor(Math.random() * HOVER_COLORS.length)];
       return { cell: [cx, cy], color };
     });
   }
@@ -66,7 +70,7 @@ export function GridPattern({
       className={cn(
         "absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30",
         hoverable ? "pointer-events-auto" : "pointer-events-none",
-        className
+        className,
       )}
       onMouseMove={hoverable ? handleMouseMove : undefined}
       onMouseLeave={hoverable ? () => setHovered(null) : undefined}

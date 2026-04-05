@@ -184,6 +184,258 @@ export type Section = {
   subsections?: Subsection[];
 };
 
+// ─── Primitive sections ───────────────────────────────────────────────────────
+
+export const primitiveColors: Section = {
+  id: 'primitive-colors',
+  label: 'Primitive Colors',
+  subsections: [
+    {
+      id: 'primitive-yellow',
+      label: 'Yellow',
+      tokens: [
+        { name: '--yellow-100', value: '#fffde8', description: 'Yellow 100 — lightest tint', introduced: '1.1.0' },
+        { name: '--yellow-200', value: '#fff8c0', description: 'Yellow 200', introduced: '1.1.0' },
+        { name: '--yellow-300', value: '#fff094', description: 'Yellow 300', introduced: '1.1.0' },
+        { name: '--yellow-400', value: '#ffe860', description: 'Yellow 400', introduced: '1.1.0' },
+        { name: '--yellow-500', value: '#ffde42', description: 'Yellow 500 — brand accent default', introduced: '1.1.0' },
+        { name: '--yellow-600', value: '#e6c200', description: 'Yellow 600 — hover state', introduced: '1.1.0' },
+        { name: '--yellow-700', value: '#b89900', description: 'Yellow 700', introduced: '1.1.0' },
+        { name: '--yellow-800', value: '#7a6600', description: 'Yellow 800 — dark text on yellow', introduced: '1.1.0' },
+        { name: '--yellow-900', value: '#3d3300', description: 'Yellow 900 — darkest shade', introduced: '1.1.0' },
+      ],
+    },
+    {
+      id: 'primitive-pink',
+      label: 'Pink',
+      tokens: [
+        { name: '--pink-100', value: '#fde8ef', description: 'Pink 100 — lightest tint', introduced: '1.1.0' },
+        { name: '--pink-200', value: '#fbc5d8', description: 'Pink 200', introduced: '1.1.0' },
+        { name: '--pink-300', value: '#f598bb', description: 'Pink 300', introduced: '1.1.0' },
+        { name: '--pink-400', value: '#ef6994', description: 'Pink 400', introduced: '1.1.0' },
+        { name: '--pink-500', value: '#e8336c', description: 'Pink 500 — brand secondary default', introduced: '1.1.0' },
+        { name: '--pink-600', value: '#c43460', description: 'Pink 600', introduced: '1.1.0' },
+        { name: '--pink-700', value: '#9a2550', description: 'Pink 700', introduced: '1.1.0' },
+        { name: '--pink-800', value: '#6e1839', description: 'Pink 800', introduced: '1.1.0' },
+        { name: '--pink-900', value: '#440e23', description: 'Pink 900 — darkest shade', introduced: '1.1.0' },
+      ],
+    },
+    {
+      id: 'primitive-gray',
+      label: 'Gray',
+      tokens: [
+        { name: '--gray-0',   value: '#ffffff', description: 'Gray 0 — pure white', introduced: '1.1.0' },
+        { name: '--gray-50',  value: '#f5f5f5', description: 'Gray 50 — surface tint', introduced: '1.1.0' },
+        { name: '--gray-100', value: '#e5e5e5', description: 'Gray 100', introduced: '1.1.0' },
+        { name: '--gray-200', value: '#d4d4d4', description: 'Gray 200 — default border', introduced: '1.1.0' },
+        { name: '--gray-300', value: '#a3a3a3', description: 'Gray 300 — hover border', introduced: '1.1.0' },
+        { name: '--gray-400', value: '#737373', description: 'Gray 400 — tertiary text', introduced: '1.1.0' },
+        { name: '--gray-500', value: '#525252', description: 'Gray 500 — secondary text', introduced: '1.1.0' },
+        { name: '--gray-600', value: '#404040', description: 'Gray 600', introduced: '1.1.0' },
+        { name: '--gray-700', value: '#262626', description: 'Gray 700', introduced: '1.1.0' },
+        { name: '--gray-800', value: '#1a1a1a', description: 'Gray 800 — primary text', introduced: '1.1.0' },
+        { name: '--gray-850', value: '#111111', description: 'Gray 850 — dark surface', introduced: '1.1.0' },
+        { name: '--gray-900', value: '#000000', description: 'Gray 900 — pure black', introduced: '1.1.0' },
+      ],
+    },
+    {
+      id: 'primitive-red',
+      label: 'Red (Danger)',
+      tokens: [
+        { name: '--red-50',  value: '#fef2f2', description: 'Red 50 — danger surface', introduced: '1.1.0' },
+        { name: '--red-200', value: '#fec8c8', description: 'Red 200 — danger light', introduced: '1.1.0' },
+        { name: '--red-400', value: '#f87171', description: 'Red 400 — dark-mode danger', introduced: '1.1.0' },
+        { name: '--red-600', value: '#c9000a', description: 'Red 600 — danger default', introduced: '1.1.0' },
+        { name: '--red-900', value: '#700005', description: 'Red 900 — danger dark', introduced: '1.1.0' },
+      ],
+    },
+    {
+      id: 'primitive-green',
+      label: 'Green (Success)',
+      tokens: [
+        { name: '--green-50',  value: '#f0fdf4', description: 'Green 50 — success surface', introduced: '1.1.0' },
+        { name: '--green-200', value: '#b9f8cf', description: 'Green 200 — success light', introduced: '1.1.0' },
+        { name: '--green-400', value: '#34d399', description: 'Green 400 — dark-mode success', introduced: '1.1.0' },
+        { name: '--green-600', value: '#00a63e', description: 'Green 600 — success default', introduced: '1.1.0' },
+        { name: '--green-900', value: '#0d542b', description: 'Green 900 — success dark', introduced: '1.1.0' },
+      ],
+    },
+    {
+      id: 'primitive-amber',
+      label: 'Amber (Warning)',
+      tokens: [
+        { name: '--amber-50',  value: '#fffae8', description: 'Amber 50 — warning surface', introduced: '1.1.0' },
+        { name: '--amber-200', value: '#fee685', description: 'Amber 200 — warning light', introduced: '1.1.0' },
+        { name: '--amber-400', value: '#fbbf24', description: 'Amber 400 — dark-mode warning', introduced: '1.1.0' },
+        { name: '--amber-600', value: '#e17100', description: 'Amber 600 — warning default', introduced: '1.1.0' },
+        { name: '--amber-900', value: '#7b3306', description: 'Amber 900 — warning dark', introduced: '1.1.0' },
+      ],
+    },
+  ],
+};
+
+export const primitiveRadius: Section = {
+  id: 'primitive-radius',
+  label: 'Primitive Radius',
+  subsections: [
+    {
+      id: 'primitive-radius-scale',
+      label: 'Radius Scale',
+      tokens: [
+        { name: '--radius-none', value: '0',        description: 'No rounding — 0px', introduced: '1.1.0' },
+        { name: '--radius-xsm',  value: '0.125rem', description: 'Extra-small radius — 2px', introduced: '1.1.0' },
+        { name: '--radius-sm',   value: '0.25rem',  description: 'Small radius — 4px', introduced: '1.1.0' },
+        { name: '--radius-md',   value: '0.375rem', description: 'Medium radius — 6px (default for interactive elements)', introduced: '1.1.0' },
+        { name: '--radius-lg',   value: '0.5rem',   description: 'Large radius — 8px (cards, panels)', introduced: '1.1.0' },
+        { name: '--radius-xl',   value: '0.75rem',  description: 'Extra-large radius — 12px', introduced: '1.1.0' },
+        { name: '--radius-2xl',  value: '1rem',     description: '2XL radius — 16px', introduced: '1.1.0' },
+        { name: '--radius-3xl',  value: '1.25rem',  description: '3XL radius — 20px', introduced: '1.1.0' },
+        { name: '--radius-4xl',  value: '1.5rem',   description: '4XL radius — 24px', introduced: '1.1.0' },
+        { name: '--radius-5xl',  value: '1.875rem', description: '5XL radius — 30px', introduced: '1.1.0' },
+        { name: '--radius-full', value: '9999px',   description: 'Full / pill radius', introduced: '1.1.0' },
+      ],
+    },
+  ],
+};
+
+export const primitiveTypography: Section = {
+  id: 'primitive-typography',
+  label: 'Primitive Typography',
+  subsections: [
+    {
+      id: 'primitive-font-families',
+      label: 'Font Families',
+      tokens: [
+        { name: '--font-heading', value: '"Anton", Impact, sans-serif', description: 'Heading font — Anton (all display and heading text)', introduced: '1.1.0', cssNote: 'Use font-family' },
+        { name: '--font-body',    value: '"Roboto", sans-serif',        description: 'Body font — Roboto (prose, labels, UI text)', introduced: '1.1.0', cssNote: 'Use font-family' },
+        { name: '--font-mono',    value: '"Monaco", "Courier New", monospace', description: 'Monospace font — Monaco (code blocks, token names)', introduced: '1.1.0', cssNote: 'Use font-family' },
+      ],
+    },
+    {
+      id: 'primitive-font-sizes',
+      label: 'Font Sizes',
+      tokens: [
+        { name: '--text-display',   value: '5rem',     description: 'Display — 80px', introduced: '1.1.0' },
+        { name: '--text-display-x', value: '6rem',     description: 'Display X — 96px', introduced: '1.1.0' },
+        { name: '--text-h1',        value: '3.875rem', description: 'H1 — 62px', introduced: '1.1.0' },
+        { name: '--text-h2',        value: '3.5rem',   description: 'H2 — 56px', introduced: '1.1.0' },
+        { name: '--text-h3',        value: '3rem',     description: 'H3 — 48px', introduced: '1.1.0' },
+        { name: '--text-h4',        value: '2.5rem',   description: 'H4 — 40px', introduced: '1.1.0' },
+        { name: '--text-h5',        value: '2rem',     description: 'H5 — 32px', introduced: '1.1.0' },
+        { name: '--text-h6',        value: '1.75rem',  description: 'H6 — 28px', introduced: '1.1.0' },
+        { name: '--text-body-2xl',  value: '1.5rem',   description: 'Body 2XL — 24px', introduced: '1.1.0' },
+        { name: '--text-body-xl',   value: '1.25rem',  description: 'Body XL — 20px', introduced: '1.1.0' },
+        { name: '--text-body-lg',   value: '1.125rem', description: 'Body LG — 18px', introduced: '1.1.0' },
+        { name: '--text-body',      value: '1rem',     description: 'Body — 16px (default)', introduced: '1.1.0' },
+        { name: '--text-body-sm',   value: '0.875rem', description: 'Body SM — 14px', introduced: '1.1.0' },
+        { name: '--text-body-xs',   value: '0.75rem',  description: 'Body XS — 12px', introduced: '1.1.0' },
+        { name: '--text-body-2xs',  value: '0.6875rem',description: 'Body 2XS — 11px', introduced: '1.1.0' },
+      ],
+    },
+    {
+      id: 'primitive-font-weights',
+      label: 'Font Weights',
+      tokens: [
+        { name: '--fw-bold',     value: '700', description: 'Bold weight', introduced: '1.1.0' },
+        { name: '--fw-semibold', value: '600', description: 'Semi-bold weight', introduced: '1.1.0' },
+        { name: '--fw-medium',   value: '500', description: 'Medium weight', introduced: '1.1.0' },
+        { name: '--fw-regular',  value: '400', description: 'Regular weight', introduced: '1.1.0' },
+      ],
+    },
+    {
+      id: 'primitive-line-heights',
+      label: 'Line Heights',
+      tokens: [
+        { name: '--lh-display',   value: '6rem',    description: 'Line height for Display — 96px', introduced: '1.1.0' },
+        { name: '--lh-display-x', value: '7rem',    description: 'Line height for Display X — 112px', introduced: '1.1.0' },
+        { name: '--lh-h1',        value: '4.75rem', description: 'Line height for H1 — 76px', introduced: '1.1.0' },
+        { name: '--lh-h2',        value: '4.125rem',description: 'Line height for H2 — 66px', introduced: '1.1.0' },
+        { name: '--lh-h3',        value: '3.625rem',description: 'Line height for H3 — 58px', introduced: '1.1.0' },
+        { name: '--lh-h4',        value: '3rem',    description: 'Line height for H4 — 48px', introduced: '1.1.0' },
+        { name: '--lh-h5',        value: '2.5rem',  description: 'Line height for H5 — 40px', introduced: '1.1.0' },
+        { name: '--lh-h6',        value: '2rem',    description: 'Line height for H6 — 32px', introduced: '1.1.0' },
+      ],
+    },
+    {
+      id: 'primitive-letter-spacing',
+      label: 'Letter Spacing',
+      tokens: [
+        { name: '--ls-display', value: '-0.0125em', description: 'Letter spacing for Display', introduced: '1.1.0' },
+        { name: '--ls-h1',      value: '-0.013em',  description: 'Letter spacing for H1', introduced: '1.1.0' },
+        { name: '--ls-h2',      value: '-0.011em',  description: 'Letter spacing for H2', introduced: '1.1.0' },
+        { name: '--ls-h3',      value: '-0.0104em', description: 'Letter spacing for H3', introduced: '1.1.0' },
+        { name: '--ls-h4',      value: '-0.01em',   description: 'Letter spacing for H4', introduced: '1.1.0' },
+        { name: '--ls-h5',      value: '-0.0094em', description: 'Letter spacing for H5', introduced: '1.1.0' },
+        { name: '--ls-h6',      value: '-0.0071em', description: 'Letter spacing for H6', introduced: '1.1.0' },
+      ],
+    },
+  ],
+};
+
+export const primitiveSpacing: Section = {
+  id: 'primitive-spacing',
+  label: 'Primitive Spacing',
+  subsections: [
+    {
+      id: 'primitive-spacing-named',
+      label: 'Named scale',
+      tokens: [
+        { name: '--spacing-xs',  value: '0.25rem', description: 'Extra small — 4px',  introduced: '1.0.0' },
+        { name: '--spacing-sm',  value: '0.5rem',  description: 'Small — 8px',         introduced: '1.0.0' },
+        { name: '--spacing-md',  value: '1rem',    description: 'Medium — 16px',       introduced: '1.0.0' },
+        { name: '--spacing-lg',  value: '1.5rem',  description: 'Large — 24px',        introduced: '1.0.0' },
+        { name: '--spacing-xl',  value: '2rem',    description: 'Extra large — 32px',  introduced: '1.0.0' },
+        { name: '--spacing-2xl', value: '3rem',    description: '2× extra large — 48px', introduced: '1.0.0' },
+        { name: '--spacing-3xl', value: '4rem',    description: '3× extra large — 64px', introduced: '1.0.0' },
+        { name: '--spacing-4xl', value: '6rem',    description: '4× extra large — 96px', introduced: '1.0.0' },
+      ],
+    },
+    {
+      id: 'primitive-spacing-numeric',
+      label: 'Numeric scale (4px grid)',
+      tokens: [
+        { name: '--space-1',  value: '0',          description: '0px',   introduced: '1.1.0' },
+        { name: '--space-2',  value: '0.0625rem',  description: '1px',   introduced: '1.1.0' },
+        { name: '--space-3',  value: '0.125rem',   description: '2px',   introduced: '1.1.0' },
+        { name: '--space-4',  value: '0.25rem',    description: '4px',   introduced: '1.1.0' },
+        { name: '--space-5',  value: '0.375rem',   description: '6px',   introduced: '1.1.0' },
+        { name: '--space-6',  value: '0.5rem',     description: '8px',   introduced: '1.1.0' },
+        { name: '--space-7',  value: '0.625rem',   description: '10px',  introduced: '1.1.0' },
+        { name: '--space-8',  value: '0.75rem',    description: '12px',  introduced: '1.1.0' },
+        { name: '--space-9',  value: '0.875rem',   description: '14px',  introduced: '1.1.0' },
+        { name: '--space-10', value: '1rem',        description: '16px',  introduced: '1.1.0' },
+        { name: '--space-11', value: '1.25rem',    description: '20px',  introduced: '1.1.0' },
+        { name: '--space-12', value: '1.5rem',     description: '24px',  introduced: '1.1.0' },
+        { name: '--space-13', value: '1.75rem',    description: '28px',  introduced: '1.1.0' },
+        { name: '--space-14', value: '2rem',       description: '32px',  introduced: '1.1.0' },
+        { name: '--space-15', value: '2.25rem',    description: '36px',  introduced: '1.1.0' },
+        { name: '--space-16', value: '2.5rem',     description: '40px',  introduced: '1.1.0' },
+        { name: '--space-17', value: '3rem',       description: '48px',  introduced: '1.1.0' },
+        { name: '--space-18', value: '3.5rem',     description: '56px',  introduced: '1.1.0' },
+        { name: '--space-19', value: '4rem',       description: '64px',  introduced: '1.1.0' },
+        { name: '--space-20', value: '4.5rem',     description: '72px',  introduced: '1.1.0' },
+        { name: '--space-21', value: '5rem',       description: '80px',  introduced: '1.1.0' },
+        { name: '--space-22', value: '5.5rem',     description: '88px',  introduced: '1.1.0' },
+        { name: '--space-23', value: '6rem',       description: '96px',  introduced: '1.1.0' },
+        { name: '--space-24', value: '6.5rem',     description: '104px', introduced: '1.1.0' },
+        { name: '--space-25', value: '7rem',       description: '112px', introduced: '1.1.0' },
+        { name: '--space-26', value: '8rem',       description: '128px', introduced: '1.1.0' },
+        { name: '--space-27', value: '9rem',       description: '144px', introduced: '1.1.0' },
+        { name: '--space-28', value: '10rem',      description: '160px', introduced: '1.1.0' },
+        { name: '--space-29', value: '11rem',      description: '176px', introduced: '1.1.0' },
+        { name: '--space-30', value: '12rem',      description: '192px', introduced: '1.1.0' },
+        { name: '--space-31', value: '13rem',      description: '208px', introduced: '1.1.0' },
+        { name: '--space-32', value: '15rem',      description: '240px', introduced: '1.1.0' },
+        { name: '--space-33', value: '18rem',      description: '288px', introduced: '1.1.0' },
+        { name: '--space-34', value: '20rem',      description: '320px', introduced: '1.1.0' },
+        { name: '--space-35', value: '24rem',      description: '384px', introduced: '1.1.0' },
+      ],
+    },
+  ],
+};
+
+export const primitiveSections: Section[] = [primitiveColors, primitiveRadius, primitiveTypography, primitiveSpacing];
+
 // ─── Token sections ───────────────────────────────────────────────────────────
 
 export const sections: Section[] = [

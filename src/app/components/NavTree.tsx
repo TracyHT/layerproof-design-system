@@ -38,6 +38,7 @@ const navItems: NavItem[] = [
           { label: 'Migrate to tokens',       path: '/foundations/tokens/migrate' },
         ],
       },
+      { label: 'Primitives',    path: '/foundations/primitives' },
       { label: 'Content',       path: '/foundations/content' },
       { label: 'Spacing',       path: '/foundations/spacing' },
       { label: 'Grid',          path: '/foundations/grid', badge: 'Beta' },
@@ -45,10 +46,9 @@ const navItems: NavItem[] = [
         label: 'Color',
         path: '/foundations/color',
         children: [
-          { label: 'Accents',               path: '/foundations/color', anchorId: 'color-accents' },
-          { label: 'Color picker swatches', path: '/foundations/color', anchorId: 'color-swatches' },
-          { label: 'Data Visualization',    path: '/foundations/color', anchorId: 'color-dataviz' },
-          { label: 'Color palette',         path: '/foundations/color', anchorId: 'color-palette' },
+          { label: 'Accents',            path: '/foundations/color/accents' },
+          { label: 'Data Visualization', path: '/foundations/color/dataviz' },
+          { label: 'Color palette',      path: '/foundations/color/palette' },
         ],
       },
       {
