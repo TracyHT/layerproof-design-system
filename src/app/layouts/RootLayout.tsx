@@ -208,6 +208,7 @@ function Header() {
 function LayoutInner() {
   const location = useLocation();
   const isDS = isDesignSystemRoute(location.pathname);
+  const isIconography = location.pathname === '/foundations/iconography';
 
   return (
     <div style={{ background: "var(--color-background)", minHeight: "100vh" }}>
@@ -246,7 +247,7 @@ function LayoutInner() {
           <div
             style={{
               width: "100%",
-              maxWidth: isDS ? 800 : "none",
+              maxWidth: isDS && !isIconography ? 800 : "none",
               padding: isDS ? "48px 40px" : "0",
             }}
           >
