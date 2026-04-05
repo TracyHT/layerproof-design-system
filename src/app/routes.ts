@@ -18,7 +18,6 @@ import { PrimitivesPage } from "./pages/foundations/PrimitivesPage";
 import { TokensExplainedPage } from "./pages/foundations/TokensExplainedPage";
 import { TokensCodePage } from "./pages/foundations/TokensCodePage";
 import { TokensDesignPage } from "./pages/foundations/TokensDesignPage";
-import { TokensMigratePage } from "./pages/foundations/TokensMigratePage";
 import { AccessibilityPage } from "./pages/foundations/AccessibilityPage";
 import { ContentPage } from "./pages/foundations/ContentPage";
 import { SpacingPage } from "./pages/foundations/SpacingPage";
@@ -58,7 +57,6 @@ export const router = createBrowserRouter([
       { path: "foundations/tokens/explained",  Component: TokensExplainedPage },
       { path: "foundations/tokens/code",       Component: TokensCodePage },
       { path: "foundations/tokens/design",     Component: TokensDesignPage },
-      { path: "foundations/tokens/migrate",    Component: TokensMigratePage },
       { path: "foundations/accessibility",     Component: AccessibilityPage },
       { path: "foundations/content",           Component: ContentPage },
       { path: "foundations/spacing",           Component: SpacingPage },

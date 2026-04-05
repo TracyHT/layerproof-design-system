@@ -151,7 +151,7 @@ export function TokensPage() {
 
   return (
     <FoundationShell
-      title="All Design Tokens"
+      title="Semantic Tokens"
       description="Design tokens are the single source of truth for all visual decisions in LayerProof. Defined as CSS custom properties in brand-variables.css."
       tocItems={tab === 'tokens' ? buildTocItems(sections) : []}
     >
