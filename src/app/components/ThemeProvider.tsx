@@ -2,6 +2,9 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 
+/** New key, so a dark value saved by the old site doesn't carry over. */
+const STORAGE_KEY = 'lp-theme';
+
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
@@ -10,15 +13,24 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  // Light is the default. The OS colour scheme is ignored; dark mode is only
+  // used when the visitor picks it with the theme toggle.
   const [theme, setTheme] = useState<Theme>(() => {
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    return savedTheme || 'light';
+    try {
+      return localStorage.getItem(STORAGE_KEY) === 'dark' ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
   });
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem(STORAGE_KEY, theme);
+      localStorage.removeItem('theme'); // legacy key from the old site
+    } catch {
+      /* storage unavailable: theme still applies for this visit */
+    }
   }, [theme]);
 
   const toggleTheme = () => {

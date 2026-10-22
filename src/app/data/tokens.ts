@@ -23,10 +23,9 @@ import type React from 'react';
  * it regenerates the CSS files below and the sections in this file.
  *
  * FILE: src/styles/brand-variables.css (semantic tokens)
- * It has three blocks — edit all three if the token is theme-aware:
+ * It has two blocks — edit both if the token is theme-aware:
  *   :root { ... }                — light mode defaults
  *   [data-theme="dark"] { ... }  — dark mode overrides
- *   @media (prefers-color-scheme: dark) { ... }  — OS-level dark fallback
  *
  * ── Step 1: Change brand accent color ────────────────────────────────────────
  *
