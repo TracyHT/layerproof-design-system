@@ -3,23 +3,24 @@ import { Button } from '../../components/ui/button';
 import { ComponentShell } from '../../components/ComponentShell';
 
 const Demo = ({ label, children }: { label: string; children: React.ReactNode }) => (
-  <div className="rounded-xl p-6 flex flex-col gap-4" style={{ border: '1px solid var(--color-border)', background: 'var(--color-surface)' }}>
-    <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--color-text-tertiary)', fontFamily: 'var(--font-body)' }}>{label}</p>
+  <div className="rounded-xl p-6 flex flex-col gap-4" style={{ border: '1px solid var(--border-subtle)', background: 'var(--background-surface)' }}>
+    <p className="type-label-sm" style={{ color: 'var(--foreground-tertiary)', fontFamily: 'var(--font-body)' }}>{label}</p>
     <div className="flex flex-wrap gap-4 items-center">{children}</div>
   </div>
 );
 
 const Code = ({ children }: { children: string }) => (
-  <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--color-border)' }}>
-    <div className="px-4 py-2 text-xs font-mono" style={{ background: 'var(--color-surface-hover)', color: 'var(--color-text-tertiary)', borderBottom: '1px solid var(--color-border)' }}>tsx</div>
-    <pre className="p-4 text-sm font-mono overflow-x-auto" style={{ background: 'var(--color-surface)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-wrap' }}>{children}</pre>
+  <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
+    <div className="px-4 py-2 text-xs font-mono" style={{ background: 'var(--background-muted)', color: 'var(--foreground-tertiary)', borderBottom: '1px solid var(--border-subtle)' }}>tsx</div>
+    <pre className="p-4 text-sm font-mono overflow-x-auto" style={{ background: 'var(--background-surface)', color: 'var(--foreground-secondary)', whiteSpace: 'pre-wrap' }}>{children}</pre>
   </div>
 );
 
 export function ButtonLinkPage() {
   return (
     <ComponentShell
-      title="Link Button"
+      parent="Button"
+      title="Link button"
       description="A button that appears as underlined text. Used for inline navigation, supplemental actions, and directional cues — optionally paired with a leading or trailing icon."
       tabs={['Examples', 'Code', 'Usage']}
     >
@@ -72,11 +73,11 @@ import { ArrowRight, ArrowLeft, ExternalLink, Download } from 'lucide-react';
                 { rule: 'One icon per button', desc: 'Do not use both a leading and trailing icon on the same button. If you need both, reconsider the interaction.' },
                 { rule: 'Avoid overloading a page with link buttons', desc: 'Too many link-style actions create visual noise. Prefer grouped outline buttons when offering multiple low-priority choices.' },
               ].map(({ rule, desc }) => (
-                <div key={rule} className="flex gap-4 rounded-xl p-4" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-                  <span className="text-sm font-semibold shrink-0 mt-0.5" style={{ color: 'var(--brand-primary)' }}>→</span>
+                <div key={rule} className="flex gap-4 rounded-xl p-4" style={{ background: 'var(--background-surface)', border: '1px solid var(--border-subtle)' }}>
+                  <span className="shrink-0" aria-hidden style={{ width: 6, height: 6, borderRadius: 9999, background: 'var(--accent-background-default)', marginTop: 8 }} />
                   <div>
-                    <p className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-body)' }}>{rule}</p>
-                    <p className="text-sm" style={{ color: 'var(--color-text-secondary)', fontFamily: 'var(--font-body)' }}>{desc}</p>
+                    <p className="text-sm font-semibold mb-1" style={{ color: 'var(--foreground-primary)', fontFamily: 'var(--font-body)' }}>{rule}</p>
+                    <p className="text-sm" style={{ color: 'var(--foreground-secondary)', fontFamily: 'var(--font-body)' }}>{desc}</p>
                   </div>
                 </div>
               ))}
@@ -87,8 +88,8 @@ import { ArrowRight, ArrowLeft, ExternalLink, Download } from 'lucide-react';
         return (
           <>
             <section className="mb-16">
-              <p className="text-base mb-6" style={{ color: 'var(--color-text-secondary)', fontFamily: 'var(--font-body)' }}>
-                The link variant sits at the bottom of the button hierarchy. It uses <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>variant="link"</code> and renders with no background or border — only an underline on hover. Pair with a leading or trailing icon to reinforce the direction or outcome of the action.
+              <p className="text-base mb-6" style={{ color: 'var(--foreground-secondary)', fontFamily: 'var(--font-body)' }}>
+                The link variant sits at the bottom of the button hierarchy. It uses <code className="text-xs px-1.5 py-0.5 rounded" style={{ background: 'var(--background-surface)', border: '1px solid var(--border-subtle)' }}>variant="link"</code> and renders with no background or border — only an underline on hover. Pair with a leading or trailing icon to reinforce the direction or outcome of the action.
               </p>
             </section>
 
@@ -112,7 +113,7 @@ import { ArrowRight, ArrowLeft, ExternalLink, Download } from 'lucide-react';
                 </Demo>
 
                 <Demo label="In context with body text">
-                  <p className="text-sm" style={{ color: 'var(--color-text-secondary)', fontFamily: 'var(--font-body)' }}>
+                  <p className="text-sm" style={{ color: 'var(--foreground-secondary)', fontFamily: 'var(--font-body)' }}>
                     By continuing, you agree to our{' '}
                     <Button variant="link" className="h-auto p-0 text-sm">Terms of Service</Button>
                     {' '}and{' '}

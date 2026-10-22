@@ -37,6 +37,8 @@ import { ButtonIconPage } from "./pages/components/ButtonIconPage";
 import { ButtonLinkPage } from "./pages/components/ButtonLinkPage";
 import { ButtonSplitPage } from "./pages/components/ButtonSplitPage";
 import { ButtonGroupPage } from "./pages/components/ButtonGroupPage";
+import { InputPage } from "./pages/components/InputPage";
+import { SidebarPage } from "./pages/components/SidebarPage";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +78,8 @@ export const router = createBrowserRouter([
       { path: "components/button/link",        Component: ButtonLinkPage },
       { path: "components/button/split",       Component: ButtonSplitPage },
       { path: "components/button/group",       Component: ButtonGroupPage },
+      { path: "components/input",              Component: InputPage },
+      { path: "components/sidebar",            Component: SidebarPage },
       { path: "layout",       Component: LayoutPage },
       { path: "resources",    Component: ResourcesPage },
       { path: "*",            Component: NotFoundPage },

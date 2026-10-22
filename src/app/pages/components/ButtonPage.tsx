@@ -10,9 +10,10 @@ const SectionHeading = ({ children }: { children: React.ReactNode }) => (
     className="mb-1"
     style={{
       fontFamily: "var(--font-heading)",
-      fontSize: "var(--text-2xl)",
-      textTransform: "uppercase",
-      color: "var(--color-text-primary)",
+      fontSize: "var(--text-h6)",
+      letterSpacing: "var(--ls-h6)",
+      fontWeight: 700,
+      color: "var(--foreground-primary)",
     }}
   >
     {children}
@@ -23,7 +24,7 @@ const SectionDesc = ({ children }: { children: React.ReactNode }) => (
   <p
     className="text-sm mb-8"
     style={{
-      color: "var(--color-text-secondary)",
+      color: "var(--foreground-secondary)",
       fontFamily: "var(--font-body)",
     }}
   >
@@ -35,8 +36,8 @@ const C = ({ children }: { children: string }) => (
   <code
     className="text-xs px-1.5 py-0.5 rounded"
     style={{
-      background: "var(--color-surface)",
-      border: "1px solid var(--color-border)",
+      background: "var(--background-surface)",
+      border: "1px solid var(--border-subtle)",
       fontFamily: "var(--font-mono)",
     }}
   >
@@ -48,17 +49,17 @@ const CodeBlock = ({ children }: { children: string }) => (
   <div
     className="rounded-b-xl overflow-hidden"
     style={{
-      borderLeft: "1px solid var(--color-border)",
-      borderRight: "1px solid var(--color-border)",
-      borderBottom: "1px solid var(--color-border)",
+      borderLeft: "1px solid var(--border-subtle)",
+      borderRight: "1px solid var(--border-subtle)",
+      borderBottom: "1px solid var(--border-subtle)",
     }}
   >
     <div
       className="px-4 py-2 text-xs font-mono flex items-center gap-2"
       style={{
-        background: "var(--color-surface-hover)",
-        color: "var(--color-text-tertiary)",
-        borderBottom: "1px solid var(--color-border)",
+        background: "var(--background-muted)",
+        color: "var(--foreground-tertiary)",
+        borderBottom: "1px solid var(--border-subtle)",
       }}
     >
       <span>tsx</span>
@@ -66,8 +67,8 @@ const CodeBlock = ({ children }: { children: string }) => (
     <pre
       className="p-4 text-sm font-mono overflow-x-auto"
       style={{
-        background: "var(--color-surface)",
-        color: "var(--color-text-secondary)",
+        background: "var(--background-surface)",
+        color: "var(--foreground-secondary)",
         whiteSpace: "pre-wrap",
       }}
     >
@@ -80,7 +81,7 @@ const Example = ({
   label,
   description,
   code,
-  bg = "var(--color-background)",
+  bg = "var(--background-canvas)",
   children,
 }: {
   label: string;
@@ -94,7 +95,7 @@ const Example = ({
       <p
         className="text-sm mb-3"
         style={{
-          color: "var(--color-text-secondary)",
+          color: "var(--foreground-secondary)",
           fontFamily: "var(--font-body)",
         }}
       >
@@ -105,15 +106,15 @@ const Example = ({
       className="rounded-t-xl px-8 py-10 flex flex-wrap gap-4 items-center"
       style={{
         background: bg,
-        border: "1px solid var(--color-border)",
+        border: "1px solid var(--border-subtle)",
         borderBottom: "none",
       }}
     >
       <div className="flex flex-wrap gap-3 items-center w-full">
         <span
-          className="text-xs uppercase tracking-widest mb-4 w-full"
+          className="type-label-sm mb-4 w-full"
           style={{
-            color: "var(--color-text-tertiary)",
+            color: "var(--foreground-tertiary)",
             fontFamily: "var(--font-body)",
           }}
         >
@@ -205,13 +206,13 @@ function Seg<T extends string>({
     <div className="flex items-center gap-2">
       <span
         className="text-xs font-mono shrink-0"
-        style={{ color: "var(--color-text-tertiary)" }}
+        style={{ color: "var(--foreground-tertiary)" }}
       >
         {label}
       </span>
       <div
         className="inline-flex rounded-md overflow-hidden"
-        style={{ border: "1px solid var(--color-border)" }}
+        style={{ border: "1px solid var(--border-subtle)" }}
       >
         {options.map((o, i) => (
           <button
@@ -221,15 +222,15 @@ function Seg<T extends string>({
             style={{
               background:
                 value === o.value
-                  ? "var(--color-text-primary)"
-                  : "var(--color-surface)",
+                  ? "var(--foreground-primary)"
+                  : "var(--background-surface)",
               color:
                 value === o.value
-                  ? "var(--color-background)"
-                  : "var(--color-text-secondary)",
+                  ? "var(--background-canvas)"
+                  : "var(--foreground-secondary)",
               borderRight:
                 i < options.length - 1
-                  ? "1px solid var(--color-border)"
+                  ? "1px solid var(--border-subtle)"
                   : undefined,
             }}
           >
@@ -261,8 +262,8 @@ function ToggleSwitch({
           width: 32,
           height: 18,
           background: value
-            ? "var(--color-text-primary)"
-            : "var(--color-border)",
+            ? "var(--foreground-primary)"
+            : "var(--border-subtle)",
         }}
       >
         <div
@@ -270,14 +271,14 @@ function ToggleSwitch({
           style={{
             width: 12,
             height: 12,
-            background: "var(--color-text-inverse)",
+            background: "var(--foreground-inverse)",
             transform: value ? "translateX(17px)" : "translateX(3px)",
           }}
         />
       </div>
       <span
         className="text-xs font-mono"
-        style={{ color: "var(--color-text-tertiary)" }}
+        style={{ color: "var(--foreground-tertiary)" }}
       >
         {label}
       </span>
@@ -301,9 +302,9 @@ function ButtonPlayground() {
     setTimeout(() => setLoading(null), 1500);
   }
 
-  const textMuted = isDark ? "#525252" : "var(--color-text-tertiary)";
-  const textLabel = isDark ? "#a3a3a3" : "var(--color-text-secondary)";
-  const borderClr = isDark ? "#1f1f1f" : "var(--color-border)";
+  const textMuted = isDark ? "#525252" : "var(--foreground-tertiary)";
+  const textLabel = isDark ? "#a3a3a3" : "var(--foreground-secondary)";
+  const borderClr = isDark ? "#1f1f1f" : "var(--border-subtle)";
 
   function renderCell(type: BType, hierarchy: BHierarchy) {
     const variant = VARIANT_MAP[type][hierarchy];
@@ -375,7 +376,7 @@ function ButtonPlayground() {
         className="flex items-end justify-center pb-3"
       >
         <span
-          className="text-xs uppercase tracking-widest font-semibold"
+          className="type-label-sm"
           style={{ color: textMuted, fontFamily: "var(--font-body)" }}
         >
           {type.label}
@@ -417,14 +418,14 @@ function ButtonPlayground() {
   return (
     <div
       className="rounded-xl overflow-hidden"
-      style={{ border: "1px solid var(--color-border)" }}
+      style={{ border: "1px solid var(--border-subtle)" }}
     >
       {/* Controls */}
       <div
         className="flex flex-wrap items-center gap-x-5 gap-y-3 px-5 py-4"
         style={{
-          background: "var(--color-surface)",
-          borderBottom: "1px solid var(--color-border)",
+          background: "var(--background-surface)",
+          borderBottom: "1px solid var(--border-subtle)",
         }}
       >
         <Seg<ColorMode>
@@ -472,8 +473,8 @@ function ButtonPlayground() {
         className="px-8 py-8 transition-colors"
         style={{
           background: isDark
-            ? "var(--color-background)"
-            : "var(--color-surface)",
+            ? "var(--background-canvas)"
+            : "var(--background-surface)",
         }}
       >
         <div
@@ -492,21 +493,21 @@ function ButtonPlayground() {
       <div
         className="px-5 py-3 text-xs font-mono"
         style={{
-          background: "var(--color-surface-hover)",
-          borderTop: "1px solid var(--color-border)",
-          color: "var(--color-text-secondary)",
+          background: "var(--background-muted)",
+          borderTop: "1px solid var(--border-subtle)",
+          color: "var(--foreground-secondary)",
           minHeight: 38,
         }}
       >
         {hoveredVariant ? (
           <>
-            <span style={{ color: "var(--color-text-tertiary)" }}>
+            <span style={{ color: "var(--foreground-tertiary)" }}>
               {"// → "}
             </span>
             {`<Button${hoveredVariant !== "default" ? ` variant="${hoveredVariant}"` : ""}${size !== "default" ? ` size="${size}"` : ""}${disabled ? " disabled" : ""}>Button</Button>`}
           </>
         ) : (
-          <span style={{ color: "var(--color-text-tertiary)" }}>
+          <span style={{ color: "var(--foreground-tertiary)" }}>
             Hover a button to see its code · Click any button to trigger a
             loading state
           </span>
@@ -560,8 +561,8 @@ const UseCaseCard = ({
   <div
     className="rounded-xl flex flex-col overflow-hidden"
     style={{
-      border: "1px solid var(--color-border)",
-      background: "var(--color-surface)",
+      border: "1px solid var(--border-subtle)",
+      background: "var(--background-surface)",
     }}
   >
     {/* Colored accent strip */}
@@ -570,7 +571,7 @@ const UseCaseCard = ({
     {/* Header */}
     <div
       className="px-4 pt-4 pb-3 flex items-center gap-2"
-      style={{ borderBottom: "1px solid var(--color-border)" }}
+      style={{ borderBottom: "1px solid var(--border-subtle)" }}
     >
       <div
         className="rounded-full shrink-0"
@@ -578,7 +579,7 @@ const UseCaseCard = ({
           width: 10,
           height: 10,
           background: swatchColor,
-          border: "1px solid var(--color-border)",
+          border: "1px solid var(--border-subtle)",
           opacity: 0.9,
         }}
       />
@@ -586,7 +587,7 @@ const UseCaseCard = ({
         <p
           className="text-sm font-semibold leading-tight"
           style={{
-            color: "var(--color-text-primary)",
+            color: "var(--foreground-primary)",
             fontFamily: "var(--font-body)",
           }}
         >
@@ -595,7 +596,7 @@ const UseCaseCard = ({
         <p
           className="text-xs leading-tight mt-0.5"
           style={{
-            color: "var(--color-text-tertiary)",
+            color: "var(--foreground-tertiary)",
             fontFamily: "var(--font-mono)",
           }}
         >
@@ -608,8 +609,8 @@ const UseCaseCard = ({
     <div
       className="px-4 py-4 flex items-center"
       style={{
-        background: "var(--color-background)",
-        borderBottom: "1px solid var(--color-border)",
+        background: "var(--background-canvas)",
+        borderBottom: "1px solid var(--border-subtle)",
       }}
     >
       <Button variant={variant} size="sm">
@@ -621,9 +622,9 @@ const UseCaseCard = ({
     <div className="px-4 pt-3 pb-4 flex flex-row gap-6">
       <div className="flex-1 min-w-0">
         <p
-          className="text-xs font-semibold uppercase tracking-widest mb-1.5"
+          className="type-label-sm mb-1.5"
           style={{
-            color: "var(--color-text-tertiary)",
+            color: "var(--foreground-tertiary)",
             fontFamily: "var(--font-body)",
           }}
         >
@@ -635,7 +636,7 @@ const UseCaseCard = ({
               key={item}
               className="flex gap-1.5 text-xs"
               style={{
-                color: "var(--color-text-secondary)",
+                color: "var(--foreground-secondary)",
                 fontFamily: "var(--font-body)",
               }}
             >
@@ -652,12 +653,12 @@ const UseCaseCard = ({
       </div>
       <div
         className="flex-1 min-w-0"
-        style={{ borderLeft: "1px solid var(--color-border)", paddingLeft: 16 }}
+        style={{ borderLeft: "1px solid var(--border-subtle)", paddingLeft: 16 }}
       >
         <p
-          className="text-xs font-semibold uppercase tracking-widest mb-1.5"
+          className="type-label-sm mb-1.5"
           style={{
-            color: "var(--color-text-tertiary)",
+            color: "var(--foreground-tertiary)",
             fontFamily: "var(--font-body)",
           }}
         >
@@ -669,7 +670,7 @@ const UseCaseCard = ({
               key={item}
               className="flex gap-1.5 text-xs"
               style={{
-                color: "var(--color-text-secondary)",
+                color: "var(--foreground-secondary)",
                 fontFamily: "var(--font-body)",
               }}
             >
@@ -829,14 +830,14 @@ function CodeTab() {
         <SectionHeading>Import</SectionHeading>
         <div
           className="mt-4 rounded-xl overflow-hidden"
-          style={{ border: "1px solid var(--color-border)" }}
+          style={{ border: "1px solid var(--border-subtle)" }}
         >
           <div
             className="px-4 py-2 text-xs font-mono"
             style={{
-              background: "var(--color-surface-hover)",
-              color: "var(--color-text-tertiary)",
-              borderBottom: "1px solid var(--color-border)",
+              background: "var(--background-muted)",
+              color: "var(--foreground-tertiary)",
+              borderBottom: "1px solid var(--border-subtle)",
             }}
           >
             tsx
@@ -844,8 +845,8 @@ function CodeTab() {
           <pre
             className="p-4 text-sm font-mono"
             style={{
-              background: "var(--color-surface)",
-              color: "var(--color-text-secondary)",
+              background: "var(--background-surface)",
+              color: "var(--foreground-secondary)",
             }}
           >{`import { Button } from '@/components/ui/button';`}</pre>
         </div>
@@ -855,7 +856,7 @@ function CodeTab() {
         <SectionHeading>Variant Summary</SectionHeading>
         <div
           className="rounded-xl overflow-hidden mt-6"
-          style={{ border: "1px solid var(--color-border)" }}
+          style={{ border: "1px solid var(--border-subtle)" }}
         >
           <table
             className="w-full text-sm"
@@ -864,8 +865,8 @@ function CodeTab() {
             <thead>
               <tr
                 style={{
-                  background: "var(--color-surface)",
-                  borderBottom: "1px solid var(--color-border)",
+                  background: "var(--background-surface)",
+                  borderBottom: "1px solid var(--border-subtle)",
                 }}
               >
                 {["Hierarchy", "Neutral", "Accent", "Danger"].map((h) => (
@@ -873,7 +874,7 @@ function CodeTab() {
                     key={h}
                     className="text-left px-4 py-3 font-semibold text-xs"
                     style={{
-                      color: "var(--color-text-primary)",
+                      color: "var(--foreground-primary)",
                       fontFamily: "var(--font-body)",
                     }}
                   >
@@ -899,17 +900,17 @@ function CodeTab() {
                   key={hierarchy}
                   style={{
                     borderBottom:
-                      i < 4 ? "1px solid var(--color-border)" : undefined,
+                      i < 4 ? "1px solid var(--border-subtle)" : undefined,
                     background:
                       i % 2 === 0
-                        ? "var(--color-background)"
-                        : "var(--color-surface)",
+                        ? "var(--background-canvas)"
+                        : "var(--background-surface)",
                   }}
                 >
                   <td
                     className="px-4 py-3 text-xs font-semibold"
                     style={{
-                      color: "var(--color-text-secondary)",
+                      color: "var(--foreground-secondary)",
                       fontFamily: "var(--font-body)",
                     }}
                   >
@@ -917,13 +918,13 @@ function CodeTab() {
                   </td>
                   <td
                     className="px-4 py-3 text-xs"
-                    style={{ color: "var(--color-text-primary)" }}
+                    style={{ color: "var(--foreground-primary)" }}
                   >
                     {neutral}
                   </td>
                   <td
                     className="px-4 py-3 text-xs"
-                    style={{ color: "var(--brand-secondary)" }}
+                    style={{ color: "var(--accent-background-default)" }}
                   >
                     {accent}
                   </td>
@@ -944,7 +945,7 @@ function CodeTab() {
         <SectionHeading>API Reference</SectionHeading>
         <div
           className="rounded-xl overflow-hidden mt-6"
-          style={{ border: "1px solid var(--color-border)" }}
+          style={{ border: "1px solid var(--border-subtle)" }}
         >
           <table
             className="w-full text-sm"
@@ -953,15 +954,15 @@ function CodeTab() {
             <thead>
               <tr
                 style={{
-                  background: "var(--color-surface)",
-                  borderBottom: "1px solid var(--color-border)",
+                  background: "var(--background-surface)",
+                  borderBottom: "1px solid var(--border-subtle)",
                 }}
               >
                 {["Prop", "Type", "Default", "Description"].map((h) => (
                   <th
                     key={h}
                     className="text-left px-4 py-3 font-semibold"
-                    style={{ color: "var(--color-text-primary)" }}
+                    style={{ color: "var(--foreground-primary)" }}
                   >
                     {h}
                   </th>
@@ -999,34 +1000,34 @@ function CodeTab() {
                   key={prop}
                   style={{
                     borderBottom:
-                      i < 3 ? "1px solid var(--color-border)" : undefined,
+                      i < 3 ? "1px solid var(--border-subtle)" : undefined,
                     background:
                       i % 2 === 0
-                        ? "var(--color-background)"
-                        : "var(--color-surface)",
+                        ? "var(--background-canvas)"
+                        : "var(--background-surface)",
                   }}
                 >
                   <td
                     className="px-4 py-3 font-mono text-xs"
-                    style={{ color: "var(--color-text-primary)" }}
+                    style={{ color: "var(--foreground-primary)" }}
                   >
                     {prop}
                   </td>
                   <td
                     className="px-4 py-3 font-mono text-xs"
-                    style={{ color: "var(--brand-secondary)" }}
+                    style={{ color: "var(--accent-background-default)" }}
                   >
                     {type}
                   </td>
                   <td
                     className="px-4 py-3 font-mono text-xs"
-                    style={{ color: "var(--color-text-tertiary)" }}
+                    style={{ color: "var(--foreground-tertiary)" }}
                   >
                     {def}
                   </td>
                   <td
                     className="px-4 py-3 text-xs"
-                    style={{ color: "var(--color-text-secondary)" }}
+                    style={{ color: "var(--foreground-secondary)" }}
                   >
                     {desc}
                   </td>
@@ -1052,7 +1053,7 @@ function UsageTab() {
         <div className="grid grid-cols-1 gap-4 mb-4">
           <UseCaseCard
             swatchColor="var(--accent-surface-default)"
-            swatchLabel="#FFDE42 — brand yellow"
+            swatchLabel="#FF589B — brand pink"
             variant="accent"
             title="Accent"
             subtitle="Get started"
@@ -1068,7 +1069,7 @@ function UsageTab() {
             ]}
           />
           <UseCaseCard
-            swatchColor="var(--color-text-primary)"
+            swatchColor="var(--foreground-primary)"
             swatchLabel="Black / white — primary"
             variant="default"
             title="Default"
@@ -1122,7 +1123,7 @@ function UsageTab() {
         <p
           className="text-xs"
           style={{
-            color: "var(--color-text-tertiary)",
+            color: "var(--foreground-tertiary)",
             fontFamily: "var(--font-body)",
           }}
         >
@@ -1140,14 +1141,14 @@ function ChangelogTab() {
     <section className="mb-16">
       <div
         className="rounded-xl overflow-hidden"
-        style={{ border: "1px solid var(--color-border)" }}
+        style={{ border: "1px solid var(--border-subtle)" }}
       >
         <div
-          className="px-5 py-3 text-xs font-semibold uppercase tracking-widest"
+          className="type-label-sm px-5 py-3"
           style={{
-            background: "var(--color-surface)",
-            borderBottom: "1px solid var(--color-border)",
-            color: "var(--color-text-tertiary)",
+            background: "var(--background-surface)",
+            borderBottom: "1px solid var(--border-subtle)",
+            color: "var(--foreground-tertiary)",
             fontFamily: "var(--font-body)",
           }}
         >
@@ -1156,14 +1157,14 @@ function ChangelogTab() {
         <div
           className="px-5 py-4 text-sm"
           style={{
-            background: "var(--color-background)",
-            color: "var(--color-text-secondary)",
+            background: "var(--background-canvas)",
+            color: "var(--foreground-secondary)",
             fontFamily: "var(--font-body)",
           }}
         >
           <p
             className="mb-3 font-semibold"
-            style={{ color: "var(--color-text-primary)" }}
+            style={{ color: "var(--foreground-primary)" }}
           >
             Added full variant hierarchy
           </p>
@@ -1172,8 +1173,8 @@ function ChangelogTab() {
               <span
                 className="font-mono text-xs px-1.5 py-0.5 rounded mr-2"
                 style={{
-                  background: "var(--color-surface)",
-                  border: "1px solid var(--color-border)",
+                  background: "var(--background-surface)",
+                  border: "1px solid var(--border-subtle)",
                 }}
               >
                 Accent
@@ -1184,8 +1185,8 @@ function ChangelogTab() {
               <span
                 className="font-mono text-xs px-1.5 py-0.5 rounded mr-2"
                 style={{
-                  background: "var(--color-surface)",
-                  border: "1px solid var(--color-border)",
+                  background: "var(--background-surface)",
+                  border: "1px solid var(--border-subtle)",
                 }}
               >
                 Danger
@@ -1193,7 +1194,7 @@ function ChangelogTab() {
               destructive-secondary, destructive-outline, destructive-ghost,
               destructive-link
             </li>
-            <li style={{ color: "var(--color-text-tertiary)" }}>
+            <li style={{ color: "var(--foreground-tertiary)" }}>
               All variants use CSS custom properties — data-theme aware, no
               Tailwind dark: prefixes
             </li>

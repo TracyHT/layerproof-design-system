@@ -1,160 +1,157 @@
 import React from 'react';
+import { DoDont } from './docs';
 
-const anton: React.CSSProperties = { fontFamily: '"Anton", sans-serif', textTransform: 'uppercase' };
-const roboto: React.CSSProperties = { fontFamily: '"Roboto", sans-serif' };
-const dmSans: React.CSSProperties = { fontFamily: '"DM Sans", sans-serif' };
+const heading: React.CSSProperties = { fontFamily: 'var(--font-heading)', fontWeight: 700 };
+const body: React.CSSProperties = { fontFamily: 'var(--font-body)' };
 const mono: React.CSSProperties = { fontFamily: 'var(--font-mono)' };
 
-const typeScale = [
-  // Heading scale — Figma Typography > Font size > Display + Heading
-  { label: 'Display',    size: 'var(--text-display)', weight: '700', lh: '1.2',   ls: 'var(--ls-display)', font: anton,  sample: 'Display Heading' },
-  { label: 'Heading 1',  size: 'var(--text-h1)',      weight: '700', lh: '1.226', ls: 'var(--ls-h1)',      font: anton,  sample: 'Heading One' },
-  { label: 'Heading 2',  size: 'var(--text-h2)',      weight: '700', lh: '1.178', ls: 'var(--ls-h2)',      font: anton,  sample: 'Heading Two' },
-  { label: 'Heading 3',  size: 'var(--text-h3)',      weight: '700', lh: '1.208', ls: 'var(--ls-h3)',      font: anton,  sample: 'Heading Three' },
-  { label: 'Heading 4',  size: 'var(--text-h4)',      weight: '700', lh: '1.2',   ls: 'var(--ls-h4)',      font: anton,  sample: 'Heading Four' },
-  { label: 'Heading 5',  size: 'var(--text-h5)',      weight: '600', lh: '1.25',  ls: 'var(--ls-h5)',      font: anton,  sample: 'Heading Five' },
-  { label: 'Heading 6',  size: 'var(--text-h6)',      weight: '600', lh: '1.143', ls: 'var(--ls-h6)',      font: anton,  sample: 'Heading Six' },
-  // Body scale — Figma Typography > Font size > Body
-  { label: 'Body Large',  size: 'var(--text-body-lg)',  weight: '400', lh: '1.667', ls: '-0.14px', font: roboto, sample: 'The quick brown fox jumps over the lazy dog.' },
-  { label: 'Body',        size: 'var(--text-body)',     weight: '400', lh: '1.5',   ls: '-0.14px', font: roboto, sample: 'The quick brown fox jumps over the lazy dog.' },
-  { label: 'Body Small',  size: 'var(--text-body-sm)',  weight: '400', lh: '1.428', ls: '-0.12px', font: roboto, sample: 'The quick brown fox jumps over the lazy dog.' },
-  { label: 'Caption',     size: 'var(--text-body-xs)',  weight: '400', lh: '1.333', ls: '-0.1px',  font: roboto, sample: 'Caption / label text' },
+/** Mirrors the Figma text styles (Typography collection). Class names come from typography.css. */
+const typeScale: { group: string; styles: { key: string; label: string; spec: string; sample: string }[] }[] = [
+  {
+    group: 'Display · Mona Sans Bold',
+    styles: [
+      { key: 'display-l', label: 'Display L', spec: '72 / 76 · -1px', sample: 'Display large' },
+      { key: 'display-m', label: 'Display M', spec: '56 / 60 · -1px', sample: 'Display medium' },
+    ],
+  },
+  {
+    group: 'Heading · Mona Sans Bold',
+    styles: [
+      { key: 'h1', label: 'H1', spec: '48 / 56 · -0.8px', sample: 'Heading one' },
+      { key: 'h2', label: 'H2', spec: '40 / 48 · -0.6px', sample: 'Heading two' },
+      { key: 'h3', label: 'H3', spec: '36 / 44 · -0.5px', sample: 'Heading three' },
+      { key: 'h4', label: 'H4', spec: '32 / 40 · -0.4px', sample: 'Heading four' },
+      { key: 'h5', label: 'H5', spec: '28 / 36 · -0.3px', sample: 'Heading five' },
+      { key: 'h6', label: 'H6', spec: '24 / 32 · -0.2px', sample: 'Heading six' },
+    ],
+  },
+  {
+    group: 'Subheading · Montserrat Semi Bold',
+    styles: [
+      { key: 'subheading-lg', label: 'Subheading Large', spec: '20 / 28 · -0.1px', sample: 'Subheading large' },
+      { key: 'subheading-md', label: 'Subheading Medium', spec: '18 / 28 · -0.1px', sample: 'Subheading medium' },
+      { key: 'subheading-sm', label: 'Subheading Small', spec: '16 / 24 · -0.1px', sample: 'Subheading small' },
+    ],
+  },
+  {
+    group: 'Body · Montserrat Medium',
+    styles: [
+      { key: 'body-2xl', label: 'Body 2X Large', spec: '24 / 36 · -0.14px', sample: 'The quick brown fox jumps over the lazy dog.' },
+      { key: 'body-xl', label: 'Body X Large', spec: '20 / 30 · -0.14px', sample: 'The quick brown fox jumps over the lazy dog.' },
+      { key: 'body-lg', label: 'Body Large', spec: '18 / 28 · -0.14px', sample: 'The quick brown fox jumps over the lazy dog.' },
+      { key: 'body', label: 'Body Default', spec: '16 / 24 · -0.14px', sample: 'The quick brown fox jumps over the lazy dog.' },
+      { key: 'body-sm', label: 'Body Small', spec: '14 / 20 · -0.12px', sample: 'The quick brown fox jumps over the lazy dog.' },
+      { key: 'body-xs', label: 'Body X Small', spec: '12 / 18 · -0.1px', sample: 'The quick brown fox jumps over the lazy dog.' },
+      { key: 'body-2xs', label: 'Body 2X Small', spec: '11 / 16 · 0', sample: 'The quick brown fox jumps over the lazy dog.' },
+    ],
+  },
+  {
+    group: 'Label · Montserrat Semi Bold',
+    styles: [
+      { key: 'label-xl', label: 'Label X Large', spec: '18 / 28 · -0.14px', sample: 'Generate post' },
+      { key: 'label-lg', label: 'Label Large', spec: '16 / 24 · -0.14px', sample: 'Generate post' },
+      { key: 'label-md', label: 'Label Medium', spec: '14 / 20 · -0.12px', sample: 'Generate post' },
+      { key: 'label-sm', label: 'Label Small', spec: '12 / 16 · -0.14px', sample: 'Generate post' },
+      { key: 'label-xs', label: 'Label X Small', spec: '11 / 15 · -0.12px', sample: 'Generate post' },
+    ],
+  },
 ];
 
 const fonts = [
-  { name: 'Anton',   role: 'Headings',   use: 'All h1–h4, section titles, display text',            style: anton  },
-  { name: 'DM Sans', role: 'Logo / UI',  use: 'Logo wordmark, nav labels, UI accent text',           style: dmSans },
-  { name: 'Roboto',  role: 'Body',       use: 'Paragraphs, descriptions, labels, captions',          style: roboto },
+  { name: 'Mona Sans', role: 'Display & headings', use: 'Display and H1–H6, set in Bold.', token: '--font-heading', style: heading },
+  { name: 'Montserrat', role: 'Body, subheadings, labels', use: 'Body in Medium; subheadings and labels in Semi Bold.', token: '--font-body', style: { ...body, fontWeight: 600 } },
+  { name: 'Courier Prime', role: 'Code', use: 'Code samples, token names and technical values.', token: '--font-mono', style: mono },
 ];
 
 export function TypographySection() {
   return (
-    <div className="space-y-24" style={{ color: 'var(--color-text-primary)' }}>
+    <div style={{ color: 'var(--foreground-primary)' }}>
 
       {/* ── APPLYING TYPOGRAPHY ──────────────────────────── */}
-      <div id="applying-typography">
-        <div className="mb-8">
-          <p className="text-xs font-semibold tracking-widest uppercase mb-1"
-            style={{ ...mono, color: 'var(--color-text-tertiary)' }}>Typography</p>
-          <h3 style={{ ...anton, fontSize: '2rem', color: 'var(--color-text-primary)' }}>
-            Applying Typography
-          </h3>
-        </div>
-
-        <p className="text-sm mb-8" style={{ ...roboto, color: 'var(--color-text-secondary)' }}>
-          LayerProof typography is built around contrast and intent. Anton delivers high-impact headlines;
-          Roboto ensures readability at every size. Always apply type on surfaces with sufficient contrast.
+      <div id="applying-typography" className="lp-section">
+        <h2 className="lp-section__title">Applying typography</h2>
+        <p className="lp-section__desc mb-6">
+          Mona Sans carries display and headings; Montserrat carries everything people read and click.
+          Every style ships as a token set (size, line height, letter spacing, weight) so text matches Figma exactly.
         </p>
 
         {/* Live usage example */}
-        <div className="rounded-2xl p-8 md:p-12 mb-10" style={{ background: '#000000' }}>
-          <p style={{ ...anton, fontSize: '3rem', color: '#f0d040', lineHeight: 1.1 }}>
-            FROM DUMP
+        <div className="rounded-2xl p-8 md:p-12 mb-6" style={{ background: 'var(--background-inverse)', borderRadius: 'var(--radius-3xl)' }}>
+          <p className="type-display-m" style={{ color: 'var(--foreground-inverse)' }}>
+            From dump to <span style={{ color: 'var(--accent-background-default)' }}>done</span>
           </p>
-          <p style={{ ...anton, fontSize: '3rem', color: '#ffffff', lineHeight: 1.1 }}>
-            TO DONE
-          </p>
-          <p className="mt-6 text-base max-w-md" style={{ ...roboto, color: 'rgba(255,255,255,0.6)' }}>
+          <p className="type-body-lg mt-6 max-w-md" style={{ color: 'var(--foreground-inverse)', opacity: 0.72 }}>
             Connect once. Your agent handles the rest.
           </p>
-          <div className="mt-4 text-xs flex flex-wrap gap-6" style={{ ...mono, color: 'rgba(255,255,255,0.3)' }}>
-            <span>Heading → Anton / uppercase / yellow or white</span>
-            <span>Body → Roboto / sentence case</span>
+          <div className="mt-4 flex flex-wrap gap-6 type-body-xs" style={{ ...mono, color: 'var(--foreground-inverse)', opacity: 0.55 }}>
+            <span>Heading → Mona Sans Bold · Display M</span>
+            <span>Body → Montserrat Medium · Body Large</span>
           </div>
         </div>
 
         {/* Do / Don't */}
-        <div className="rounded-2xl p-8" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-          <h4 style={{ ...anton, fontSize: '1.1rem', color: 'var(--color-text-primary)', marginBottom: '1.5rem' }}>
-            Guidelines
-          </h4>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <p className="text-sm font-semibold mb-3" style={{ color: '#10b981' }}>DO</p>
-              <ul className="space-y-2 text-sm" style={{ ...roboto, color: 'var(--color-text-secondary)' }}>
-                <li>✓ Use Anton (uppercase) for headings and display text</li>
-                <li>✓ Use Roboto for all body copy and UI labels</li>
-                <li>✓ Pair headline accents sparingly — one color highlight per heading</li>
-                <li>✓ Maintain a clear size hierarchy (display → h1 → body)</li>
-                <li>✓ Use DM Sans only for the logo wordmark and brand-adjacent UI</li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-sm font-semibold mb-3" style={{ color: '#ef4444' }}>DON'T</p>
-              <ul className="space-y-2 text-sm" style={{ ...roboto, color: 'var(--color-text-secondary)' }}>
-                <li>✗ Don't use Anton for body copy or long paragraphs</li>
-                <li>✗ Don't use sentence case in Anton — it's always uppercase</li>
-                <li>✗ Don't mix more than two typefaces in a single component</li>
-                <li>✗ Don't use text smaller than 12px / Caption for interactive elements</li>
-                <li>✗ Don't reduce line-height below 1.1 for display sizes</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <DoDont
+          dos={[
+            'Use Mona Sans Bold for display text and headings',
+            'Use Montserrat Medium for body copy and Semi Bold for subheadings and labels',
+            'Apply a whole text style (size, line height, tracking, weight) rather than mixing tokens',
+            'Keep pink highlights to one word or phrase per heading',
+            'Use Courier Prime for code and token names',
+          ]}
+          donts={[
+            'Set long paragraphs in Mona Sans',
+            'Go below Label X Small (11px) for interactive text',
+            'Mix more than two typefaces in one component',
+            'Override the negative letter spacing on headings',
+            'Use pink text on white for small copy — use accent foreground default instead',
+          ]}
+        />
       </div>
 
       {/* ── APP TYPEFACES AND SCALE ───────────────────────── */}
-      <div id="typefaces-scale">
-        <div className="mb-8">
-          <p className="text-xs font-semibold tracking-widest uppercase mb-1"
-            style={{ ...mono, color: 'var(--color-text-tertiary)' }}>Typography</p>
-          <h3 style={{ ...anton, fontSize: '2rem', color: 'var(--color-text-primary)' }}>
-            App Typefaces &amp; Scale
-          </h3>
-        </div>
-
-        <p className="text-sm mb-10" style={{ ...roboto, color: 'var(--color-text-secondary)' }}>
-          Three typefaces form the LayerProof type system — Anton for impact, DM Sans for the brand identity,
-          and Roboto for readability.
+      <div id="typefaces-scale" className="lp-section">
+        <h2 className="lp-section__title">App typefaces &amp; scale</h2>
+        <p className="lp-section__desc mb-6">
+          Three typefaces form the LayerProof type system: Mona Sans for headings, Montserrat for reading and UI,
+          and Courier Prime for code. Roboto is available as an optional alternative heading face (<code>--font-heading-alt</code>).
         </p>
 
         {/* Font families */}
         <div className="mb-16">
-          <p className="text-xs font-semibold tracking-widest uppercase mb-4"
-            style={{ ...mono, color: 'var(--color-text-tertiary)' }}>Typefaces</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {fonts.map(({ name, role, use, style }) => (
-              <div key={name} className="rounded-xl p-6" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-                <p style={{ ...style, fontSize: '2.5rem', color: 'var(--color-text-primary)', lineHeight: 1.1 }}>
-                  Aa
-                </p>
-                <p className="mt-4 text-xs font-semibold tracking-widest uppercase" style={{ ...mono, color: 'var(--color-text-tertiary)' }}>
-                  {role}
-                </p>
-                <p className="mt-1 text-lg font-bold" style={{ ...style, color: 'var(--color-text-primary)' }}>
-                  {name}
-                </p>
-                <p className="mt-2 text-sm" style={{ ...roboto, color: 'var(--color-text-secondary)' }}>
-                  {use}
-                </p>
+          <h3 className="lp-subsection__title">Typefaces</h3>
+          <div className="lp-panel"><div className="lp-grid lp-grid--3">
+            {fonts.map(({ name, role, use, token, style }) => (
+              <div key={name} className="lp-card">
+                <p style={{ ...style, fontSize: '2.5rem', lineHeight: 1.1 }}>Aa</p>
+                <p className="mt-4 lp-card__meta">{role}</p>
+                <p className="mt-1 type-subheading-md" style={style}>{name}</p>
+                <p className="mt-2 type-body-sm" style={{ color: 'var(--foreground-secondary)' }}>{use}</p>
+                <p className="mt-3 type-body-xs" style={{ ...mono, color: 'var(--foreground-tertiary)' }}>{token}</p>
               </div>
             ))}
-          </div>
+          </div></div>
         </div>
 
         {/* Type scale */}
-        <div>
-          <p className="text-xs font-semibold tracking-widest uppercase mb-4"
-            style={{ ...mono, color: 'var(--color-text-tertiary)' }}>Type Scale</p>
-          <div className="divide-y" style={{ borderColor: 'var(--color-border)' }}>
-            {typeScale.map(({ label, size, weight, lh, ls, font, sample }) => (
-              <div key={label} className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 py-6">
-                <div className="flex-1">
-                  <p style={{ ...font, fontSize: size, fontWeight: weight, lineHeight: lh, letterSpacing: ls, color: 'var(--color-text-primary)' }}>
-                    {sample}
-                  </p>
-                </div>
-                <div className="shrink-0 text-right" style={{ minWidth: '220px' }}>
-                  <p className="text-xs" style={{ ...mono, color: 'var(--color-text-tertiary)' }}>
-                    {size} / w{weight} / {lh}lh
-                  </p>
-                  <p className="text-xs mt-0.5" style={{ ...mono, color: 'var(--color-text-tertiary)' }}>
-                    {label}
-                  </p>
-                </div>
+        <div className="space-y-12">
+          {typeScale.map(({ group, styles }) => (
+            <div key={group}>
+              <h3 className="lp-subsection__title" style={{ marginBottom: 4 }}>{group}</h3>
+              <div className="divide-y" style={{ borderColor: 'var(--border-subtle)' }}>
+                {styles.map(({ key, label, spec, sample }) => (
+                  <div key={key} className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 py-5" style={{ borderColor: 'var(--border-subtle)' }}>
+                    <div className="flex-1 min-w-0">
+                      <p className={`type-${key} truncate`}>{sample}</p>
+                    </div>
+                    <div className="shrink-0 md:text-right" style={{ minWidth: '200px' }}>
+                      <p className="type-body-xs" style={{ ...mono, color: 'var(--foreground-tertiary)' }}>.type-{key}</p>
+                      <p className="type-body-xs mt-0.5" style={{ color: 'var(--foreground-tertiary)' }}>{label} · {spec}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 

@@ -1,31 +1,16 @@
-import { useNavigate } from 'react-router';
-import { Home } from 'lucide-react';
+import { Link } from 'react-router';
+import { Button } from '../components/ui/button';
 
 export function NotFoundPage() {
-  const navigate = useNavigate();
-
   return (
-    <div className="min-h-screen flex items-center justify-center px-8 py-24">
-      <div className="text-center max-w-2xl mx-auto">
-        <div className="text-8xl font-bold text-indigo-600 mb-4">404</div>
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Page Not Found</h1>
-        <p className="text-xl text-gray-600 mb-8">
-          Sorry, we couldn't find the page you're looking for. It might have been moved or doesn't exist.
-        </p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <button
-            onClick={() => navigate('/')}
-            className="brand-btn brand-btn-primary flex items-center gap-2"
-          >
-            <Home size={20} />
-            Back to Home
-          </button>
-          <button
-            onClick={() => navigate('/brand-assets')}
-            className="px-6 py-2.5 bg-white text-gray-700 rounded-lg font-medium border border-gray-300 hover:bg-gray-50 transition-all duration-200"
-          >
-            View Brand Assets
-          </button>
+    <div className="lp-home" style={{ minHeight: 'calc(100vh - 64px)', display: 'flex', alignItems: 'center' }}>
+      <div style={{ maxWidth: 560 }}>
+        <p className="type-h1" style={{ color: 'var(--accent-foreground-brand)' }}>404</p>
+        <h1 className="type-h3" style={{ marginTop: 8 }}>This page doesn't exist</h1>
+        <p className="lp-page-lede">It may have moved when the docs were reorganised. Start from the home page or browse the foundations.</p>
+        <div style={{ display: 'flex', gap: 12, marginTop: 28, flexWrap: 'wrap' }}>
+          <Button asChild variant="default"><Link to="/">Go to home</Link></Button>
+          <Button asChild variant="outline"><Link to="/foundations">Browse foundations</Link></Button>
         </div>
       </div>
     </div>

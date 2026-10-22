@@ -1,84 +1,57 @@
-import { Link } from 'react-router';
 import { FoundationShell } from '../components/FoundationShell';
+import { Section, Panel, Grid, Card, LinkCard, Chip, Prose, Rows, InlineCode } from '../components/docs';
+import { FIGMA_URL } from '../layouts/RootLayout';
 
 const tocItems = [
-  { id: 'gs-design-overview',  label: 'Overview',         level: 1 as const },
-  { id: 'gs-design-figma',     label: 'Figma Libraries',  level: 1 as const },
-  { id: 'gs-design-tokens',    label: 'Design Tokens',    level: 1 as const },
-  { id: 'gs-design-brand',     label: 'Brand Guidelines', level: 1 as const },
+  { id: 'gs-design-figma',  label: 'Figma UI kit',     level: 1 as const },
+  { id: 'gs-design-tokens', label: 'Variables & styles', level: 1 as const },
+  { id: 'gs-design-start',  label: 'Start with foundations', level: 1 as const },
 ];
 
 export function GetStartedDesignersPage() {
   return (
     <FoundationShell
       tag="Get started"
-      title="For Designers"
-      description="Everything you need to design with LayerProof — Figma libraries, design tokens, and brand guidelines."
+      title="For designers"
+      description="Set up the LayerProof UI kit in Figma, use its variables and text styles, and design with the same foundations the product is built on."
       tocItems={tocItems}
     >
-      <section id="gs-design-overview" className="mb-12">
-        <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>
-          Use this guide to set up your Figma environment, connect design tokens, and align with the LayerProof visual identity before you start building.
-        </p>
-      </section>
+      <Section id="gs-design-figma" title="Figma UI kit" desc="One library holds every component, variable collection and style. Enable it in your team's libraries and work from its instances.">
+        <Panel>
+          <Grid cols={2}>
+            <LinkCard href={FIGMA_URL} title="LayerProof — UI Kit" text="Components, variables, text and effect styles, maintained by Spartan Design." meta="Figma library" />
+            <Card title="What's inside" text="27 component pages — buttons, inputs, navigation, cards, feedback — plus custom LayerProof patterns like the prompt box and editor." />
+          </Grid>
+        </Panel>
+      </Section>
 
-      <section id="gs-design-figma" className="mb-12">
-        <h2 style={{ fontFamily: '"Anton", sans-serif', fontSize: '1.5rem', textTransform: 'uppercase', color: 'var(--color-text-primary)', marginBottom: '1rem' }}>
-          Figma Libraries
-        </h2>
-        <div className="rounded-xl p-6" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-          <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
-            Access the LayerProof Figma component library to use pre-built components and design tokens directly in your designs.
-          </p>
-          <ul className="space-y-3 text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-            {['UI Component Library', 'Icon Set', 'Design Token Variables', 'Brand Asset Kit'].map(item => (
-              <li key={item} className="flex items-center gap-3">
-                <span style={{ color: '#f0d040' }}>→</span>
-                <span>{item}</span>
-                <span className="ml-auto text-xs px-2 py-0.5 rounded" style={{ background: 'var(--color-surface-hover)', color: 'var(--color-text-tertiary)' }}>Coming soon</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <Section id="gs-design-tokens" title="Variables & styles" desc="Bind fills, strokes, text and effects to the library instead of picking raw values. These collections are the source of truth for this site.">
+        <Rows
+          cols="minmax(0, 1.1fr) minmax(0, 2fr) auto"
+          head={['Collection', 'Use it for', 'Modes']}
+          rows={[
+            [<strong>Semantic Color V2</strong>, 'All UI colour — backgrounds, text, borders, accent, status', <Chip>Light · Dark</Chip>],
+            [<strong>Color</strong>, 'Primitive scales only. Don\'t bind these in product UI', <Chip>Light</Chip>],
+            [<strong>Typography</strong>, 'Font family, size, line height, tracking behind the text styles', <Chip>1 mode</Chip>],
+            [<strong>Spacing</strong>, 'Padding, gaps and the named radius scale', <Chip>Compact · Spacious</Chip>],
+            [<strong>Brand Theme</strong>, 'Deprecated aliases kept for older files — migrate to V2', <Chip tone="warning">Legacy</Chip>],
+          ]}
+        />
+        <Prose style={{ marginTop: 16 }}>
+          <p>Every Figma variable maps to a CSS variable by swapping <InlineCode>/</InlineCode> for <InlineCode>-</InlineCode>: <InlineCode>background/surface</InlineCode> is <InlineCode>--background-surface</InlineCode> in code.</p>
+        </Prose>
+      </Section>
 
-      <section id="gs-design-tokens" className="mb-12">
-        <h2 style={{ fontFamily: '"Anton", sans-serif', fontSize: '1.5rem', textTransform: 'uppercase', color: 'var(--color-text-primary)', marginBottom: '1rem' }}>
-          Design Tokens
-        </h2>
-        <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
-          Design tokens are the single source of truth for all visual decisions. Start with the foundations.
-        </p>
-        <div className="grid grid-cols-2 gap-3">
-          {[
-            { label: 'Color',      path: '/foundations/color' },
-            { label: 'Typography', path: '/foundations/typography' },
-            { label: 'Spacing',    path: '/foundations/spacing' },
-            { label: 'Grid',       path: '/foundations/grid' },
-          ].map(({ label, path }) => (
-            <Link key={label} to={path}
-              className="flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium transition-opacity hover:opacity-75"
-              style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-primary)', textDecoration: 'none' }}>
-              {label}
-              <span style={{ color: '#f0d040' }}>→</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section id="gs-design-brand" className="mb-12">
-        <h2 style={{ fontFamily: '"Anton", sans-serif', fontSize: '1.5rem', textTransform: 'uppercase', color: 'var(--color-text-primary)', marginBottom: '1rem' }}>
-          Brand Guidelines
-        </h2>
-        <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
-          Understand the LayerProof visual identity before you start designing.
-        </p>
-        <Link to="/foundations/logos"
-          className="inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-opacity hover:opacity-80"
-          style={{ background: '#ffffff', color: '#000000', textDecoration: 'none', fontFamily: '"Roboto", sans-serif' }}>
-          View Logo Guidelines →
-        </Link>
-      </section>
+      <Section id="gs-design-start" title="Start with foundations" desc="Read these before designing a new screen.">
+        <Panel>
+          <Grid cols={2}>
+            <LinkCard to="/foundations/color" title="Color" text="Neutral by default; pink for primary actions, focus and selection." />
+            <LinkCard to="/foundations/typography" title="Typography" text="The 23 text styles and when to use each." />
+            <LinkCard to="/foundations/spacing" title="Spacing" text="The 4px-based scale and density modes." />
+            <LinkCard to="/brand" title="Brand" text="Logo, mission and voice." />
+          </Grid>
+        </Panel>
+      </Section>
     </FoundationShell>
   );
 }

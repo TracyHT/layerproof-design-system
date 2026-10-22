@@ -1,1 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+/* Brand fonts (Figma › Typography): Mona Sans for display + headings,
+   Montserrat for subheadings, body and labels, Courier Prime for code.
+   Roboto is the optional alternative heading face.
+   DM Sans Bold is used only for the LayerProof wordmark (the logotype). */
+@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:wght@400..800&family=Montserrat:wght@400;500;600;700&family=Courier+Prime:wght@400;700&family=Roboto:wght@400;500;700&family=DM+Sans:wght@700&display=swap');

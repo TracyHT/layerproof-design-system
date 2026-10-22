@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Check } from 'lucide-react';
 
 export const colorHeading: React.CSSProperties = {
-  fontFamily: '"Anton", sans-serif',
-  textTransform: 'uppercase',
+  fontFamily: 'var(--font-heading)',
+  fontWeight: 700,
+  letterSpacing: 'var(--ls-h4)',
 };
 
 // ─── Copy chip (compact swatch with hex copy) ──────────────────────────────────
@@ -23,9 +24,7 @@ export function CopyChip({ hex, dark }: { hex: string; dark?: boolean }) {
       style={{ background: hex, minHeight: 80, padding: '10px 12px' }}
       title={`Copy ${hex}`}
     >
-      <span className="text-[11px] font-semibold" style={{ color: fg, opacity: 0.65 }}>
-        {dark ? '◼' : '◻'}
-      </span>
+      <span />
       <span className="text-[11px] font-mono" style={{ color: fg, opacity: 0.7 }}>
         {copied ? <Check size={11} className="inline" /> : hex}
       </span>
@@ -41,21 +40,18 @@ export function PairingCard({
   num: string; bg: string; fg: string; label: string; sublabel: string;
 }) {
   return (
-    <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: bg, minHeight: 200 }}>
+    <div className="overflow-hidden flex flex-col" style={{ background: bg, minHeight: 200, borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-subtle)' }} data-num={num}>
       <div className="flex-1 flex items-center justify-center p-8">
-        <span style={{ fontFamily: '"Anton", sans-serif', fontSize: '4rem', color: fg, lineHeight: 1 }}>
+        <span style={{ fontFamily: 'var(--font-heading)', fontSize: '4rem', color: fg, lineHeight: 1 }}>
           Aa
         </span>
       </div>
       <div className="px-4 pb-4 pt-2 flex items-start justify-between gap-2">
         <div>
-          <p className="text-xs font-semibold" style={{ fontFamily: '"Roboto", sans-serif', color: fg, opacity: 0.5 }}>
-            {num}
-          </p>
-          <p className="text-sm font-medium mt-0.5" style={{ fontFamily: '"Roboto", sans-serif', color: fg }}>
+          <p className="text-sm font-medium mt-0.5" style={{ fontFamily: 'var(--font-body)', color: fg }}>
             {label}
           </p>
-          <p className="text-xs mt-0.5" style={{ fontFamily: '"Roboto", sans-serif', color: fg, opacity: 0.5 }}>
+          <p className="text-xs mt-0.5" style={{ fontFamily: 'var(--font-body)', color: fg, opacity: 0.5 }}>
             {sublabel}
           </p>
         </div>
@@ -72,9 +68,8 @@ export function UsageSample({
   num: string; bg: string; children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-2xl overflow-hidden" style={{ background: bg, minHeight: 180 }}>
+    <div className="overflow-hidden" style={{ background: bg, minHeight: 180, borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-subtle)' }} data-num={num}>
       <div className="p-4">
-        <p className="text-xs font-mono mb-3" style={{ color: bg === '#ffffff' ? '#00000040' : '#ffffff40' }}>{num}</p>
         {children}
       </div>
     </div>
@@ -88,13 +83,13 @@ export function DataVizSwatch({ label, hex }: { label: string; hex: string }) {
   return (
     <button
       onClick={() => { navigator.clipboard.writeText(hex); setCopied(true); setTimeout(() => setCopied(false), 1500); }}
-      className="flex flex-col rounded-xl overflow-hidden transition-transform hover:scale-105 focus:outline-none"
-      style={{ border: '1px solid var(--color-border)' }}
+      className="flex flex-col overflow-hidden text-left"
+      style={{ border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xl)' }}
     >
       <div style={{ background: hex, height: 56 }} />
-      <div className="px-3 py-2" style={{ background: 'var(--color-surface)' }}>
-        <p className="text-xs font-medium" style={{ color: 'var(--color-text-primary)' }}>{label}</p>
-        <p className="text-[11px] font-mono" style={{ color: 'var(--color-text-tertiary)' }}>
+      <div className="px-3 py-2" style={{ background: 'var(--background-surface-raised)' }}>
+        <p className="type-label-sm">{label}</p>
+        <p className="type-body-xs" style={{ fontFamily: 'var(--font-mono)', color: 'var(--foreground-tertiary)' }}>
           {copied ? 'Copied!' : hex}
         </p>
       </div>
@@ -110,10 +105,10 @@ export function PaletteColumn({ name, stops }: {
 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-      <p className="text-sm font-bold mb-2" style={{ fontFamily: '"Roboto", sans-serif', color: 'var(--color-text-primary)' }}>
+      <p className="text-sm font-bold mb-2" style={{ fontFamily: 'var(--font-body)', color: 'var(--foreground-primary)' }}>
         {name}
       </p>
-      <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--color-border)' }}>
+      <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
         {stops.map((s, i) => (
           <PaletteRow key={s.label} {...s} isLast={i === stops.length - 1} />
         ))}
@@ -143,7 +138,7 @@ function PaletteRow({ label, cssVar, dark, isLast }: { label: string; cssVar: st
         borderBottom: isLast ? 'none' : '1px solid rgba(0,0,0,0.08)',
       }}
     >
-      <span className="text-xs font-medium" style={{ color: dark ? '#000000' : '#ffffff', fontFamily: '"Roboto", sans-serif', opacity: 0.8 }}>
+      <span className="text-xs font-medium" style={{ color: dark ? '#000000' : '#ffffff', fontFamily: 'var(--font-body)', opacity: 0.8 }}>
         {copied ? 'Copied!' : label}
       </span>
     </button>
@@ -153,15 +148,5 @@ function PaletteRow({ label, cssVar, dark, isLast }: { label: string; cssVar: st
 // ─── Section label ─────────────────────────────────────────────────────────────
 
 export function SectionLabel({ title }: { title: string }) {
-  return (
-    <div className="mb-8">
-      <p className="text-xs font-semibold tracking-widest uppercase mb-1"
-        style={{ fontFamily: '"Roboto", sans-serif', color: 'var(--color-text-tertiary)' }}>
-        Color
-      </p>
-      <h3 style={{ ...colorHeading, fontSize: '2rem', color: 'var(--color-text-primary)' }}>
-        {title}
-      </h3>
-    </div>
-  );
+  return <h2 className="lp-section__title" style={{ marginBottom: 16 }}>{title}</h2>;
 }

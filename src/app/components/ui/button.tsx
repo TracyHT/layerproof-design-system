@@ -5,48 +5,49 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "./utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
+        // Token mapping follows Figma "Semantic Color V2" (action/*, accent/*, button/*).
         // ── Neutral hierarchy ──────────────────────────────────────────────────────
         default:
-          "bg-[var(--neutral-surface-default)] text-[var(--neutral-text-on-color)] hover:bg-[var(--neutral-surface-dark)] focus-visible:ring-[var(--neutral-surface-default)]/20",
+          "bg-[var(--action-neutral-background-default)] text-[var(--foreground-inverse)] hover:bg-[var(--action-neutral-background-hover)] active:bg-[var(--action-neutral-background-pressed)] focus-visible:ring-[var(--border-focus)]/50",
         secondary:
-          "bg-[var(--neutral-surface-surface)] text-[var(--neutral-text-secondary)] hover:bg-[var(--neutral-surface-lighter)] focus-visible:ring-[var(--neutral-surface-default)]/20",
+          "bg-[var(--action-secondary-background-default)] text-[var(--action-secondary-foreground)] hover:bg-[var(--action-secondary-background-hover)] focus-visible:ring-[var(--action-secondary-focus)]/50",
         outline:
-          "border border-[var(--neutral-divider-default)] bg-transparent text-[var(--neutral-text-secondary)] hover:bg-[var(--neutral-surface-disable)] focus-visible:ring-[var(--neutral-surface-default)]/20",
+          "border border-[var(--action-secondary-border)] bg-transparent text-[var(--action-secondary-foreground)] hover:bg-[var(--action-tertiary-background-hover)] focus-visible:ring-[var(--action-secondary-focus)]/50",
         ghost:
-          "bg-transparent text-[var(--neutral-text-secondary)] hover:bg-[var(--neutral-surface-disable)]",
-        link: "bg-transparent text-[var(--neutral-text-secondary)] underline-offset-4 hover:underline",
+          "bg-transparent text-[var(--action-tertiary-foreground-default)] hover:bg-[var(--action-tertiary-background-hover)] hover:text-[var(--action-tertiary-foreground-hover)] focus-visible:ring-[var(--action-tertiary-focus)]/50",
+        link: "bg-transparent text-[var(--action-tertiary-foreground-default)] underline-offset-4 hover:underline hover:text-[var(--action-tertiary-foreground-hover)]",
 
         // ── Accent hierarchy ───────────────────────────────────────────────────────
         accent:
-          "bg-[var(--accent-surface-default)] text-[var(--accent-text-on-color)] hover:bg-[var(--accent-surface-btn-hover)] focus-visible:ring-[var(--accent-surface-default)]/50",
+          "bg-[var(--action-primary-background-default)] text-[var(--button-accent-primary-foreground)] hover:bg-[var(--action-primary-background-hover)] active:bg-[var(--action-primary-background-pressed)] focus-visible:ring-[var(--action-primary-focus)]/50",
         "accent-secondary":
-          "bg-[var(--accent-surface-surface)] text-[var(--accent-text-default)] hover:bg-[var(--accent-surface-light)] focus-visible:ring-[var(--accent-surface-default)]/30",
+          "bg-[var(--accent-background-subtle)] text-[var(--accent-foreground-default)] hover:bg-[var(--accent-background-selected)] focus-visible:ring-[var(--accent-focus-ring)]/40",
         "accent-ghost":
-          "bg-transparent text-[var(--accent-text-default)] hover:bg-[var(--accent-surface-surface)]",
+          "bg-transparent text-[var(--accent-foreground-default)] hover:bg-[var(--accent-background-subtle)] focus-visible:ring-[var(--accent-focus-ring)]/40",
         "accent-outline":
-          "border border-[var(--accent-divider-default)] bg-transparent text-[var(--accent-text-default)] hover:bg-[var(--accent-surface-surface)] focus-visible:ring-[var(--accent-surface-default)]/30",
+          "border border-[var(--accent-border-default)] bg-transparent text-[var(--accent-foreground-default)] hover:bg-[var(--accent-background-subtle)] focus-visible:ring-[var(--accent-focus-ring)]/40",
         "accent-link":
-          "bg-transparent text-[var(--accent-text-default)] underline-offset-4 hover:underline",
+          "bg-transparent text-[var(--accent-foreground-default)] underline-offset-4 hover:underline",
 
         // ── Danger hierarchy ───────────────────────────────────────────────────────
         destructive:
-          "bg-[var(--danger-default)] text-[var(--neutral-text-on-color)] hover:bg-[var(--danger-dark)] focus-visible:ring-[var(--danger-default)]/30",
+          "bg-[var(--button-danger-primary-background-default)] text-[var(--button-danger-primary-foreground)] hover:bg-[var(--button-danger-primary-background-hover)] focus-visible:ring-[var(--button-danger-border)]",
         "destructive-secondary":
-          "bg-[var(--danger-surface)] text-[var(--danger-default)] hover:bg-[var(--danger-light)] focus-visible:ring-[var(--danger-default)]/20",
+          "bg-[var(--button-danger-secondary-background-default)] text-[var(--button-danger-secondary-foreground)] hover:bg-[var(--button-danger-secondary-background-hover)] focus-visible:ring-[var(--button-danger-border)]",
         "destructive-outline":
-          "border border-[var(--danger-default)] bg-transparent text-[var(--danger-default)] hover:bg-[var(--danger-surface)] focus-visible:ring-[var(--danger-default)]/20",
+          "border border-[var(--button-danger-border)] bg-transparent text-[var(--button-danger-outline-foreground)] hover:bg-[var(--button-danger-outline-background-hover)] focus-visible:ring-[var(--button-danger-border)]",
         "destructive-ghost":
-          "bg-transparent text-[var(--danger-default)] hover:bg-[var(--danger-surface)]",
+          "bg-transparent text-[var(--button-danger-tertiary-foreground)] hover:bg-[var(--button-danger-tertiary-background-hover)]",
         "destructive-link":
-          "bg-transparent text-[var(--danger-default)] underline-offset-4 hover:underline",
+          "bg-transparent text-[var(--button-danger-tertiary-foreground)] underline-offset-4 hover:underline",
 
         // ── Preserved ─────────────────────────────────────────────────────────────
         neutral:
-          "bg-[var(--neutral-surface-disable)] text-[var(--neutral-text-secondary)] hover:bg-[var(--neutral-surface-lighter)] focus-visible:ring-[var(--neutral-surface-default)]/20",
+          "bg-[var(--background-subtle)] text-[var(--foreground-secondary)] hover:bg-[var(--background-muted)] focus-visible:ring-[var(--border-focus)]/50",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

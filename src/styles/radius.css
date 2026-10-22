@@ -1,13 +1,30 @@
+/* Generated from the Figma file “LayerProof — UI Kit” (variables + styles).
+   Source of truth is Figma; regenerate rather than hand-editing values. */
+
 :root {
-  --radius-none: 0;
-  --radius-xsm:  0.125rem;   /*  2px */
-  --radius-sm:   0.25rem;    /*  4px */
-  --radius-md:   0.375rem;   /*  6px */
-  --radius-lg:   0.5rem;     /*  8px */
-  --radius-xl:   0.75rem;    /* 12px */
-  --radius-2xl:  1rem;       /* 16px */
-  --radius-3xl:  1.25rem;    /* 20px */
-  --radius-4xl:  1.5rem;     /* 24px */
-  --radius-5xl:  1.875rem;   /* 30px */
-  --radius-full: 9999px;
+  /* Named scale (Figma: Spacing › Radius) */
+  --radius-none: 0; /* 0px */
+  --radius-xsm: 0.125rem; /* 2px */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+  --radius-3xl: 1.25rem; /* 20px */
+  --radius-4xl: 1.5rem; /* 24px */
+  --radius-5xl: 1.875rem; /* 30px */
+  --radius-full: 1000px;
+
+  /* Numbered scale (Figma: Radius collection) */
+  --radius-1: 0; /* 0px */
+  --radius-2: 0.125rem; /* 2px */
+  --radius-3: 0.25rem; /* 4px */
+  --radius-4: 0.375rem; /* 6px */
+  --radius-5: 0.5rem; /* 8px */
+  --radius-6: 0.625rem; /* 10px */
+  --radius-7: 0.75rem; /* 12px */
+  --radius-8: 1rem; /* 16px */
+  --radius-9: 1.25rem; /* 20px */
+  --radius-10: 1.5rem; /* 24px */
+  --radius-11: 1.875rem; /* 30px */
 }

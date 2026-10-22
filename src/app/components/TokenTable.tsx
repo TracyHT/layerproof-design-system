@@ -7,14 +7,16 @@ function resolveInTheme(name: string, theme: "light" | "dark"): string {
   if (typeof document === "undefined" || !/^--[\w-]+$/.test(name)) return "";
   const wrapper = document.createElement("div");
   wrapper.setAttribute("data-theme", theme);
+  // Sentinel colour: if the token isn't a colour, the probe inherits this and we bail out.
   wrapper.style.cssText =
-    "position:absolute;visibility:hidden;pointer-events:none;";
+    "position:absolute;visibility:hidden;pointer-events:none;color:rgb(1, 2, 3);";
   const probe = document.createElement("div");
   probe.style.cssText = `color:var(${name});`;
   wrapper.appendChild(probe);
   document.body.appendChild(wrapper);
   const rgb = getComputedStyle(probe).color;
   document.body.removeChild(wrapper);
+  if (rgb === "rgb(1, 2, 3)") return "";
   const match = rgb.match(/\d+/g);
   if (!match || match.length < 3) return "";
   return (
@@ -102,8 +104,8 @@ function tokenPreviewByName(
           width: 48,
           height: 48,
           borderRadius: resolved,
-          border: "2px solid var(--color-text-secondary)",
-          background: "var(--color-surface)",
+          border: "2px solid var(--foreground-secondary)",
+          background: "var(--background-surface)",
           flexShrink: 0,
         }}
       />
@@ -120,7 +122,7 @@ function tokenPreviewByName(
           style={{
             width: barWidth,
             height: 12,
-            background: "var(--brand-primary)",
+            background: "var(--accent-background-default)",
             borderRadius: 3,
             flexShrink: 0,
           }}
@@ -137,7 +139,7 @@ function tokenPreviewByName(
         style={{
           fontFamily: "var(--font-body)",
           fontSize: resolved,
-          color: "var(--color-text-primary)",
+          color: "var(--foreground-primary)",
           lineHeight: 1.2,
           display: "block",
           maxWidth: 220,
@@ -158,7 +160,7 @@ function tokenPreviewByName(
         style={{
           fontFamily: resolved,
           fontSize: "2rem",
-          color: "var(--color-text-primary)",
+          color: "var(--foreground-primary)",
           lineHeight: 1,
         }}
       >
@@ -175,7 +177,7 @@ function tokenPreviewByName(
         style={{
           width: 80,
           height: isNaN(w) ? 1 : Math.max(w, 1),
-          background: "var(--color-text-primary)",
+          background: "var(--foreground-primary)",
           borderRadius: 2,
         }}
       />
@@ -190,9 +192,9 @@ function tokenPreviewByName(
           width: 48,
           height: 48,
           borderRadius: 6,
-          background: "var(--pink-500, #e8336c)",
+          background: "var(--accent-background-default)",
           opacity: parseFloat(resolved) || 1,
-          border: "1px solid var(--color-border)",
+          border: "1px solid var(--border-subtle)",
         }}
       />
     );
@@ -219,8 +221,8 @@ function ColorSwatchCard({
   return (
     <div
       style={{
-        borderRadius: "0.625rem",
-        border: dark ? "4px solid #333" : "4px solid var(--color-border)",
+        borderRadius: "var(--radius-lg)",
+        border: dark ? "1px solid #2a2a2a" : "1px solid var(--border-subtle)",
         overflow: "hidden",
         background: dark ? "#1a1a1a" : "#ffffff",
         minWidth: 100,
@@ -235,7 +237,7 @@ function ColorSwatchCard({
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "0.8125rem",
-            color: dark ? "#a3a3a3" : "#444444",
+            color: dark ? "#a3a3a3" : "#525252",
           }}
         >
           {value.length > 18 ? value.slice(0, 18) + "…" : value}
@@ -278,7 +280,7 @@ export function TokenRow({
         gap: "0.75rem",
         alignItems: "start",
         padding: "1.25rem 0",
-        borderBottom: isLast ? "none" : "1px solid var(--color-border)",
+        borderBottom: isLast ? "none" : "1px solid var(--border-subtle)",
       }}
     >
       {/* Left: name + description + cssNote + introduced */}
@@ -287,32 +289,17 @@ export function TokenRow({
           <code
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "0.8125rem",
-              color: "var(--color-text-primary)",
-              background: "var(--color-surface-hover)",
-              border: "1px solid var(--color-border)",
-              padding: "0.2rem 0.625rem",
-              borderRadius: "0.375rem",
+              fontSize: "0.875rem",
+              color: "var(--foreground-primary)",
+              background: "var(--background-subtle)",
+              padding: "0.2rem 0.5rem",
+              borderRadius: "6px",
             }}
           >
             {token.name}
           </code>
           {token.deprecated && (
-            <span
-              style={{
-                fontFamily: "var(--font-body)",
-                fontWeight: 600,
-                fontSize: "0.6875rem",
-                color: "#a3a3a3",
-                background: "#6b6b6b22",
-                padding: "0.15rem 0.5rem",
-                borderRadius: "9999px",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-              }}
-            >
-              Deprecated
-            </span>
+            <span className="lp-chip lp-chip--warning">Deprecated</span>
           )}
         </div>
 
@@ -320,7 +307,7 @@ export function TokenRow({
           style={{
             fontFamily: "var(--font-body)",
             fontSize: "0.9375rem",
-            color: "var(--color-text-secondary)",
+            color: "var(--foreground-secondary)",
             margin: "0 0 0.5rem",
             lineHeight: 1.5,
           }}
@@ -334,7 +321,7 @@ export function TokenRow({
               fontFamily: "var(--font-body)",
               fontSize: "0.875rem",
               fontWeight: 600,
-              color: "var(--color-text-secondary)",
+              color: "var(--foreground-secondary)",
               margin: "0 0 0.375rem",
             }}
           >
@@ -347,7 +334,7 @@ export function TokenRow({
             style={{
               fontFamily: "var(--font-body)",
               fontSize: "0.8125rem",
-              color: "var(--color-text-tertiary)",
+              color: "var(--foreground-tertiary)",
               margin: "0 0 0.375rem",
             }}
           >
@@ -355,7 +342,7 @@ export function TokenRow({
             <code
               style={{
                 fontFamily: "var(--font-mono)",
-                color: "var(--brand-primary)",
+                color: "var(--accent-foreground-default)",
                 fontSize: "0.8125rem",
               }}
             >
@@ -369,7 +356,7 @@ export function TokenRow({
           style={{
             fontFamily: "var(--font-body)",
             fontSize: "0.8125rem",
-            color: "var(--color-text-tertiary)",
+            color: "var(--foreground-tertiary)",
             margin: 0,
           }}
         >
@@ -381,7 +368,7 @@ export function TokenRow({
       {hasDarkColor ? (
         <>
           <ColorSwatchCard
-            color={showSwatch ? lightHex : "var(--color-surface)"}
+            color={showSwatch ? lightHex : "var(--background-surface)"}
             value={lightHex}
             dark={false}
           />
@@ -407,7 +394,7 @@ export function TokenRow({
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.8125rem",
-                    color: "var(--color-text-secondary)",
+                    color: "var(--foreground-secondary)",
                   }}
                 >
                   {resolved.length > 20
@@ -427,21 +414,21 @@ export function TokenRow({
                   width: 64,
                   height: 32,
                   borderRadius: "0.375rem",
-                  border: "1px solid var(--color-border)",
-                  background: showSwatch ? resolved : "var(--color-surface)",
+                  border: "1px solid var(--border-subtle)",
+                  background: showSwatch ? resolved : "var(--background-surface)",
                   flexShrink: 0,
                   overflow: "hidden",
                   position: "relative",
                 }}
               >
                 {token.name.startsWith("--shadow") &&
-                  !token.name.includes("color") && (
+                  !showSwatch && (
                     <div
                       style={{
                         position: "absolute",
                         inset: 6,
                         borderRadius: 4,
-                        background: "var(--color-surface)",
+                        background: "var(--background-surface)",
                         boxShadow: `var(${token.name})`,
                       }}
                     />
@@ -451,7 +438,7 @@ export function TokenRow({
                 style={{
                   fontFamily: "var(--font-mono)",
                   fontSize: "0.8125rem",
-                  color: "var(--color-text-secondary)",
+                  color: "var(--foreground-secondary)",
                   textAlign: "right",
                 }}
               >
@@ -487,7 +474,7 @@ export function TokenGroup({ tokens }: { tokens: Token[] }) {
           gridTemplateColumns: cols,
           gap: "0.75rem",
           padding: "0.5rem 0",
-          borderBottom: "2px solid var(--color-border)",
+          borderBottom: "2px solid var(--border-subtle)",
           marginBottom: "0.25rem",
         }}
       >
@@ -496,10 +483,8 @@ export function TokenGroup({ tokens }: { tokens: Token[] }) {
             fontFamily: "var(--font-body)",
             fontWeight: 700,
             fontSize: "0.8125rem",
-            color: "var(--color-text-tertiary)",
-            textTransform: "uppercase",
-            letterSpacing: "0.06em",
-          }}
+            color: "var(--foreground-tertiary)",
+            }}
         >
           Token and description
         </span>
@@ -510,10 +495,8 @@ export function TokenGroup({ tokens }: { tokens: Token[] }) {
                 fontFamily: "var(--font-body)",
                 fontWeight: 700,
                 fontSize: "0.8125rem",
-                color: "var(--color-text-tertiary)",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-              }}
+                color: "var(--foreground-tertiary)",
+                }}
             >
               Light value
             </span>
@@ -522,10 +505,8 @@ export function TokenGroup({ tokens }: { tokens: Token[] }) {
                 fontFamily: "var(--font-body)",
                 fontWeight: 700,
                 fontSize: "0.8125rem",
-                color: "var(--color-text-tertiary)",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-              }}
+                color: "var(--foreground-tertiary)",
+                }}
             >
               Dark value
             </span>
@@ -536,10 +517,8 @@ export function TokenGroup({ tokens }: { tokens: Token[] }) {
               fontFamily: "var(--font-body)",
               fontWeight: 700,
               fontSize: "0.8125rem",
-              color: "var(--color-text-tertiary)",
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-            }}
+              color: "var(--foreground-tertiary)",
+              }}
           >
             {hasPreview ? "Preview" : "Value"}
           </span>
@@ -564,23 +543,6 @@ export function AllTokensTab({ sects }: { sects: Section[] }) {
   const [query, setQuery] = useState("");
   const visible = useMemo(() => filterSections(query, sects), [query, sects]);
 
-  const H2: React.CSSProperties = {
-    fontFamily: "var(--font-heading)",
-    fontSize: "1.375rem",
-    textTransform: "uppercase",
-    color: "var(--color-text-primary)",
-    marginBottom: "1.25rem",
-    marginTop: 0,
-  };
-
-  const H3: React.CSSProperties = {
-    fontFamily: "var(--font-heading)",
-    fontSize: "1rem",
-    textTransform: "uppercase",
-    color: "var(--color-text-primary)",
-    marginBottom: "0.75rem",
-    marginTop: 0,
-  };
 
   return (
     <>
@@ -596,7 +558,7 @@ export function AllTokensTab({ sects }: { sects: Section[] }) {
             left: 14,
             top: "50%",
             transform: "translateY(-50%)",
-            color: "var(--color-text-tertiary)",
+            color: "var(--foreground-tertiary)",
             pointerEvents: "none",
           }}
         >
@@ -616,6 +578,7 @@ export function AllTokensTab({ sects }: { sects: Section[] }) {
         </svg>
         <input
           type="text"
+          className="lp-search"
           placeholder="Search for tokens…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -625,12 +588,13 @@ export function AllTokensTab({ sects }: { sects: Section[] }) {
             paddingRight: query ? "2.5rem" : "1rem",
             paddingTop: "0.625rem",
             paddingBottom: "0.625rem",
-            background: "var(--color-surface)",
-            border: "1px solid var(--color-border)",
-            borderRadius: "0.75rem",
+            background: "var(--background-canvas)",
+            border: "1px solid var(--border-default)",
+            borderRadius: "var(--radius-full)",
             fontFamily: "var(--font-body)",
+            fontWeight: 500,
             fontSize: "0.9375rem",
-            color: "var(--color-text-primary)",
+            color: "var(--foreground-primary)",
             outline: "none",
           }}
         />
@@ -645,7 +609,7 @@ export function AllTokensTab({ sects }: { sects: Section[] }) {
               background: "none",
               border: "none",
               cursor: "pointer",
-              color: "var(--color-text-tertiary)",
+              color: "var(--foreground-tertiary)",
               fontSize: 18,
               lineHeight: 1,
               padding: 2,
@@ -658,21 +622,18 @@ export function AllTokensTab({ sects }: { sects: Section[] }) {
 
       {visible.length === 0 ? (
         <div
-          className="rounded-xl px-6 py-12 text-center"
-          style={{
-            background: "var(--color-surface)",
-            border: "1px solid var(--color-border)",
-          }}
+          className="lp-panel text-center"
+          style={{ padding: "48px 24px" }}
         >
           <p
             style={{
               fontFamily: "var(--font-body)",
-              color: "var(--color-text-tertiary)",
+              color: "var(--foreground-tertiary)",
               fontSize: "0.9375rem",
             }}
           >
             No tokens match{" "}
-            <strong style={{ color: "var(--color-text-primary)" }}>
+            <strong style={{ color: "var(--foreground-primary)" }}>
               "{query}"
             </strong>
           </p>
@@ -681,7 +642,7 @@ export function AllTokensTab({ sects }: { sects: Section[] }) {
         <div className="space-y-14">
           {visible.map((section) => (
             <div key={section.id} id={section.id}>
-              <h2 style={H2}>{section.label}</h2>
+              <h2 className="lp-section__title" style={{ marginBottom: 16 }}>{section.label}</h2>
 
               {section.tokens && <TokenGroup tokens={section.tokens} />}
 
@@ -689,7 +650,7 @@ export function AllTokensTab({ sects }: { sects: Section[] }) {
                 <div className="space-y-10">
                   {section.subsections.map((sub) => (
                     <div key={sub.id} id={sub.id}>
-                      <h3 style={H3}>{sub.label}</h3>
+                      <h3 className="lp-subsection__title" style={{ marginBottom: 4 }}>{sub.label}</h3>
                       <TokenGroup tokens={sub.tokens} />
                     </div>
                   ))}

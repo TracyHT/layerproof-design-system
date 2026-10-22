@@ -1,111 +1,75 @@
 import { FoundationShell } from '../components/FoundationShell';
+import { Section, Panel, Rows, Grid, Card } from '../components/docs';
 
 const tocItems = [
-  { id: 'overview', label: 'Overview', level: 1 },
-  { id: 'page-structure', label: 'Page Structure', level: 1 },
-  { id: 'container-widths', label: 'Container Widths', level: 1 },
-  { id: 'breakpoints', label: 'Responsive Breakpoints', level: 1 },
-  { id: 'z-index', label: 'Z-Index Scale', level: 1 },
+  { id: 'page-structure', label: 'Page structure', level: 1 as const },
+  { id: 'container-widths', label: 'Container widths', level: 1 as const },
+  { id: 'breakpoints', label: 'Breakpoints', level: 1 as const },
+  { id: 'z-index', label: 'Z-index scale', level: 1 as const },
 ];
+
+const Block = ({ label, style }: { label: string; style?: React.CSSProperties }) => (
+  <div className="type-label-sm" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 'var(--radius-lg)', color: 'var(--foreground-secondary)', background: 'var(--background-surface-raised)', ...style }}>
+    {label}
+  </div>
+);
 
 export function LayoutPage() {
   return (
     <FoundationShell
-      tag="Layout"
-      title="Layout Guidelines"
-      description="Consistent layouts create familiarity and trust. Our layout system ensures every design feels cohesive while allowing for creative expression."
+      tag={[]}
+      title="Layout"
+      description="Breakpoints, container widths and layers that keep LayerProof screens predictable at every size."
       tocItems={tocItems}
     >
-      <section id="overview" className="mb-16">
-        <p className="text-lg text-[var(--color-text-secondary)]">
-          The LayerProof layout system is built on a responsive grid with defined breakpoints, container widths, and z-index layers that keep interfaces predictable across all screen sizes.
-        </p>
-      </section>
-
-      <section id="page-structure" className="mb-16">
-        <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Page Structure</h2>
-        <div className="bg-[var(--color-surface)] p-8 rounded-lg border border-[var(--color-border)]">
-          <div className="space-y-4">
-            <div className="h-16 bg-[var(--brand-primary)] opacity-20 rounded flex items-center justify-center text-[var(--color-text-secondary)]">
-              Header
-            </div>
-            <div className="flex gap-4">
-              <div className="w-64 h-96 bg-[var(--brand-primary)] opacity-10 rounded flex items-center justify-center text-[var(--color-text-secondary)]">
-                Sidebar
-              </div>
-              <div className="flex-1 h-96 bg-[var(--brand-primary)] opacity-20 rounded flex items-center justify-center text-[var(--color-text-secondary)]">
-                Main Content
-              </div>
-            </div>
-            <div className="h-32 bg-[var(--brand-primary)] opacity-10 rounded flex items-center justify-center text-[var(--color-text-secondary)]">
-              Footer
-            </div>
+      <Section id="page-structure" title="Page structure" desc="The app shell: a header, the sidebar rail and a canvas for the work.">
+        <Panel>
+          <div style={{ display: 'grid', gap: 8, gridTemplateColumns: '180px 1fr', gridTemplateRows: '48px 260px' }}>
+            <Block label="Sidebar" style={{ gridRow: 'span 2', background: 'var(--background-muted)' }} />
+            <Block label="Header" />
+            <Block label="Canvas" style={{ border: '1px dashed var(--accent-border-default)', background: 'var(--accent-background-faint)', color: 'var(--accent-foreground-default)' }} />
           </div>
-        </div>
-      </section>
+        </Panel>
+      </Section>
 
-      <section id="container-widths" className="mb-16">
-        <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Container Widths</h2>
-        <div className="space-y-6">
-          {[
-            { name: 'Full Width', value: '100%', desc: 'Edge-to-edge content like hero images' },
-            { name: 'Wide', value: '1400px', desc: 'Dashboard layouts and data tables' },
-            { name: 'Default', value: '1200px', desc: 'Standard page content' },
-            { name: 'Narrow', value: '800px', desc: 'Long-form reading content' },
-          ].map((container) => (
-            <div key={container.name} className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)]">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-semibold text-[var(--color-text-primary)]">{container.name}</h3>
-                <span className="text-sm font-mono text-[var(--color-text-tertiary)]">{container.value}</span>
-              </div>
-              <p className="text-sm text-[var(--color-text-secondary)]">{container.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section id="container-widths" title="Container widths">
+        <Rows
+          cols="140px 100px minmax(0, 1fr)"
+          head={['Name', 'Max width', 'Use for']}
+          rows={[
+            [<strong>Full width</strong>, '100%', 'Edge-to-edge canvases and hero imagery'],
+            [<strong>Wide</strong>, '1400px', 'Dashboards and data tables'],
+            [<strong>Default</strong>, '1200px', 'Standard pages'],
+            [<strong>Narrow</strong>, '800px', 'Long-form reading'],
+          ]}
+        />
+      </Section>
 
-      <section id="breakpoints" className="mb-16">
-        <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Responsive Breakpoints</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {[
-            { name: 'Mobile', value: '< 640px', icon: '📱' },
-            { name: 'Tablet', value: '640px - 1024px', icon: '📱' },
-            { name: 'Desktop', value: '1024px - 1536px', icon: '💻' },
-            { name: 'Wide', value: '> 1536px', icon: '🖥️' },
-          ].map((breakpoint) => (
-            <div key={breakpoint.name} className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)]">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-2xl">{breakpoint.icon}</span>
-                <h3 className="font-semibold text-[var(--color-text-primary)]">{breakpoint.name}</h3>
-              </div>
-              <p className="text-sm font-mono text-[var(--color-text-tertiary)]">{breakpoint.value}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section id="breakpoints" title="Breakpoints">
+        <Panel>
+          <Grid cols={4}>
+            <Card title="Mobile" meta="< 640px" />
+            <Card title="Tablet" meta="640 – 1024px" />
+            <Card title="Desktop" meta="1024 – 1536px" />
+            <Card title="Wide" meta="> 1536px" />
+          </Grid>
+        </Panel>
+      </Section>
 
-      <section id="z-index" className="mb-16">
-        <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Z-Index Scale</h2>
-        <p className="text-lg text-[var(--color-text-secondary)] mb-6">
-          Maintain a consistent layering system to prevent z-index conflicts.
-        </p>
-        <div className="space-y-3">
-          {[
-            { level: 'Base', value: '0', usage: 'Normal content flow' },
-            { level: 'Dropdown', value: '10', usage: 'Dropdown menus and popovers' },
-            { level: 'Sticky', value: '20', usage: 'Sticky headers and sidebars' },
-            { level: 'Overlay', value: '30', usage: 'Modal overlays' },
-            { level: 'Modal', value: '40', usage: 'Modal content' },
-            { level: 'Toast', value: '50', usage: 'Toast notifications' },
-          ].map((layer) => (
-            <div key={layer.level} className="flex items-center gap-4 bg-[var(--color-surface)] p-4 rounded-lg border border-[var(--color-border)]">
-              <div className="w-24 font-semibold text-[var(--color-text-primary)]">{layer.level}</div>
-              <div className="w-16 font-mono text-sm text-[var(--color-text-tertiary)]">{layer.value}</div>
-              <div className="flex-1 text-sm text-[var(--color-text-secondary)]">{layer.usage}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Section id="z-index" title="Z-index scale" desc="Use these layers instead of arbitrary values so overlays never fight.">
+        <Rows
+          cols="120px 60px minmax(0, 1fr)"
+          head={['Layer', 'Value', 'Use for']}
+          rows={[
+            [<strong>Base</strong>, <code>0</code>, 'Normal content flow'],
+            [<strong>Dropdown</strong>, <code>10</code>, 'Menus and popovers'],
+            [<strong>Sticky</strong>, <code>20</code>, 'Sticky headers and rails'],
+            [<strong>Overlay</strong>, <code>30</code>, 'Modal scrims'],
+            [<strong>Modal</strong>, <code>40</code>, 'Modal content'],
+            [<strong>Toast</strong>, <code>50</code>, 'Notifications'],
+          ]}
+        />
+      </Section>
     </FoundationShell>
   );
 }

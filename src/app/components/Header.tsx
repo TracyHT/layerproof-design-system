@@ -38,7 +38,7 @@ export function Header() {
               className="h-8 w-auto"
             />
             <span
-              style={{ fontFamily: '"DM Sans", sans-serif' }}
+              style={{ fontFamily: 'var(--font-heading)' }}
               className="text-xl font-bold text-[var(--color-text-primary)]"
             >
               LayerProof Design

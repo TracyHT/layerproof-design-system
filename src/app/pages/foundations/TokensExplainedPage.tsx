@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { CircleHalf, ArrowsLeftRight, Infinity, Lightning, SquaresFour } from '@phosphor-icons/react';
 import { FoundationShell } from '../../components/FoundationShell';
 
 const tocItems = [
@@ -17,32 +18,34 @@ const tocItems = [
 
 const H2: React.CSSProperties = {
   fontFamily: 'var(--font-heading)',
-  fontSize: '1.375rem',
-  textTransform: 'uppercase',
-  color: 'var(--color-text-primary)',
-  marginBottom: '0.75rem',
+  fontSize: 'var(--text-h6)',
+  lineHeight: 'var(--lh-h6)',
+  letterSpacing: 'var(--ls-h6)',
+  fontWeight: 700,
+  color: 'var(--foreground-primary)',
+  marginBottom: '0.5rem',
   marginTop: 0,
 };
 
 const P: React.CSSProperties = {
   fontFamily: 'var(--font-body)',
-  fontSize: '0.9375rem',
-  color: 'var(--color-text-secondary)',
-  lineHeight: 1.7,
+  fontWeight: 500,
+  fontSize: 'var(--text-body-sm)',
+  color: 'var(--foreground-secondary)',
+  lineHeight: 'var(--lh-body-sm)',
   margin: 0,
 };
 
 const CALLOUT: React.CSSProperties = {
-  background: 'var(--color-surface)',
-  border: '1px solid var(--color-border)',
-  borderLeft: '3px solid var(--brand-primary)',
-  borderRadius: '0 0.75rem 0.75rem 0',
+  background: 'var(--accent-background-faint)',
+  border: '1px solid var(--accent-background-selected)',
+  borderRadius: 'var(--radius-xl)',
   padding: '1rem 1.25rem',
 };
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
-    <section id={id} className="mb-12">
+    <section id={id} className="lp-section">
       <h2 style={H2}>{title}</h2>
       {children}
     </section>
@@ -52,10 +55,10 @@ function Section({ id, title, children }: { id: string; title: string; children:
 function TokenNamePart({ label, description, color }: { label: string; description: string; color: string }) {
   return (
     <div className="flex flex-col items-center gap-2 text-center" style={{ flex: '1 1 0', minWidth: 100 }}>
-      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', fontWeight: 700, color, background: `${color}18`, padding: '0.3rem 0.75rem', borderRadius: '0.5rem', border: `1px solid ${color}44` }}>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', fontWeight: 700, color, background: `color-mix(in srgb, ${color} 12%, transparent)`, padding: '0.3rem 0.75rem', borderRadius: '9999px' }}>
         {label}
       </span>
-      <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--color-text-secondary)' }}>
+      <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--foreground-secondary)' }}>
         {description}
       </span>
     </div>
@@ -63,17 +66,10 @@ function TokenNamePart({ label, description, color }: { label: string; descripti
 }
 
 function DoCard({ do: isDo, children }: { do: boolean; children: React.ReactNode }) {
-  const accent = isDo ? '#10b981' : '#ef4444';
   return (
-    <div className="rounded-xl overflow-hidden" style={{ border: `1px solid ${accent}44` }}>
-      <div className="px-4 py-2 flex items-center gap-2" style={{ background: `${accent}18`, borderBottom: `1px solid ${accent}33` }}>
-        <span style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '0.8125rem', color: accent }}>
-          {isDo ? '✓ Do' : '✕ Don\'t'}
-        </span>
-      </div>
-      <div className="p-4" style={{ background: 'var(--color-surface)' }}>
-        {children}
-      </div>
+    <div className={`lp-dodont__col ${isDo ? '' : 'lp-dodont__col--dont'}`}>
+      <div className="lp-dodont__head">{isDo ? 'Do' : "Don't"}</div>
+      {children}
     </div>
   );
 }
@@ -81,18 +77,18 @@ function DoCard({ do: isDo, children }: { do: boolean; children: React.ReactNode
 function TokenExampleRow({ token, value, use }: { token: string; value: string; use: string }) {
   const isColorVal = /^#[0-9a-f]{3,8}$/i.test(value);
   return (
-    <div className="flex items-center gap-4 px-4 py-2.5" style={{ borderBottom: '1px solid var(--color-border)' }}>
-      <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--brand-primary)', minWidth: 260, flexShrink: 0 }}>
+    <div className="lp-row" style={{ ['--lp-row-cols' as string]: 'minmax(0, 1.3fr) minmax(0, 1.4fr) auto' }}>
+      <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--foreground-primary)' }}>
         {token}
       </code>
-      <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--color-text-tertiary)', flex: 1 }}>
+      <span>
         {use}
       </span>
       <div className="flex items-center gap-2 shrink-0">
         {isColorVal && (
-          <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: value, border: '1px solid var(--color-border)', flexShrink: 0 }} />
+          <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: value, border: '1px solid var(--border-subtle)', flexShrink: 0 }} />
         )}
-        <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--color-text-secondary)' }}>
+        <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--foreground-secondary)' }}>
           {value}
         </code>
       </div>
@@ -103,7 +99,7 @@ function TokenExampleRow({ token, value, use }: { token: string; value: string; 
 export function TokensExplainedPage() {
   return (
     <FoundationShell
-      tag="Foundations / Tokens"
+      tag={["Foundations", "Tokens"]}
       title="Design tokens explained"
       description="Design tokens are the single source of truth to name and store design decisions for LayerProof app experiences."
       tocItems={tocItems}
@@ -121,30 +117,30 @@ export function TokensExplainedPage() {
         </p>
         <div style={{ ...CALLOUT, marginTop: '1.25rem' }}>
           <p style={{ ...P, fontSize: '0.9rem' }}>
-            For example, instead of choosing one of many shades of yellow for an icon, we apply a design token that is consistent with all similar usages across our interfaces:{' '}
-            <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--brand-primary)' }}>--brand-primary</code>.
+            For example, instead of choosing one of many shades of pink for an icon, we apply a design token that is consistent with all similar usages across our interfaces:{' '}
+            <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--accent-foreground-default)' }}>--accent-foreground-default</code>.
             This token always resolves to the correct value for the active theme — no more hunting for the right hex code.
           </p>
         </div>
 
         {/* Token anatomy diagram */}
-        <div className="rounded-xl mt-6 p-5" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-          <p style={{ ...P, fontSize: '0.8125rem', marginBottom: '1rem', color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>
+        <div className="rounded-xl mt-6 p-5" style={{ background: 'var(--background-surface)', border: '1px solid var(--border-subtle)' }}>
+          <p style={{ ...P, fontSize: '0.8125rem', marginBottom: '1rem', color: 'var(--foreground-tertiary)', fontWeight: 600 }}>
             Token anatomy
           </p>
-          <div className="rounded-lg px-5 py-4 mb-5 flex items-center justify-center" style={{ background: 'var(--color-background)', border: '1px solid var(--color-border)' }}>
+          <div className="rounded-lg px-5 py-4 mb-5 flex items-center justify-center" style={{ background: 'var(--background-canvas)', border: '1px solid var(--border-subtle)' }}>
             <code style={{ fontFamily: 'var(--font-mono)', fontSize: '1rem', letterSpacing: '0.02em' }}>
-              <span style={{ color: '#f0d040' }}>color</span>
-              <span style={{ color: 'var(--color-text-tertiary)' }}>.</span>
-              <span style={{ color: '#60a5fa' }}>text</span>
-              <span style={{ color: 'var(--color-text-tertiary)' }}>.</span>
-              <span style={{ color: '#34d399' }}>secondary</span>
+              <span style={{ color: 'var(--accent-foreground-default)' }}>color</span>
+              <span style={{ color: 'var(--foreground-tertiary)' }}>.</span>
+              <span style={{ color: 'var(--cyan-600)' }}>text</span>
+              <span style={{ color: 'var(--foreground-tertiary)' }}>.</span>
+              <span style={{ color: 'var(--green-600)' }}>secondary</span>
             </code>
           </div>
           <div className="flex gap-4 flex-wrap">
-            <TokenNamePart label="color"     description="Foundation — the type of visual attribute" color="#f0d040" />
-            <TokenNamePart label="text"      description="Property — the UI element it applies to"   color="#60a5fa" />
-            <TokenNamePart label="secondary" description="Modifier — emphasis, role, or state"        color="#34d399" />
+            <TokenNamePart label="color"     description="Foundation — the type of visual attribute" color="var(--accent-foreground-default)" />
+            <TokenNamePart label="text"      description="Property — the UI element it applies to"   color="var(--cyan-600)" />
+            <TokenNamePart label="secondary" description="Modifier — emphasis, role, or state"        color="var(--green-600)" />
           </div>
         </div>
       </Section>
@@ -160,8 +156,8 @@ export function TokensExplainedPage() {
 
         <div className="grid gap-3 mt-5" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))' }}>
           {[
-            { label: 'Light mode',  bg: '#f5f5f5', surface: '#ffffff', text: '#0a0a0a', border: '#d4d4d4' },
-            { label: 'Dark mode',   bg: '#000000', surface: '#111111', text: '#ffffff',  border: '#2a2a2a' },
+            { label: 'Light mode',  bg: '#ffffff', surface: '#f5f5f5', text: '#1a1a1a', border: '#e5e5e5' },
+            { label: 'Dark mode',   bg: '#1a1a1a', surface: '#1c1c1c', text: '#f5f5f5',  border: '#2a2a2a' },
           ].map(({ label, bg, surface, text, border }) => (
             <div key={label} className="rounded-xl overflow-hidden" style={{ border: `1px solid ${border}` }}>
               <div className="px-4 py-3" style={{ background: bg }}>
@@ -181,18 +177,18 @@ export function TokensExplainedPage() {
 
       {/* Why use tokens */}
       <Section id="why-tokens" title="Why use design tokens?">
-        <div className="space-y-3">
+        <div className="lp-panel" style={{ display: 'grid', gap: 12 }}>
           {[
-            { icon: '◑', title: 'Global theming',        body: 'Features like dark mode, high contrast, and user customization are only possible with tokens. Swap an entire theme by changing token values — no code changes needed.' },
-            { icon: '⇄', title: 'Streamlined handover',  body: 'Tokens simplify design-to-development handover by creating a shared vocabulary. Designers and developers reference the same token name rather than specific hex or pixel values.' },
-            { icon: '∞', title: 'Scale without breakage',body: 'As the visual language evolves, changes can be made once at the token level and propagate everywhere. No more find-and-replace of hard-coded values across the codebase.' },
-            { icon: '⚡', title: 'Automated tooling',    body: 'Tooling can lint for hard-coded values, auto-complete token names, and flag misuse — making it faster and safer to build consistently.' },
-            { icon: '▣', title: 'Visual consistency',    body: 'Tokens are the mechanism that will deliver consistent visual foundations across all LayerProof surfaces, now and as the system grows.' },
+            { icon: <CircleHalf size={20} />, title: 'Global theming',        body: 'Features like dark mode, high contrast, and user customization are only possible with tokens. Swap an entire theme by changing token values — no code changes needed.' },
+            { icon: <ArrowsLeftRight size={20} />, title: 'Streamlined handover',  body: 'Tokens simplify design-to-development handover by creating a shared vocabulary. Designers and developers reference the same token name rather than specific hex or pixel values.' },
+            { icon: <Infinity size={20} />, title: 'Scale without breakage',body: 'As the visual language evolves, changes can be made once at the token level and propagate everywhere. No more find-and-replace of hard-coded values across the codebase.' },
+            { icon: <Lightning size={20} />, title: 'Automated tooling',    body: 'Tooling can lint for hard-coded values, auto-complete token names, and flag misuse — making it faster and safer to build consistently.' },
+            { icon: <SquaresFour size={20} />, title: 'Visual consistency',    body: 'Tokens are the mechanism that will deliver consistent visual foundations across all LayerProof surfaces, now and as the system grows.' },
           ].map(({ icon, title, body }) => (
-            <div key={title} className="flex gap-4 rounded-xl px-5 py-4" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-              <span style={{ fontSize: '1.125rem', flexShrink: 0, marginTop: 1, color: 'var(--brand-primary)' }}>{icon}</span>
+            <div key={title} className="lp-card flex gap-4">
+              <span style={{ flexShrink: 0, marginTop: 2, color: 'var(--accent-foreground-default)' }}>{icon}</span>
               <div>
-                <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '0.9375rem', color: 'var(--color-text-primary)', margin: '0 0 0.25rem' }}>{title}</p>
+                <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '0.9375rem', color: 'var(--foreground-primary)', margin: '0 0 0.25rem' }}>{title}</p>
                 <p style={{ ...P, fontSize: '0.875rem' }}>{body}</p>
               </div>
             </div>
@@ -206,18 +202,18 @@ export function TokensExplainedPage() {
           Knowing how to read token names will help you find the right token faster when working in designs and in code. A token's name describes how it should be used — each segment communicates one piece of its usage.
         </p>
 
-        <div className="rounded-xl mt-5 overflow-hidden" style={{ border: '1px solid var(--color-border)' }}>
+        <div className="rounded-xl mt-5 overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
           {[
             { part: 'Foundation',  example: 'color',      description: 'The type of visual design attribute or foundational style — such as color, elevation, space, or font.' },
             { part: 'Property',    example: 'text',       description: 'The UI element the token is being applied to — such as a border, background, shadow, icon, or text.' },
             { part: 'Modifier',    example: 'secondary',  description: 'Additional detail about the token\'s purpose: its role, emphasis, or interaction state. Not every token has a modifier. For example, --color-text is the default text color with no modifier.' },
           ].map(({ part, example, description }, i, arr) => (
-            <div key={part} className="flex items-start gap-5 px-5 py-4" style={{ background: i % 2 === 0 ? 'var(--color-surface)' : 'var(--color-background)', borderBottom: i < arr.length - 1 ? '1px solid var(--color-border)' : 'none' }}>
-              <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--brand-primary)', minWidth: 100, flexShrink: 0 }}>
+            <div key={part} className="flex items-start gap-5 px-5 py-4" style={{ borderBottom: i < arr.length - 1 ? '1px solid var(--border-subtle)' : 'none' }}>
+              <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--accent-foreground-default)', minWidth: 100, flexShrink: 0 }}>
                 {example}
               </code>
               <div>
-                <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '0.875rem', color: 'var(--color-text-primary)', margin: '0 0 0.25rem' }}>{part}</p>
+                <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '0.875rem', color: 'var(--foreground-primary)', margin: '0 0 0.25rem' }}>{part}</p>
                 <p style={{ ...P, fontSize: '0.875rem' }}>{description}</p>
               </div>
             </div>
@@ -227,9 +223,9 @@ export function TokensExplainedPage() {
         <div style={{ ...CALLOUT, marginTop: '1.25rem' }}>
           <p style={{ ...P, fontSize: '0.875rem' }}>
             Token names may appear in different formats in different environments —{' '}
-            <code style={{ fontFamily: 'var(--font-mono)', color: 'var(--brand-primary)' }}>--color-text-secondary</code> in CSS,{' '}
-            <code style={{ fontFamily: 'var(--font-mono)', color: 'var(--brand-primary)' }}>color.text.secondary</code> in Figma variables, or{' '}
-            <code style={{ fontFamily: 'var(--font-mono)', color: 'var(--brand-primary)' }}>colorTextSecondary</code> in JavaScript. The underlying token is the same.
+            <code style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-foreground-default)' }}>--foreground-secondary</code> in CSS,{' '}
+            <code style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-foreground-default)' }}>color.text.secondary</code> in Figma variables, or{' '}
+            <code style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-foreground-default)' }}>colorTextSecondary</code> in JavaScript. The underlying token is the same.
           </p>
         </div>
       </Section>
@@ -244,9 +240,9 @@ export function TokensExplainedPage() {
             <p style={{ ...P, fontSize: '0.875rem' }}>
               Use tokens with names and descriptions that match your specific situation.
             </p>
-            <div className="mt-3 rounded-lg px-4 py-3" style={{ background: 'var(--color-background)', border: '1px solid var(--color-border)' }}>
-              <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: '#10b981' }}>
-                color: var(--color-text-secondary)
+            <div className="mt-3 rounded-lg px-4 py-3" style={{ background: 'var(--background-canvas)', border: '1px solid var(--border-subtle)' }}>
+              <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--status-success-foreground)' }}>
+                color: var(--foreground-secondary)
               </code>
             </div>
           </DoCard>
@@ -254,17 +250,17 @@ export function TokensExplainedPage() {
             <p style={{ ...P, fontSize: '0.875rem' }}>
               Don't use a token just because the colors appear to match. This can break the experience in other themes.
             </p>
-            <div className="mt-3 rounded-lg px-4 py-3" style={{ background: 'var(--color-background)', border: '1px solid var(--color-border)' }}>
-              <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: '#ef4444' }}>
-                color: var(--color-text-tertiary) {/* wrong role */}
+            <div className="mt-3 rounded-lg px-4 py-3" style={{ background: 'var(--background-canvas)', border: '1px solid var(--border-subtle)' }}>
+              <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--status-danger-foreground)' }}>
+                color: var(--foreground-tertiary) {/* wrong role */}
               </code>
             </div>
           </DoCard>
         </div>
         <p style={{ ...P, marginTop: '1.25rem', fontSize: '0.875rem' }}>
-          Check the <Link to="/foundations/color" style={{ color: 'var(--brand-primary)' }}>color</Link>,{' '}
-          <Link to="/foundations/elevation" style={{ color: 'var(--brand-primary)' }}>elevation</Link>, and{' '}
-          <Link to="/foundations/spacing" style={{ color: 'var(--brand-primary)' }}>spacing</Link> foundations for additional usage guidance.
+          Check the <Link to="/foundations/color" style={{ color: 'var(--accent-foreground-default)' }}>color</Link>,{' '}
+          <Link to="/foundations/elevation" style={{ color: 'var(--accent-foreground-default)' }}>elevation</Link>, and{' '}
+          <Link to="/foundations/spacing" style={{ color: 'var(--accent-foreground-default)' }}>spacing</Link> foundations for additional usage guidance.
         </p>
       </Section>
 
@@ -276,19 +272,19 @@ export function TokensExplainedPage() {
 
         {/* Color */}
         <div id="example-color" className="mb-10">
-          <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '1rem', color: 'var(--color-text-primary)', marginBottom: '0.5rem', marginTop: 0 }}>Color tokens</h3>
+          <h3 className="lp-subsection__title" style={{ marginBottom: 6 }}>Color tokens</h3>
           <p style={{ ...P, fontSize: '0.875rem', marginBottom: '1rem' }}>
             There are dedicated color tokens for text, links, icons, backgrounds, borders, blankets, charts, and skeleton loaders.
           </p>
-          <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--color-border)' }}>
-            <TokenExampleRow token="--color-text-primary"   value="#0a0a0a"  use="Default body text color" />
-            <TokenExampleRow token="--color-text-secondary" value="#444444"  use="Supporting / secondary text" />
-            <TokenExampleRow token="--color-background"     value="#f5f5f5"  use="Page background" />
-            <TokenExampleRow token="--color-surface"        value="#ffffff"  use="Card and panel surface" />
-            <TokenExampleRow token="--brand-primary"        value="#c9a800"  use="Primary brand — links, active states" />
-            <div style={{ padding: '0.5rem 1rem', background: 'var(--color-surface)' }}>
-              <Link to="/foundations/color" style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--brand-primary)' }}>
-                See all color tokens →
+          <div className="lp-rows lp-rows--outline">
+            <TokenExampleRow token="--foreground-primary"          value="#1a1a1a"  use="Primary text and monochrome icons" />
+            <TokenExampleRow token="--foreground-secondary"        value="#525252"  use="Supporting text and icons" />
+            <TokenExampleRow token="--background-canvas"           value="#ffffff"  use="Main application canvas" />
+            <TokenExampleRow token="--background-surface"          value="#f5f5f5"  use="Cards and panels" />
+            <TokenExampleRow token="--accent-background-default"   value="#ff589b"  use="Primary brand surface — primary actions" />
+            <div style={{ padding: '0.5rem 1rem', background: 'var(--background-surface)' }}>
+              <Link to="/foundations/color" style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--accent-foreground-default)' }}>
+                See all color tokens
               </Link>
             </div>
           </div>
@@ -296,21 +292,21 @@ export function TokensExplainedPage() {
 
         {/* Elevation */}
         <div id="example-elevation" className="mb-10">
-          <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '1rem', color: 'var(--color-text-primary)', marginBottom: '0.5rem', marginTop: 0 }}>Elevation tokens</h3>
+          <h3 className="lp-subsection__title" style={{ marginBottom: 6 }}>Elevation tokens</h3>
           <p style={{ ...P, fontSize: '0.875rem', marginBottom: '1rem' }}>
             Elevation tokens apply to the perceived surface level and shadow of an element.
           </p>
           <div className="flex gap-4 flex-wrap">
             {[
-              { token: '--shadow-sm', label: 'sm', shadow: '0 1px 2px 0 rgba(0,0,0,0.15)' },
-              { token: '--shadow-md', label: 'md', shadow: '0 4px 6px -1px rgba(0,0,0,0.2)' },
-              { token: '--shadow-lg', label: 'lg', shadow: '0 10px 15px -3px rgba(0,0,0,0.2)' },
-              { token: '--shadow-xl', label: 'xl', shadow: '0 20px 25px -5px rgba(0,0,0,0.2)' },
+              { token: '--shadow-neutral-1', label: 'Level 1', shadow: 'var(--shadow-neutral-1)' },
+              { token: '--shadow-neutral-3', label: 'Level 3', shadow: 'var(--shadow-neutral-3)' },
+              { token: '--shadow-neutral-5', label: 'Level 5', shadow: 'var(--shadow-neutral-5)' },
+              { token: '--shadow-neutral-7', label: 'Level 7', shadow: 'var(--shadow-neutral-7)' },
             ].map(({ token, label, shadow }) => (
-              <div key={token} className="flex flex-col items-center gap-3 flex-1 p-5 rounded-xl" style={{ background: 'var(--color-background)', minWidth: 100 }}>
-                <div style={{ width: 44, height: 44, background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', boxShadow: shadow }} />
-                <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--brand-primary)', textAlign: 'center' }}>{token}</code>
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', color: 'var(--color-text-tertiary)' }}>{label}</span>
+              <div key={token} className="flex flex-col items-center gap-3 flex-1 p-5 rounded-xl" style={{ background: 'var(--background-canvas)', minWidth: 100 }}>
+                <div style={{ width: 44, height: 44, background: 'var(--background-surface)', borderRadius: 'var(--radius-lg)', boxShadow: shadow }} />
+                <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent-foreground-default)', textAlign: 'center' }}>{token}</code>
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', color: 'var(--foreground-tertiary)' }}>{label}</span>
               </div>
             ))}
           </div>
@@ -318,15 +314,15 @@ export function TokensExplainedPage() {
 
         {/* Opacity */}
         <div id="example-opacity" className="mb-10">
-          <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '1rem', color: 'var(--color-text-primary)', marginBottom: '0.5rem', marginTop: 0 }}>Opacity tokens</h3>
+          <h3 className="lp-subsection__title" style={{ marginBottom: 6 }}>Opacity tokens</h3>
           <p style={{ ...P, fontSize: '0.875rem', marginBottom: '1rem' }}>
-            Opacity tokens apply transparency to elements. Use <code style={{ fontFamily: 'var(--font-mono)', color: 'var(--brand-primary)', fontSize: '0.8125rem' }}>opacity: 0.26</code> for disabled interactive elements, and <code style={{ fontFamily: 'var(--font-mono)', color: 'var(--brand-primary)', fontSize: '0.8125rem' }}>opacity: 0.50</code> for content beneath a loading spinner.
+            Opacity tokens apply transparency to elements. Use <code style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-foreground-default)', fontSize: '0.8125rem' }}>opacity: 0.26</code> for disabled interactive elements, and <code style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-foreground-default)', fontSize: '0.8125rem' }}>opacity: 0.50</code> for content beneath a loading spinner.
           </p>
           <div className="flex gap-3 flex-wrap">
             {[0.08, 0.26, 0.50, 0.70, 1.00].map((opacity) => (
               <div key={opacity} className="flex flex-col items-center gap-2">
-                <div style={{ width: 44, height: 44, borderRadius: 'var(--radius-md)', background: 'var(--brand-primary)', opacity }} />
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-text-tertiary)' }}>{opacity}</span>
+                <div style={{ width: 44, height: 44, borderRadius: 'var(--radius-md)', background: 'var(--accent-background-default)', opacity }} />
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--foreground-tertiary)' }}>{opacity}</span>
               </div>
             ))}
           </div>
@@ -334,11 +330,11 @@ export function TokensExplainedPage() {
 
         {/* Space */}
         <div id="example-space" className="mb-10">
-          <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '1rem', color: 'var(--color-text-primary)', marginBottom: '0.5rem', marginTop: 0 }}>Space tokens</h3>
+          <h3 className="lp-subsection__title" style={{ marginBottom: 6 }}>Space tokens</h3>
           <p style={{ ...P, fontSize: '0.875rem', marginBottom: '1rem' }}>
             Space tokens reduce decision-making and allow for consistent spacing between elements. They are designed for both horizontal and vertical spacing in a variety of layout contexts.
           </p>
-          <div className="rounded-xl p-5 space-y-3" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+          <div className="rounded-xl p-5 space-y-3" style={{ background: 'var(--background-surface)', border: '1px solid var(--border-subtle)' }}>
             {[
               { token: '--spacing-xs', value: '0.25rem', px: 4 },
               { token: '--spacing-sm', value: '0.5rem',  px: 8 },
@@ -347,39 +343,39 @@ export function TokensExplainedPage() {
               { token: '--spacing-xl', value: '2rem',    px: 32 },
             ].map(({ token, value, px }) => (
               <div key={token} className="flex items-center gap-4">
-                <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--brand-primary)', minWidth: 160, flexShrink: 0 }}>{token}</code>
-                <div style={{ height: 20, width: px * 2, background: 'var(--brand-primary)', borderRadius: 3, opacity: 0.7, flexShrink: 0 }} />
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--color-text-tertiary)' }}>{value} — {px}px</span>
+                <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--accent-foreground-default)', minWidth: 160, flexShrink: 0 }}>{token}</code>
+                <div style={{ height: 20, width: px * 2, background: 'var(--accent-background-default)', borderRadius: 3, opacity: 0.7, flexShrink: 0 }} />
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--foreground-tertiary)' }}>{value} — {px}px</span>
               </div>
             ))}
           </div>
           <p style={{ ...P, fontSize: '0.875rem', marginTop: '0.875rem' }}>
             For more on our spacing system, see the{' '}
-            <Link to="/foundations/spacing" style={{ color: 'var(--brand-primary)' }}>spacing foundation</Link>.
+            <Link to="/foundations/spacing" style={{ color: 'var(--accent-foreground-default)' }}>spacing foundation</Link>.
           </p>
         </div>
 
         {/* Typography */}
         <div id="example-typography">
-          <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '1rem', color: 'var(--color-text-primary)', marginBottom: '0.5rem', marginTop: 0 }}>Typography tokens</h3>
+          <h3 className="lp-subsection__title" style={{ marginBottom: 6 }}>Typography tokens</h3>
           <p style={{ ...P, fontSize: '0.875rem', marginBottom: '1rem' }}>
             Typography tokens include font family, font size, font weight, and line height for all text styles — ensuring visual alignment across every surface.
           </p>
-          <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--color-border)' }}>
+          <div className="lp-rows lp-rows--outline">
             {[
-              { token: '--font-heading', sample: 'Display Heading', font: 'var(--font-heading)', size: '1.5rem', upper: true },
+              { token: '--font-heading', sample: 'Display heading', font: 'var(--font-heading)', size: '1.5rem', upper: false },
               { token: '--font-body',    sample: 'Body copy text',  font: 'var(--font-body)',    size: '1rem',   upper: false },
               { token: '--font-mono',    sample: 'Code snippet',    font: 'var(--font-mono)',    size: '0.875rem', upper: false },
             ].map(({ token, sample, font, size, upper }, i) => (
-              <div key={token} className="flex items-center gap-5 px-5 py-4" style={{ background: i % 2 === 0 ? 'var(--color-surface)' : 'var(--color-background)', borderBottom: i < 2 ? '1px solid var(--color-border)' : 'none' }}>
-                <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--brand-primary)', minWidth: 160, flexShrink: 0 }}>{token}</code>
-                <span style={{ fontFamily: font, fontSize: size, textTransform: upper ? 'uppercase' : 'none', color: 'var(--color-text-primary)', flex: 1 }}>{sample}</span>
+              <div key={token} className="flex items-center gap-5 px-5 py-4" style={{ borderBottom: i < 2 ? '1px solid var(--border-subtle)' : 'none' }}>
+                <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--accent-foreground-default)', minWidth: 160, flexShrink: 0 }}>{token}</code>
+                <span style={{ fontFamily: font, fontSize: size, fontWeight: upper ? 700 : token === '--font-heading' ? 700 : 500, color: 'var(--foreground-primary)', flex: 1 }}>{sample}</span>
               </div>
             ))}
           </div>
           <p style={{ ...P, fontSize: '0.875rem', marginTop: '0.875rem' }}>
             For more, see the{' '}
-            <Link to="/foundations/typography" style={{ color: 'var(--brand-primary)' }}>typography foundation</Link>.
+            <Link to="/foundations/typography" style={{ color: 'var(--accent-foreground-default)' }}>typography foundation</Link>.
           </p>
         </div>
       </Section>

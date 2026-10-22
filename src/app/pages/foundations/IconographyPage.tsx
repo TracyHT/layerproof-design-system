@@ -31,9 +31,9 @@ const codeBlockStyle: React.CSSProperties = {
   display: "block",
   fontFamily: "var(--font-mono)",
   fontSize: "0.75rem",
-  color: "var(--color-text-secondary)",
-  background: "var(--color-surface-hover)",
-  border: "1px solid var(--color-border)",
+  color: "var(--foreground-secondary)",
+  background: "var(--background-muted)",
+  border: "1px solid var(--border-subtle)",
   borderRadius: "0.5rem",
   padding: "0.625rem 0.75rem",
   whiteSpace: "pre-wrap",
@@ -45,9 +45,7 @@ const labelStyle: React.CSSProperties = {
   fontFamily: "var(--font-body)",
   fontSize: "0.75rem",
   fontWeight: 600,
-  textTransform: "uppercase",
-  letterSpacing: "0.06em",
-  color: "var(--color-text-tertiary)",
+  color: "var(--foreground-tertiary)",
   margin: "0 0 0.375rem",
 };
 
@@ -86,7 +84,7 @@ function ExploreTab() {
               left: 14,
               top: "50%",
               transform: "translateY(-50%)",
-              color: "var(--color-text-tertiary)",
+              color: "var(--foreground-tertiary)",
               pointerEvents: "none",
             }}
           >
@@ -115,12 +113,12 @@ function ExploreTab() {
               paddingRight: query ? "2.5rem" : "1rem",
               paddingTop: "0.625rem",
               paddingBottom: "0.625rem",
-              background: "var(--color-surface)",
-              border: "1px solid var(--color-border)",
+              background: "var(--background-surface)",
+              border: "1px solid var(--border-subtle)",
               borderRadius: "0.75rem",
               fontFamily: "var(--font-body)",
               fontSize: "0.9375rem",
-              color: "var(--color-text-primary)",
+              color: "var(--foreground-primary)",
               outline: "none",
               boxSizing: "border-box",
             }}
@@ -136,7 +134,7 @@ function ExploreTab() {
                 background: "none",
                 border: "none",
                 cursor: "pointer",
-                color: "var(--color-text-tertiary)",
+                color: "var(--foreground-tertiary)",
                 fontSize: 18,
                 lineHeight: 1,
                 padding: 2,
@@ -186,8 +184,8 @@ function ExploreTab() {
               fontFamily: "var(--font-heading)",
               fontSize: "0.875rem",
               fontWeight: 700,
-              color: "var(--color-text-primary)",
-              textTransform: "uppercase",
+              color: "var(--foreground-primary)",
+              
               letterSpacing: "0.06em",
             }}
           >
@@ -197,9 +195,9 @@ function ExploreTab() {
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "0.75rem",
-              color: "var(--color-text-tertiary)",
-              background: "var(--color-surface-hover)",
-              border: "1px solid var(--color-border)",
+              color: "var(--foreground-tertiary)",
+              background: "var(--background-muted)",
+              border: "1px solid var(--border-subtle)",
               padding: "0.1rem 0.5rem",
               borderRadius: "0.375rem",
             }}
@@ -210,7 +208,7 @@ function ExploreTab() {
             style={{
               fontFamily: "var(--font-body)",
               fontSize: "0.8125rem",
-              color: "var(--color-text-tertiary)",
+              color: "var(--foreground-tertiary)",
               marginLeft: "auto",
             }}
           >
@@ -222,8 +220,8 @@ function ExploreTab() {
         {filtered.length === 0 ? (
           <div
             style={{
-              background: "var(--color-surface)",
-              border: "1px solid var(--color-border)",
+              background: "var(--background-surface)",
+              border: "1px solid var(--border-subtle)",
               borderRadius: "0.75rem",
               padding: "3rem 1.5rem",
               textAlign: "center",
@@ -232,13 +230,13 @@ function ExploreTab() {
             <p
               style={{
                 fontFamily: "var(--font-body)",
-                color: "var(--color-text-tertiary)",
+                color: "var(--foreground-tertiary)",
                 fontSize: "0.9375rem",
                 margin: 0,
               }}
             >
               No icons match{" "}
-              <strong style={{ color: "var(--color-text-primary)" }}>
+              <strong style={{ color: "var(--foreground-primary)" }}>
                 "{query}"
               </strong>
             </p>
@@ -266,15 +264,15 @@ function ExploreTab() {
                     gap: "0.375rem",
                     padding: "0.75rem 0.5rem",
                     borderRadius: "0.625rem",
-                    border: `1px solid ${isSelected ? "var(--brand-primary)" : "var(--color-border)"}`,
+                    border: `1px solid ${isSelected ? "var(--accent-border-default)" : "var(--border-subtle)"}`,
                     background: isSelected
-                      ? "color-mix(in srgb, var(--brand-primary) 12%, transparent)"
-                      : "var(--color-surface)",
+                      ? "var(--accent-background-subtle)"
+                      : "var(--background-surface)",
                     cursor: "pointer",
                     transition: "all 0.15s",
                     color: isSelected
-                      ? "var(--brand-primary)"
-                      : "var(--color-text-primary)",
+                      ? "var(--accent-foreground-default)"
+                      : "var(--foreground-primary)",
                   }}
                   title={icon.name}
                 >
@@ -284,8 +282,8 @@ function ExploreTab() {
                       fontFamily: "var(--font-body)",
                       fontSize: "0.625rem",
                       color: isSelected
-                        ? "var(--brand-primary)"
-                        : "var(--color-text-tertiary)",
+                        ? "var(--accent-foreground-default)"
+                        : "var(--foreground-tertiary)",
                       textAlign: "center",
                       lineHeight: 1.3,
                       wordBreak: "break-word",
@@ -309,8 +307,8 @@ function ExploreTab() {
           position: "sticky",
           top: "6rem",
           borderRadius: "0.875rem",
-          border: "1px solid var(--color-border)",
-          background: "var(--color-surface)",
+          border: "1px solid var(--border-subtle)",
+          background: "var(--background-surface)",
           padding: "1.5rem",
         }}
       >
@@ -323,7 +321,7 @@ function ExploreTab() {
               justifyContent: "center",
               gap: "0.75rem",
               minHeight: 180,
-              color: "var(--color-text-tertiary)",
+              color: "var(--foreground-tertiary)",
             }}
           >
             <svg
@@ -354,7 +352,7 @@ function ExploreTab() {
               style={{
                 fontFamily: "var(--font-body)",
                 fontSize: "0.875rem",
-                color: "var(--color-text-tertiary)",
+                color: "var(--foreground-tertiary)",
                 margin: 0,
                 textAlign: "center",
               }}
@@ -379,9 +377,9 @@ function ExploreTab() {
                 style={{
                   padding: "1.25rem",
                   borderRadius: "0.75rem",
-                  background: "var(--color-surface-hover)",
-                  border: "1px solid var(--color-border)",
-                  color: "var(--color-text-primary)",
+                  background: "var(--background-muted)",
+                  border: "1px solid var(--border-subtle)",
+                  color: "var(--foreground-primary)",
                 }}
               >
                 <SelectedIcon size={48} weight={weight} />
@@ -391,7 +389,7 @@ function ExploreTab() {
                   fontFamily: "var(--font-heading)",
                   fontSize: "1rem",
                   fontWeight: 700,
-                  color: "var(--color-text-primary)",
+                  color: "var(--foreground-primary)",
                   margin: 0,
                   textAlign: "center",
                 }}
@@ -407,7 +405,7 @@ function ExploreTab() {
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: "0.875rem",
-                  color: "var(--color-text-secondary)",
+                  color: "var(--foreground-secondary)",
                   margin: 0,
                   textTransform: "capitalize",
                 }}
@@ -504,7 +502,7 @@ function UsageTab() {
             fontFamily: "var(--font-heading)",
             fontSize: "1.125rem",
             fontWeight: 700,
-            color: "var(--color-text-primary)",
+            color: "var(--foreground-primary)",
             margin: "0 0 0.375rem",
           }}
         >
@@ -514,7 +512,7 @@ function UsageTab() {
           style={{
             fontFamily: "var(--font-body)",
             fontSize: "0.9375rem",
-            color: "var(--color-text-secondary)",
+            color: "var(--foreground-secondary)",
             margin: "0 0 1.25rem",
             lineHeight: 1.6,
           }}
@@ -534,11 +532,11 @@ function UsageTab() {
                 gap: "0.5rem",
                 padding: "1rem",
                 borderRadius: "0.75rem",
-                border: "1px solid var(--color-border)",
-                background: "var(--color-surface)",
+                border: "1px solid var(--border-subtle)",
+                background: "var(--background-surface)",
               }}
             >
-              <div style={{ color: "var(--color-text-primary)" }}>
+              <div style={{ color: "var(--foreground-primary)" }}>
                 <Star size={px} weight="regular" />
               </div>
               <span
@@ -546,7 +544,7 @@ function UsageTab() {
                   fontFamily: "var(--font-mono)",
                   fontSize: "0.8125rem",
                   fontWeight: 700,
-                  color: "var(--brand-primary)",
+                  color: "var(--accent-foreground-default)",
                 }}
               >
                 {px}px
@@ -555,7 +553,7 @@ function UsageTab() {
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: "0.8125rem",
-                  color: "var(--color-text-tertiary)",
+                  color: "var(--foreground-tertiary)",
                   lineHeight: 1.5,
                 }}
               >
@@ -573,7 +571,7 @@ function UsageTab() {
             fontFamily: "var(--font-heading)",
             fontSize: "1.125rem",
             fontWeight: 700,
-            color: "var(--color-text-primary)",
+            color: "var(--foreground-primary)",
             margin: "0 0 0.375rem",
           }}
         >
@@ -583,7 +581,7 @@ function UsageTab() {
           style={{
             fontFamily: "var(--font-body)",
             fontSize: "0.9375rem",
-            color: "var(--color-text-secondary)",
+            color: "var(--foreground-secondary)",
             margin: "0 0 1.25rem",
             lineHeight: 1.6,
           }}
@@ -603,12 +601,12 @@ function UsageTab() {
               <div
                 style={{
                   borderRadius: "0.75rem",
-                  border: "1px solid var(--color-border)",
-                  background: "var(--color-surface)",
+                  border: "1px solid var(--border-subtle)",
+                  background: "var(--background-surface)",
                   overflow: "hidden",
                 }}
               >
-                <div style={{ height: 4, background: "#22c55e" }} />
+                <div style={{ height: 4, background: "var(--status-success-icon)" }} />
                 <div style={{ padding: "1rem" }}>
                   <div
                     style={{
@@ -621,14 +619,14 @@ function UsageTab() {
                     <Check
                       size={16}
                       weight="bold"
-                      style={{ color: "#22c55e", flexShrink: 0 }}
+                      style={{ color: "var(--status-success-icon)", flexShrink: 0 }}
                     />
                     <span
                       style={{
                         fontFamily: "var(--font-heading)",
                         fontSize: "0.9375rem",
                         fontWeight: 700,
-                        color: "var(--color-text-primary)",
+                        color: "var(--foreground-primary)",
                       }}
                     >
                       Do: {rule.doTitle}
@@ -638,7 +636,7 @@ function UsageTab() {
                     style={{
                       fontFamily: "var(--font-body)",
                       fontSize: "0.875rem",
-                      color: "var(--color-text-secondary)",
+                      color: "var(--foreground-secondary)",
                       margin: 0,
                       lineHeight: 1.6,
                     }}
@@ -651,12 +649,12 @@ function UsageTab() {
               <div
                 style={{
                   borderRadius: "0.75rem",
-                  border: "1px solid var(--color-border)",
-                  background: "var(--color-surface)",
+                  border: "1px solid var(--border-subtle)",
+                  background: "var(--background-surface)",
                   overflow: "hidden",
                 }}
               >
-                <div style={{ height: 4, background: "#ef4444" }} />
+                <div style={{ height: 4, background: "var(--status-danger-icon)" }} />
                 <div style={{ padding: "1rem" }}>
                   <div
                     style={{
@@ -669,14 +667,14 @@ function UsageTab() {
                     <X
                       size={16}
                       weight="bold"
-                      style={{ color: "#ef4444", flexShrink: 0 }}
+                      style={{ color: "var(--status-danger-icon)", flexShrink: 0 }}
                     />
                     <span
                       style={{
                         fontFamily: "var(--font-heading)",
                         fontSize: "0.9375rem",
                         fontWeight: 700,
-                        color: "var(--color-text-primary)",
+                        color: "var(--foreground-primary)",
                       }}
                     >
                       Don't: {rule.dontTitle}
@@ -686,7 +684,7 @@ function UsageTab() {
                     style={{
                       fontFamily: "var(--font-body)",
                       fontSize: "0.875rem",
-                      color: "var(--color-text-secondary)",
+                      color: "var(--foreground-secondary)",
                       margin: 0,
                       lineHeight: 1.6,
                     }}
@@ -707,7 +705,7 @@ function UsageTab() {
             fontFamily: "var(--font-heading)",
             fontSize: "1.125rem",
             fontWeight: 700,
-            color: "var(--color-text-primary)",
+            color: "var(--foreground-primary)",
             margin: "0 0 0.375rem",
           }}
         >
@@ -717,7 +715,7 @@ function UsageTab() {
           style={{
             fontFamily: "var(--font-body)",
             fontSize: "0.9375rem",
-            color: "var(--color-text-secondary)",
+            color: "var(--foreground-secondary)",
             margin: "0 0 1.25rem",
             lineHeight: 1.6,
           }}
@@ -730,8 +728,8 @@ function UsageTab() {
             alignItems: "center",
             padding: "1.5rem 2rem",
             borderRadius: "0.875rem",
-            border: "1px solid var(--color-border)",
-            background: "var(--color-surface)",
+            border: "1px solid var(--border-subtle)",
+            background: "var(--background-surface)",
             gap: 0,
             position: "relative",
             marginTop: "1.5rem",
@@ -740,7 +738,7 @@ function UsageTab() {
           <Bell
             size={24}
             weight="regular"
-            style={{ color: "var(--color-text-primary)", flexShrink: 0 }}
+            style={{ color: "var(--foreground-primary)", flexShrink: 0 }}
           />
 
           {/* Gap annotation */}
@@ -760,7 +758,7 @@ function UsageTab() {
                 top: "50%",
                 left: 0,
                 right: 0,
-                borderTop: "1px dashed var(--brand-primary)",
+                borderTop: "1px dashed var(--accent-border-default)",
                 transform: "translateY(-50%)",
               }}
             />
@@ -771,7 +769,7 @@ function UsageTab() {
                 left: 0,
                 width: 1,
                 height: 16,
-                background: "var(--brand-primary)",
+                background: "var(--accent-border-default)",
                 transform: "translateY(-50%)",
               }}
             />
@@ -782,7 +780,7 @@ function UsageTab() {
                 right: 0,
                 width: 1,
                 height: 16,
-                background: "var(--brand-primary)",
+                background: "var(--accent-border-default)",
                 transform: "translateY(-50%)",
               }}
             />
@@ -792,7 +790,7 @@ function UsageTab() {
             style={{
               fontFamily: "var(--font-body)",
               fontSize: "0.9375rem",
-              color: "var(--color-text-primary)",
+              color: "var(--foreground-primary)",
               paddingLeft: 8,
             }}
           >
@@ -806,8 +804,8 @@ function UsageTab() {
               top: -12,
               left: "50%",
               transform: "translateX(-50%)",
-              background: "var(--color-text-primary)",
-              color: "var(--color-background)",
+              background: "var(--foreground-primary)",
+              color: "var(--background-canvas)",
               fontFamily: "var(--font-mono)",
               fontSize: "0.6875rem",
               fontWeight: 700,
@@ -823,7 +821,7 @@ function UsageTab() {
           style={{
             fontFamily: "var(--font-body)",
             fontSize: "0.8125rem",
-            color: "var(--color-text-tertiary)",
+            color: "var(--foreground-tertiary)",
             marginTop: "0.75rem",
             marginBottom: 0,
           }}
@@ -859,7 +857,7 @@ export function IconographyPage() {
       <div
         style={{
           display: "flex",
-          borderBottom: "1px solid var(--color-border)",
+          borderBottom: "1px solid var(--border-subtle)",
           marginBottom: "2rem",
         }}
       >
@@ -876,13 +874,13 @@ export function IconographyPage() {
               fontSize: "0.9375rem",
               color:
                 tab === id
-                  ? "var(--brand-primary)"
-                  : "var(--color-text-tertiary)",
+                  ? "var(--foreground-primary)"
+                  : "var(--foreground-secondary)",
               padding: "0.5rem 0",
               marginRight: "1.5rem",
               borderBottom:
                 tab === id
-                  ? "2px solid var(--brand-primary)"
+                  ? "2px solid var(--foreground-primary)"
                   : "2px solid transparent",
               marginBottom: -1,
               transition: "color 150ms, border-color 150ms",

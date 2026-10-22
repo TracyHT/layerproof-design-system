@@ -1,62 +1,113 @@
+/* Generated from the Figma file “LayerProof — UI Kit” (variables + styles).
+   Source of truth is Figma; regenerate rather than hand-editing values. */
+
 :root {
-  /* White / Black */
+  /* Constants */
   --color-white: #ffffff;
   --color-black: #000000;
 
-  /* Yellow */
-  --yellow-100: #fffde8;
-  --yellow-200: #fff8c0;
-  --yellow-300: #fff094;
-  --yellow-400: #ffe860;
-  --yellow-500: #ffde42;
-  --yellow-600: #e6c200;
-  --yellow-700: #b89900;
-  --yellow-800: #7a6600;
-  --yellow-900: #3d3300;
+  /* Base */
+  --base-white: #ffffff; /* Pure white base used by semantic aliases. Do not bind directly in product UI. */
+
+  /* Gray */
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-550: #6b6b6b;
+  --gray-600: #525252;
+  --gray-700: #1c1c1c; /* Same value as Gray 850 in Figma (#1c1c1c), so the scale is not strictly ordered between 700 and 800. */
+  --gray-800: #2a2a2a;
+  --gray-850: #1c1c1c;
+  --gray-900: #1a1a1a;
+  --gray-910: #111111;
+  --gray-950: #000000;
 
   /* Pink */
+  --pink-50: #fef4f7; /* Pale pink extension, quieter than Pink 100. For faint accent surfaces. */
   --pink-100: #fde8ef;
   --pink-200: #fbc5d8;
   --pink-300: #f598bb;
   --pink-400: #ef6994;
-  --pink-500: #e8336c;
+  --pink-500: #ff589b; /* Brand accent — LayerProof pink. */
   --pink-600: #c43460;
   --pink-700: #9a2550;
   --pink-800: #6e1839;
   --pink-900: #440e23;
+  --pink-950: #290b17; /* Deep pink extension. For faint accent surfaces in dark mode. */
 
-  /* Neutral / Gray */
-  --gray-0:   #ffffff;
-  --gray-50:  #f5f5f5;
-  --gray-100: #e5e5e5;
-  --gray-200: #d4d4d4;
-  --gray-300: #a3a3a3;
-  --gray-400: #737373;
-  --gray-500: #525252;
-  --gray-600: #404040;
-  --gray-700: #262626;
-  --gray-800: #1a1a1a;
-  --gray-850: #111111;
-  --gray-900: #000000;
+  /* Yellow */
+  --yellow-50: #fef9d0;
+  --yellow-100: #fffde8;
+  --yellow-200: #fff8c0;
+  --yellow-300: #fff094;
+  --yellow-400: #ffe860;
+  --yellow-500: #ffde42; /* Former brand accent. Kept as a primitive; no semantic token uses yellow any more. */
+  --yellow-600: #e6c200;
+  --yellow-700: #b89900;
+  --yellow-800: #7a6600;
+  --yellow-900: #3d3300;
+  --yellow-950: #3d3000;
 
-  /* Red (Danger) */
-  --red-50:  #fef2f2;
+  /* Orange */
+  --orange-50: #fff8f2;
+  --orange-100: #fff0e5; /* Approved brand Orange anchor. */
+  --orange-200: #ffd9bf; /* Approved brand Orange anchor. */
+  --orange-300: #ffbd8f; /* Approved brand Orange anchor. */
+  --orange-400: #ffa866; /* Approved brand Orange anchor. */
+  --orange-500: #ff9945; /* Approved brand Orange anchor. */
+  --orange-600: #e87a2f;
+  --orange-700: #c65b20;
+  --orange-800: #9d4218;
+  --orange-900: #742e12;
+  --orange-950: #431709;
+
+  /* Red */
+  --red-50: #fef2f2;
+  --red-100: #fee2e2;
   --red-200: #fec8c8;
+  --red-300: #fca5a5;
   --red-400: #f87171;
+  --red-500: #e7000b;
   --red-600: #c9000a;
+  --red-700: #a60008;
+  --red-800: #850006;
   --red-900: #700005;
+  --red-950: #4f0004;
 
-  /* Green (Success) */
-  --green-50:  #f0fdf4;
+  /* Green */
+  --green-50: #f0fdf4;
+  --green-100: #dcfce7;
   --green-200: #b9f8cf;
-  --green-400: #34d399;
+  --green-300: #7bf1a8;
+  --green-400: #05df72;
+  --green-500: #00c950;
   --green-600: #00a63e;
+  --green-700: #008236;
+  --green-800: #016630;
   --green-900: #0d542b;
+  --green-950: #032e15;
 
-  /* Amber (Warning) */
-  --amber-50:  #fffae8;
-  --amber-200: #fee685;
-  --amber-400: #fbbf24;
-  --amber-600: #e17100;
-  --amber-900: #7b3306;
+  /* Cyan */
+  --cyan-50: #ebfffe;
+  --cyan-100: #cdffff;
+  --cyan-200: #a2fcff;
+  --cyan-300: #62f7fe;
+  --cyan-400: #1be8f5;
+  --cyan-500: #00cbdb;
+  --cyan-600: #02aec6;
+  --cyan-700: #098195;
+  --cyan-800: #126778;
+  --cyan-900: #135566;
+  --cyan-950: #063946;
+
+  /* Legacy primitives — not in Figma any more; kept so old references still resolve */
+  --gray-0: var(--base-white);
+  --gray-50: var(--gray-100);
+  --amber-50: var(--orange-50); /* amber was replaced by orange for warnings */
+  --amber-200: var(--orange-200); /* amber was replaced by orange for warnings */
+  --amber-400: var(--orange-400); /* amber was replaced by orange for warnings */
+  --amber-600: var(--orange-600); /* amber was replaced by orange for warnings */
+  --amber-900: var(--orange-900); /* amber was replaced by orange for warnings */
 }

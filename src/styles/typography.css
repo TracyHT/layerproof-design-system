@@ -1,37 +1,106 @@
+/* Generated from the Figma file “LayerProof — UI Kit” (variables + styles).
+   Source of truth is Figma; regenerate rather than hand-editing values. */
+
 :root {
   /* Font families */
-  --font-heading: "Anton", Impact, sans-serif;
-  --font-body:    "Roboto", sans-serif;
-  --font-mono:    "Monaco", "Courier New", monospace;
+  --font-display: "Mona Sans", system-ui, sans-serif;
+  --font-heading: "Mona Sans", system-ui, sans-serif;
+  --font-subheading: "Montserrat", system-ui, sans-serif;
+  --font-body: "Montserrat", system-ui, sans-serif;
+  --font-label: "Montserrat", system-ui, sans-serif;
+  --font-doc: "Montserrat", system-ui, sans-serif;
+  --font-mono: "Courier Prime", "Courier New", monospace;
+  --font-heading-alt: "Roboto", system-ui, sans-serif;
 
-  /* Display / Heading sizes */
-  --text-display:   5rem;       /* 80px */
-  --text-display-x: 6rem;       /* 96px */
-  --text-h1:        3.875rem;   /* 62px */
-  --text-h2:        3.5rem;     /* 56px */
-  --text-h3:        3rem;       /* 48px */
-  --text-h4:        2.5rem;     /* 40px */
-  --text-h5:        2rem;       /* 32px */
-  --text-h6:        1.75rem;    /* 28px */
+  /* Font weights */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
 
-  /* Subheading sizes */
-  --text-subheading-2xl: 1.5rem;
-  --text-subheading-xl:  1.25rem;
-  --text-subheading-lg:  1.125rem;
-  --text-subheading:     1rem;
-  --text-subheading-sm:  0.875rem;
-  --text-subheading-xs:  0.75rem;
+  /* Font sizes */
+  --text-display-l: 4.5rem; /* 72px */
+  --text-display-m: 3.5rem; /* 56px */
+  --text-h1: 3rem; /* 48px */
+  --text-h2: 2.5rem; /* 40px */
+  --text-h3: 2.25rem; /* 36px */
+  --text-h4: 2rem; /* 32px */
+  --text-h5: 1.75rem; /* 28px */
+  --text-h6: 1.5rem; /* 24px */
+  --text-subheading-lg: 1.25rem; /* 20px */
+  --text-subheading-md: 1.125rem; /* 18px */
+  --text-subheading-sm: 1rem; /* 16px */
+  --text-label-xl: 1.125rem; /* 18px */
+  --text-label-lg: 1rem; /* 16px */
+  --text-label-md: 0.875rem; /* 14px */
+  --text-label-sm: 0.75rem; /* 12px */
+  --text-label-xs: 0.6875rem; /* 11px */
+  --text-body-2xl: 1.5rem; /* 24px */
+  --text-body-xl: 1.25rem; /* 20px */
+  --text-body-lg: 1.125rem; /* 18px */
+  --text-body: 1rem; /* 16px */
+  --text-body-sm: 0.875rem; /* 14px */
+  --text-body-xs: 0.75rem; /* 12px */
+  --text-body-2xs: 0.6875rem; /* 11px */
 
-  /* Body sizes */
-  --text-body-2xl: 1.5rem;
-  --text-body-xl:  1.25rem;
-  --text-body-lg:  1.125rem;
-  --text-body:     1rem;
-  --text-body-sm:  0.875rem;
-  --text-body-xs:  0.75rem;
-  --text-body-2xs: 0.6875rem;  /* 11px */
+  /* Line heights */
+  --lh-display-l: 4.75rem; /* 76px */
+  --lh-display-m: 3.75rem; /* 60px */
+  --lh-h1: 3.5rem; /* 56px */
+  --lh-h2: 3rem; /* 48px */
+  --lh-h3: 2.75rem; /* 44px */
+  --lh-h4: 2.5rem; /* 40px */
+  --lh-h5: 2.25rem; /* 36px */
+  --lh-h6: 2rem; /* 32px */
+  --lh-subheading-lg: 1.75rem; /* 28px */
+  --lh-subheading-md: 1.75rem; /* 28px */
+  --lh-subheading-sm: 1.5rem; /* 24px */
+  --lh-label-xl: 1.75rem; /* 28px */
+  --lh-label-lg: 1.5rem; /* 24px */
+  --lh-label-md: 1.25rem; /* 20px */
+  --lh-label-sm: 1rem; /* 16px */
+  --lh-label-xs: 0.9375rem; /* 15px */
+  --lh-body-2xl: 2.25rem; /* 36px */
+  --lh-body-xl: 1.875rem; /* 30px */
+  --lh-body-lg: 1.75rem; /* 28px */
+  --lh-body: 1.5rem; /* 24px */
+  --lh-body-sm: 1.25rem; /* 20px */
+  --lh-body-xs: 1.125rem; /* 18px */
+  --lh-body-2xs: 1rem; /* 16px */
 
-  /* Legacy aliases */
+  /* Letter spacing */
+  --ls-display-l: -1px;
+  --ls-display-m: -1px;
+  --ls-h1: -0.8px;
+  --ls-h2: -0.6px;
+  --ls-h3: -0.5px;
+  --ls-h4: -0.4px;
+  --ls-h5: -0.3px;
+  --ls-h6: -0.2px;
+  --ls-subheading-lg: -0.1px;
+  --ls-subheading-md: -0.1px;
+  --ls-subheading-sm: -0.1px;
+  --ls-label-xl: -0.14px;
+  --ls-label-lg: -0.14px;
+  --ls-label-md: -0.12px;
+  --ls-label-sm: -0.14px;
+  --ls-label-xs: -0.12px;
+  --ls-body-2xl: -0.14px;
+  --ls-body-xl: -0.14px;
+  --ls-body-lg: -0.14px;
+  --ls-body: -0.14px;
+  --ls-body-sm: -0.12px;
+  --ls-body-xs: -0.1px;
+  --ls-body-2xs: 0;
+
+  /* Legacy aliases (kept so older pages keep working) */
+  --text-display:   var(--text-display-m);
+  --text-display-x: var(--text-display-l);
+  --lh-display:     var(--lh-display-m);
+  --lh-display-x:   var(--lh-display-l);
+  --ls-display-x:   var(--ls-display-l);
+  --ls-display:     var(--ls-display-m);
+  --text-subheading: var(--text-subheading-sm);
   --text-xs:   0.75rem;
   --text-sm:   0.875rem;
   --text-base: 1rem;
@@ -41,29 +110,29 @@
   --text-3xl:  1.875rem;
   --text-4xl:  2.25rem;
   --text-5xl:  3rem;
-
-  /* Font weights */
-  --fw-bold:     700;
-  --fw-semibold: 600;
-  --fw-medium:   500;
-  --fw-regular:  400;
-
-  /* Line heights */
-  --lh-display:   6rem;
-  --lh-display-x: 7rem;
-  --lh-h1:        4.75rem;
-  --lh-h2:        4.125rem;
-  --lh-h3:        3.625rem;
-  --lh-h4:        3rem;
-  --lh-h5:        2.5rem;
-  --lh-h6:        2rem;
-
-  /* Letter spacing */
-  --ls-display: -0.0125em;
-  --ls-h1:      -0.013em;
-  --ls-h2:      -0.011em;
-  --ls-h3:      -0.0104em;
-  --ls-h4:      -0.01em;
-  --ls-h5:      -0.0094em;
-  --ls-h6:      -0.0071em;
 }
+
+/* Text styles — one class per Figma text style */
+.type-display-l { font-family: var(--font-display); font-size: var(--text-display-l); line-height: var(--lh-display-l); letter-spacing: var(--ls-display-l); font-weight: 700; }
+.type-display-m { font-family: var(--font-display); font-size: var(--text-display-m); line-height: var(--lh-display-m); letter-spacing: var(--ls-display-m); font-weight: 700; }
+.type-h1 { font-family: var(--font-heading); font-size: var(--text-h1); line-height: var(--lh-h1); letter-spacing: var(--ls-h1); font-weight: 700; }
+.type-h2 { font-family: var(--font-heading); font-size: var(--text-h2); line-height: var(--lh-h2); letter-spacing: var(--ls-h2); font-weight: 700; }
+.type-h3 { font-family: var(--font-heading); font-size: var(--text-h3); line-height: var(--lh-h3); letter-spacing: var(--ls-h3); font-weight: 700; }
+.type-h4 { font-family: var(--font-heading); font-size: var(--text-h4); line-height: var(--lh-h4); letter-spacing: var(--ls-h4); font-weight: 700; }
+.type-h5 { font-family: var(--font-heading); font-size: var(--text-h5); line-height: var(--lh-h5); letter-spacing: var(--ls-h5); font-weight: 700; }
+.type-h6 { font-family: var(--font-heading); font-size: var(--text-h6); line-height: var(--lh-h6); letter-spacing: var(--ls-h6); font-weight: 700; }
+.type-subheading-lg { font-family: var(--font-subheading); font-size: var(--text-subheading-lg); line-height: var(--lh-subheading-lg); letter-spacing: var(--ls-subheading-lg); font-weight: 600; }
+.type-subheading-md { font-family: var(--font-subheading); font-size: var(--text-subheading-md); line-height: var(--lh-subheading-md); letter-spacing: var(--ls-subheading-md); font-weight: 600; }
+.type-subheading-sm { font-family: var(--font-subheading); font-size: var(--text-subheading-sm); line-height: var(--lh-subheading-sm); letter-spacing: var(--ls-subheading-sm); font-weight: 600; }
+.type-label-xl { font-family: var(--font-label); font-size: var(--text-label-xl); line-height: var(--lh-label-xl); letter-spacing: var(--ls-label-xl); font-weight: 600; }
+.type-label-lg { font-family: var(--font-label); font-size: var(--text-label-lg); line-height: var(--lh-label-lg); letter-spacing: var(--ls-label-lg); font-weight: 600; }
+.type-label-md { font-family: var(--font-label); font-size: var(--text-label-md); line-height: var(--lh-label-md); letter-spacing: var(--ls-label-md); font-weight: 600; }
+.type-label-sm { font-family: var(--font-label); font-size: var(--text-label-sm); line-height: var(--lh-label-sm); letter-spacing: var(--ls-label-sm); font-weight: 600; }
+.type-label-xs { font-family: var(--font-label); font-size: var(--text-label-xs); line-height: var(--lh-label-xs); letter-spacing: var(--ls-label-xs); font-weight: 600; }
+.type-body-2xl { font-family: var(--font-body); font-size: var(--text-body-2xl); line-height: var(--lh-body-2xl); letter-spacing: var(--ls-body-2xl); font-weight: 500; }
+.type-body-xl { font-family: var(--font-body); font-size: var(--text-body-xl); line-height: var(--lh-body-xl); letter-spacing: var(--ls-body-xl); font-weight: 500; }
+.type-body-lg { font-family: var(--font-body); font-size: var(--text-body-lg); line-height: var(--lh-body-lg); letter-spacing: var(--ls-body-lg); font-weight: 500; }
+.type-body { font-family: var(--font-body); font-size: var(--text-body); line-height: var(--lh-body); letter-spacing: var(--ls-body); font-weight: 500; }
+.type-body-sm { font-family: var(--font-body); font-size: var(--text-body-sm); line-height: var(--lh-body-sm); letter-spacing: var(--ls-body-sm); font-weight: 500; }
+.type-body-xs { font-family: var(--font-body); font-size: var(--text-body-xs); line-height: var(--lh-body-xs); letter-spacing: var(--ls-body-xs); font-weight: 500; }
+.type-body-2xs { font-family: var(--font-body); font-size: var(--text-body-2xs); line-height: var(--lh-body-2xs); letter-spacing: var(--ls-body-2xs); font-weight: 500; }

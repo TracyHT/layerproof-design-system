@@ -1,28 +1,52 @@
 import { FoundationShell } from '../../components/FoundationShell';
+import { Section, Rows, Callout, CodeBlock, Segmented } from '../../components/docs';
+import { useState } from 'react';
 
-const scale = [
-  { name: 'xs',  val: '0.25rem', px: '4px'  },
-  { name: 'sm',  val: '0.5rem',  px: '8px'  },
-  { name: 'md',  val: '1rem',    px: '16px' },
-  { name: 'lg',  val: '1.5rem',  px: '24px' },
-  { name: 'xl',  val: '2rem',    px: '32px' },
-  { name: '2xl', val: '3rem',    px: '48px' },
-  { name: '3xl', val: '4rem',    px: '64px' },
-  { name: '4xl', val: '6rem',    px: '96px' },
+const SCALE: [number, number, number][] = [
+  [2, 1, 2], [3, 2, 4], [4, 4, 6], [5, 6, 8], [6, 8, 10], [7, 10, 12], [8, 12, 16], [9, 14, 18], [10, 16, 20],
+  [11, 20, 24], [12, 24, 28], [13, 28, 32], [14, 32, 36], [15, 36, 40], [16, 40, 48], [17, 48, 56], [18, 56, 64],
+  [19, 64, 72], [20, 72, 80], [21, 80, 88], [23, 96, 104], [26, 128, 144],
+];
+
+const tocItems = [
+  { id: 'spacing-scale', label: 'Spacing scale', level: 1 as const },
+  { id: 'spacing-density', label: 'Density modes', level: 1 as const },
 ];
 
 export function SpacingPage() {
+  const [mode, setMode] = useState<'Compact' | 'Spacious'>('Compact');
   return (
-    <FoundationShell title="Spacing" description="Consistent spacing creates rhythm and hierarchy. Our spacing scale is based on a 4px base unit." tocItems={[{ id: 'spacing-scale', label: 'Spacing Scale', level: 1 as const }]}>
-      <div id="spacing-scale" className="space-y-3">
-        {scale.map(({ name, val, px }) => (
-          <div key={name} className="flex items-center gap-5 rounded-xl px-5 py-4" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-            <code className="text-xs w-28 shrink-0" style={{ fontFamily: '"Monaco", monospace', color: '#f0d040' }}>--spacing-{name}</code>
-            <span className="text-xs w-16 shrink-0" style={{ color: 'var(--color-text-tertiary)', fontFamily: '"Roboto", sans-serif' }}>{val} · {px}</span>
-            <div className="flex-1"><div style={{ width: px, height: 24, background: '#f0d04040', border: '1px solid #f0d04066', borderRadius: 4 }} /></div>
-          </div>
-        ))}
-      </div>
+    <FoundationShell
+      title="Spacing"
+      description="Consistent spacing creates rhythm and hierarchy. The scale is built on a 4px base and comes in two densities, straight from the Figma Spacing collection."
+      tocItems={tocItems}
+    >
+      <Section
+        id="spacing-scale"
+        title="Spacing scale"
+        desc="Use --space-N for padding and gaps. The bars below show the value at the selected density."
+        aside={<Segmented options={['Compact', 'Spacious'] as const} value={mode} onChange={setMode} />}
+      >
+        <Rows
+          cols="110px 120px minmax(0, 1fr)"
+          head={['Token', mode, 'Preview']}
+          rows={SCALE.map(([n, c, s]) => {
+            const px = mode === 'Compact' ? c : s;
+            return [
+              <code>--space-{n}</code>,
+              <span>{px}px <span style={{ color: 'var(--foreground-tertiary)' }}>· {px / 16}rem</span></span>,
+              <div style={{ width: Math.min(px, 420), height: 20, borderRadius: 4, background: 'var(--accent-background-selected)', border: '1px solid var(--accent-border-default)' }} />,
+            ];
+          })}
+        />
+      </Section>
+
+      <Section id="spacing-density" title="Density modes" desc="Compact is the default. Spacious adds breathing room for marketing pages and onboarding.">
+        <CodeBlock lang="HTML" code={`<!-- Compact (default) -->\n<div class="panel">…</div>\n\n<!-- Spacious: every --space-N inside grows one step -->\n<div class="panel" data-density="spacious">…</div>`} />
+        <div style={{ marginTop: 12 }}>
+          <Callout tone="neutral">The named shorthands (<code>--spacing-sm</code> … <code>--spacing-4xl</code>) are site-level aliases and don't change with density.</Callout>
+        </div>
+      </Section>
     </FoundationShell>
   );
 }

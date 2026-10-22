@@ -5,7 +5,7 @@ export function TypographyPage() {
   return (
     <FoundationShell
       title="Typography"
-      description="Three typefaces form the LayerProof type system — Anton for impact, DM Sans for brand identity, and Roboto for readability."
+      description="Mona Sans for display and headings, Montserrat for body, subheadings and labels, and Courier Prime for code — one token set per Figma text style."
       tocItems={[
         { id: 'applying-typography', label: 'Applying typography',    level: 1 as const },
         { id: 'typefaces-scale',     label: 'App typefaces and scale', level: 1 as const },

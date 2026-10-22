@@ -1,271 +1,138 @@
+import { useEffect, useState } from "react";
 import { Outlet, Link, useLocation } from "react-router";
-import { Search } from "lucide-react";
+import { MagnifyingGlass, Moon, Sun, List, X, GithubLogo } from "@phosphor-icons/react";
 import { ThemeProvider, useTheme } from "../components/ThemeProvider";
 import { TocProvider } from "../context/TocContext";
 import { NavTree } from "../components/NavTree";
 import { TableOfContents } from "../components/TableOfContents";
 
-// Routes that show the design-system sidebar + ToC
+// Routes that show the design-system rail + table of contents
 const DS_ROUTES = [
   "/foundations",
   "/components",
   "/layout",
   "/resources",
   "/get-started",
+  "/brand",
+  "/whats-new",
 ];
+
+const WIDE_ROUTES = ["/foundations/iconography"];
+
+const REPO_URL = "https://github.com/TracyHT/layerproof-design-system";
+export const FIGMA_URL = "https://www.figma.com/design/OKTvGTGy5kujRdbbqNlHkn/LayerProof---UI-Kit";
 
 function isDesignSystemRoute(pathname: string) {
   return DS_ROUTES.some((r) => pathname === r || pathname.startsWith(r + "/"));
 }
 
-function Header() {
-  const { toggleTheme } = useTheme();
-  const location = useLocation();
-  const isDS = isDesignSystemRoute(location.pathname);
+const topNav = [
+  { label: "Get started", to: "/get-started/designers", match: "/get-started" },
+  { label: "Foundations", to: "/foundations", match: "/foundations" },
+  { label: "Components", to: "/components", match: "/components" },
+  { label: "Brand", to: "/brand", match: "/brand" },
+  { label: "What's new", to: "/whats-new", match: "/whats-new" },
+];
 
-  const navLinkStyle = (active: boolean): React.CSSProperties => ({
-    fontFamily: '"Roboto", sans-serif',
-    fontSize: 14,
-    fontWeight: active ? 600 : 400,
-    color: active ? "var(--color-text-primary)" : "var(--color-text-secondary)",
-    textDecoration: "none",
-    paddingBottom: 2,
-    borderBottom: active
-      ? "2px solid var(--color-text-primary)"
-      : "2px solid transparent",
-    transition: "color 150ms, border-color 150ms",
-    whiteSpace: "nowrap" as const,
-  });
+export function Logo() {
+  return (
+    <Link to="/" className="lp-logo" aria-label="LayerProof Design System — home">
+      <img src={`${import.meta.env.BASE_URL}symbol.png`} alt="" />
+      <span className="lp-logo__word">LayerProof</span>
+      <span className="lp-logo__tag">Design system</span>
+    </Link>
+  );
+}
 
-  const iconBtn: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    gap: 6,
-    padding: "5px 12px",
-    borderRadius: 6,
-    background: "transparent",
-    border: "1px solid var(--color-border)",
-    cursor: "pointer",
-    color: "var(--color-text-secondary)",
-    fontSize: 13,
-    fontFamily: '"Roboto", sans-serif',
-    transition: "background 150ms, color 150ms",
-  };
+function Header({ railOpen, onToggleRail, showRail }: { railOpen: boolean; onToggleRail: () => void; showRail: boolean }) {
+  const { theme, toggleTheme } = useTheme();
+  const { pathname } = useLocation();
 
   return (
-    <header
-      style={{
-        height: 56,
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        boxShadow: "0 4px 24px 0 var(--header-shadow, rgba(0,0,0,0.12))",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        background: "var(--color-background)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingLeft: 20,
-        paddingRight: 20,
-        gap: 24,
-      }}
-    >
-      {/* Logo */}
-      <Link
-        to="/"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          textDecoration: "none",
-          flexShrink: 0,
-        }}
-      >
-        <img
-          src={`${import.meta.env.BASE_URL}symbol.png`}
-          alt="LayerProof"
-          style={{ height: 26, width: "auto" }}
-        />
-        <span
-          style={{
-            fontFamily: '"DM Sans", sans-serif',
-            fontWeight: 700,
-            fontSize: 16,
-            color: "var(--color-text-primary)",
-            letterSpacing: "-0.01em",
-          }}
-        >
-          LayerProof Design
-        </span>
-      </Link>
-
-      {/* Nav links */}
-      <nav style={{ display: "flex", alignItems: "center", gap: 28, flex: 1 }}>
-        <Link
-          to="/foundations"
-          style={navLinkStyle(isDS)}
-          onMouseEnter={(e) => {
-            if (!isDS)
-              (e.currentTarget as HTMLAnchorElement).style.color =
-                "var(--color-text-primary)";
-          }}
-          onMouseLeave={(e) => {
-            if (!isDS)
-              (e.currentTarget as HTMLAnchorElement).style.color =
-                "var(--color-text-secondary)";
-          }}
-        >
-          Design system
-        </Link>
-        <Link
-          to="/resources"
-          style={navLinkStyle(false)}
-          onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color =
-              "var(--color-text-primary)")
-          }
-          onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color =
-              "var(--color-text-secondary)")
-          }
-        >
-          News
-        </Link>
-      </nav>
-
-      {/* Actions */}
-      <div
-        style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}
-      >
-        {/* Search */}
-        <button
-          style={iconBtn}
-          aria-label="Search"
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background =
-              "var(--color-surface)";
-            (e.currentTarget as HTMLButtonElement).style.color =
-              "var(--color-text-primary)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background =
-              "transparent";
-            (e.currentTarget as HTMLButtonElement).style.color =
-              "var(--color-text-secondary)";
-          }}
-        >
-          <Search size={14} />
-          <span>Search</span>
+    <header className="lp-header">
+      {showRail && (
+        <button className="lp-pill lp-pill--icon lp-menu-btn" onClick={onToggleRail} aria-label={railOpen ? "Close navigation" : "Open navigation"} aria-expanded={railOpen}>
+          {railOpen ? <X size={18} /> : <List size={18} />}
         </button>
-
-        {/* Theme */}
-        <button
-          onClick={toggleTheme}
-          style={iconBtn}
-          aria-label="Toggle theme"
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background =
-              "var(--color-surface)";
-            (e.currentTarget as HTMLButtonElement).style.color =
-              "var(--color-text-primary)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background =
-              "transparent";
-            (e.currentTarget as HTMLButtonElement).style.color =
-              "var(--color-text-secondary)";
-          }}
-        >
-          {/* Half-circle icon */}
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <circle
-              cx="7"
-              cy="7"
-              r="6"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <path d="M7 1a6 6 0 0 1 0 12V1z" fill="currentColor" />
-          </svg>
-          <span>Theme</span>
+      )}
+      <Logo />
+      <nav className="lp-topnav" aria-label="Main">
+        {topNav.map((n) => (
+          <Link key={n.to} to={n.to} aria-current={pathname === n.match || pathname.startsWith(n.match + "/") ? "page" : undefined}>
+            {n.label}
+          </Link>
+        ))}
+      </nav>
+      <div className="lp-actions">
+        <button className="lp-pill" aria-label="Search">
+          <MagnifyingGlass size={16} />
+          <span className="lp-pill__label">Search</span>
+          <kbd>⌘K</kbd>
+        </button>
+        <a className="lp-pill lp-pill--icon" href={REPO_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
+          <GithubLogo size={18} />
+        </a>
+        <button className="lp-pill lp-pill--icon" onClick={toggleTheme} aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}>
+          {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
         </button>
       </div>
-      <style>
-        {`
-        :root {
-        --header-shadow: rgba(0,0,0,0.12);
-        }
-        [data-theme="light"] {
-        --header-shadow: 0 4px 24px 0 rgba(255,255,255,0.8);
-        }
-      `}
-      </style>
     </header>
   );
 }
 
+export function SiteFooter() {
+  return (
+    <footer className="lp-footer">
+      <span>© 2026 LayerProof. All rights reserved.</span>
+      <span style={{ display: "flex", gap: 16 }}>
+        <a href={FIGMA_URL} target="_blank" rel="noopener noreferrer">Figma UI kit</a>
+        <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
+        <Link to="/whats-new">Changelog</Link>
+      </span>
+    </footer>
+  );
+}
+
 function LayoutInner() {
-  const location = useLocation();
-  const isDS = isDesignSystemRoute(location.pathname);
-  const isIconography = location.pathname === '/foundations/iconography';
+  const { pathname } = useLocation();
+  const isDS = isDesignSystemRoute(pathname);
+  const isWide = WIDE_ROUTES.includes(pathname);
+  const [railOpen, setRailOpen] = useState(false);
+
+  useEffect(() => {
+    setRailOpen(false);
+    window.scrollTo({ top: 0 });
+  }, [pathname]);
 
   return (
-    <div style={{ background: "var(--color-background)", minHeight: "100vh" }}>
-      <Header />
+    <div style={{ background: "var(--background-canvas)", minHeight: "100vh", color: "var(--foreground-primary)" }}>
+      <Header railOpen={railOpen} onToggleRail={() => setRailOpen((v) => !v)} showRail={isDS} />
 
-      <div style={{ display: "flex", marginLeft: isDS ? 220 : 0 }}>
-        {/* Left nav — only on design system pages */}
-        {isDS && (
-          <aside
-            style={{
-              position: "fixed",
-              top: 56,
-              left: 0,
-              width: 220,
-              height: "calc(100vh - 56px)",
-              borderRight: "1px solid var(--color-border)",
-              overflowY: "auto",
-              background: "var(--color-background)",
-              flexShrink: 0,
-            }}
-          >
+      {isDS ? (
+        <div className="lp-body">
+          <aside className="lp-rail" data-open={railOpen}>
             <NavTree />
           </aside>
-        )}
-
-        {/* Main content */}
-        <main
-          style={{
-            flex: 1,
-            minWidth: 0,
-            color: "var(--color-text-primary)",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              maxWidth: isDS && !isIconography ? 800 : "none",
-              padding: isDS ? "48px 40px" : "0",
-            }}
-          >
-            <Outlet />
-          </div>
-        </main>
-
-        {/* Right ToC — only on design system pages */}
-        {isDS && (
-          <aside
-            style={{ width: 200, flexShrink: 0, padding: "40px 16px 0 0" }}
-          >
-            <div style={{ position: "sticky", top: 72 }}>
-              <TableOfContents />
+          {railOpen && <div className="lp-scrim" onClick={() => setRailOpen(false)} />}
+          <main className="lp-main lp-main--docs">
+            <div className={`lp-content ${isWide ? "lp-content--wide" : ""}`}>
+              <Outlet />
+              <SiteFooter />
             </div>
-          </aside>
-        )}
-      </div>
+          </main>
+          {!isWide && (
+            <aside className="lp-toc">
+              <div className="lp-toc__inner">
+                <TableOfContents />
+              </div>
+            </aside>
+          )}
+        </div>
+      ) : (
+        <main>
+          <Outlet />
+        </main>
+      )}
     </div>
   );
 }

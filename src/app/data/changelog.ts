@@ -40,6 +40,24 @@ export type Release = {
 export const releases: Release[] = [
   // ── Add new releases at the TOP ──────────────────────────────────────────
   {
+    version: '2.0.0',
+    date: 'October 2026',
+    summary: 'Rebrand: pink #FF589B replaces yellow as the accent, Mona Sans and Montserrat replace Anton and Roboto, and tokens now mirror the Figma UI kit (Semantic Color V2).',
+    changes: [
+      { category: 'breaking',    description: 'Accent changed from yellow to Pink 500 (#FF589B). Yellow remains a primitive but no semantic token uses it.' },
+      { category: 'breaking',    description: 'Fonts: Mona Sans (display, headings), Montserrat (body, subheadings, labels), Courier Prime (code). Headings are no longer uppercase.' },
+      { category: 'breaking',    description: 'Gray primitives renamed to match Figma (Gray 100–950). Old --gray-0 / --gray-50 kept as aliases.' },
+      { category: 'tokens',      description: 'New semantic layer from Figma "Semantic Color V2": --background-*, --foreground-*, --border-*, --accent-*, --action-*, --status-*, plus button, tooltip-card and tabs tokens, all with light and dark values.' },
+      { category: 'tokens',      description: 'Brand Theme tokens (--neutral-*, --accent-surface-*, --secondary-*, --danger-* …) and older site names (--color-*, --brand-*) kept as deprecated aliases of the V2 tokens.' },
+      { category: 'tokens',      description: 'Added Orange (warning) and Cyan (info) scales; Red and Green now have full 50–950 scales.' },
+      { category: 'tokens',      description: 'Type scale rebuilt from the Figma text styles, with .type-* utility classes for each style.' },
+      { category: 'tokens',      description: 'Elevation: 39 shadow styles (neutral, accent, danger, success, warning) as --shadow-<family>-<level>, built from shadow colour tokens.' },
+      { category: 'tokens',      description: 'Spacing gains the Figma Spacious mode via data-density="spacious"; numbered radius scale added.' },
+      { category: 'foundations', description: 'Elevation page built out; Color, Accents, Palette, Typography and Cheat Sheet pages rewritten for the new brand.' },
+      { category: 'fix',         description: 'Google Fonts import moved to the top of the stylesheet so web fonts actually load in production builds.' },
+    ],
+  },
+  {
     version: '1.2.0',
     date: 'March 2026',
     summary: 'Hover-state tokens, new radius step, and WCAG AA contrast fixes for brand colors.',

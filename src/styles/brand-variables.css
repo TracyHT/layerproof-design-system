@@ -1,334 +1,460 @@
+/* Generated from the Figma file “LayerProof — UI Kit” (variables + styles).
+   Source of truth is Figma; regenerate rather than hand-editing values. */
+
 /**
- * Brand Guidelines Design Tokens
- * Customize these variables to match your brand
+ * Semantic tokens. Components use these, never primitives.
  *
- * Primitive values live in:
- *   colors.css     — raw colour scales
- *   radius.css     — raw radius steps
- *   typography.css — raw type scale
+ * Naming follows Figma “Semantic Color V2”: the variable path with “/” → “-”
+ *   background/surface          → --background-surface
+ *   action/primary/background/hover → --action-primary-background-hover
+ *
+ * Every themed token is declared in BOTH blocks below, so a nested
+ * [data-theme] region re-resolves the whole chain correctly.
  */
 
-:root {
-  /* === BRAND PALETTE === */
-  --brand-primary: var(--gray-900); /* primary UI action — black on light bg */
-  --brand-secondary: var(--pink-500); /* pink — brand accent */
-  --brand-accent: var(--yellow-500); /* yellow — brand accent highlight */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  /* ── Semantic Color V2 ─────────────────────────────────────── */
 
-  /* === NEUTRAL SURFACES (Figma: Ref > Gray + Color collection) === */
-  --color-background: var(--gray-0); /* Figma: Color > Neutral Background */
-  --color-surface: var(--gray-50); /* Figma: Color > Foreground Background */
-  --color-surface-hover: #ecedee; /* Figma: Color > Accent Background */
-  --color-border: var(--gray-200); /* Figma: Ref > gray-300 */
-  --color-border-hover: var(--gray-300); /* Figma: Ref > gray-400 */
+  /* background */
+  --background-canvas: var(--base-white);
+  --background-surface: var(--gray-100);
+  --background-surface-raised: var(--base-white);
+  --background-subtle: var(--gray-100);
+  --background-muted: var(--gray-200);
+  --background-strong: var(--gray-500);
+  --background-disabled: var(--gray-100);
+  --background-inverse: var(--gray-900);
 
-  /* === TEXT / ICON (Figma: Brand Theme > Neutral > Text-Icon) === */
-  --color-text-primary: var(--gray-800); /* gray-900 */
-  --color-text-secondary: var(--gray-500); /* gray-600 */
-  --color-text-tertiary: var(--gray-400); /* gray-500 */
-  --color-text-inverse: var(--gray-0); /* on-color */
+  /* foreground */
+  --foreground-primary: var(--gray-900);
+  --foreground-secondary: var(--gray-600);
+  --foreground-tertiary: var(--gray-500);
+  --foreground-placeholder: var(--gray-500);
+  --foreground-disabled: var(--gray-400);
+  --foreground-inverse: var(--base-white);
+  --foreground-on-image-dark: var(--gray-900);
+  --foreground-on-image-dark-secondary: var(--gray-600);
+  --foreground-on-image-light: var(--base-white);
 
-  /* === BRAND THEME SEMANTIC TOKENS (mirrors Figma: Brand Theme collection) === */
+  /* border */
+  --border-subtle: var(--gray-200);
+  --border-default: var(--gray-300);
+  --border-medium: var(--gray-400);
+  --border-strong: var(--gray-500);
+  --border-disabled: var(--gray-200);
+  --border-focus: var(--pink-500);
 
-  /* Neutral > Surface */
-  --neutral-surface-disable: var(--gray-100); /* gray-200 */
-  --neutral-surface-surface: #f4f4f4; /* gray-100 — synced from Figma */
-  --neutral-surface-lighter: var(--gray-200); /* gray-300 */
-  --neutral-surface-light: var(--gray-400); /* gray-500 */
-  --neutral-surface-default: var(--gray-800); /* gray-900 */
-  --neutral-surface-dark: var(--gray-600); /* gray-700 */
-  --neutral-surface-darker: var(--gray-600); /* gray-700 */
+  /* accent */
+  --accent-background-default: var(--pink-500);
+  --accent-background-hover: var(--pink-600);
+  --accent-background-pressed: var(--pink-700);
+  --accent-background-subtle: var(--pink-100);
+  --accent-background-selected: var(--pink-200);
+  --accent-background-faint: var(--pink-50);
+  --accent-foreground-default: var(--pink-700);
+  --accent-foreground-brand: var(--pink-500);
+  --accent-foreground-on-accent: var(--gray-900);
+  --accent-border-default: var(--pink-500);
+  --accent-focus-ring: var(--pink-500);
 
-  /* Neutral > Text-Icon */
-  --neutral-text-on-color: var(--color-white); /* white on dark */
-  --neutral-text-disable: var(--gray-300); /* gray-400 */
-  --neutral-text-tertiary: var(--gray-400); /* gray-500 */
-  --neutral-text-secondary: var(--gray-500); /* gray-600 */
-  --neutral-text-primary: var(--gray-800); /* gray-900 */
+  /* action */
+  --action-primary-background-default: var(--accent-background-default);
+  --action-primary-background-hover: var(--accent-background-hover);
+  --action-primary-background-pressed: var(--accent-background-pressed);
+  --action-primary-background-disabled: var(--background-disabled);
+  --action-primary-foreground: var(--accent-foreground-on-accent);
+  --action-primary-foreground-disabled: var(--foreground-disabled);
+  --action-primary-focus: var(--accent-focus-ring);
+  --action-secondary-background-default: var(--background-surface);
+  --action-secondary-background-hover: var(--background-subtle);
+  --action-secondary-background-selected: var(--background-subtle);
+  --action-secondary-foreground: var(--foreground-primary);
+  --action-secondary-border: var(--border-default);
+  --action-secondary-focus: var(--accent-focus-ring);
+  --action-tertiary-foreground-default: var(--foreground-primary);
+  --action-tertiary-foreground-hover: var(--accent-foreground-default);
+  --action-tertiary-background-hover: var(--background-subtle);
+  --action-tertiary-focus: var(--accent-focus-ring);
+  --action-neutral-background-default: var(--gray-900);
+  --action-neutral-background-hover: var(--gray-700);
+  --action-neutral-background-pressed: var(--gray-800);
+  --action-danger-background-default: var(--red-600);
+  --action-danger-background-hover: var(--red-700);
+  --action-danger-background-pressed: var(--red-800);
 
-  /* Neutral > Divider */
-  --neutral-divider-light: var(--gray-100); /* gray-200 */
-  --neutral-divider-default: var(--gray-200); /* gray-300 */
+  /* status */
+  --status-danger-background: var(--red-50);
+  --status-danger-background-strong: var(--red-700);
+  --status-danger-foreground: var(--red-700);
+  --status-danger-border: var(--red-200);
+  --status-danger-icon: var(--red-600);
+  --status-success-background: var(--green-50);
+  --status-success-background-strong: var(--green-700);
+  --status-success-foreground: var(--green-700);
+  --status-success-border: var(--green-200);
+  --status-success-icon: var(--green-600);
+  --status-warning-background: var(--orange-50);
+  --status-warning-background-strong: var(--orange-800);
+  --status-warning-foreground: var(--orange-800);
+  --status-warning-border: var(--orange-200);
+  --status-warning-icon: var(--orange-600);
+  --status-info-background: var(--cyan-50);
+  --status-info-background-strong: var(--cyan-800);
+  --status-info-foreground: var(--cyan-800);
+  --status-info-border: var(--cyan-200);
+  --status-info-icon: var(--cyan-600);
 
-  /* Accent > Surface (yellow replaces blue) */
-  --accent-surface-disable: var(--yellow-100);
-  --accent-surface-surface: var(--yellow-200);
-  --accent-surface-light: var(--yellow-300);
-  --accent-surface-default: var(--yellow-500); /* = brand accent */
-  --accent-surface-dark: var(--yellow-800);
-  --accent-surface-darker: var(--yellow-900);
-  --accent-surface-btn-hover: var(--yellow-600); /* hover state */
+  /* button */
+  --button-accent-primary-foreground: var(--base-white);
+  --button-danger-primary-background-default: var(--action-danger-background-default);
+  --button-danger-primary-background-hover: var(--action-danger-background-hover);
+  --button-danger-primary-background-disabled: var(--background-disabled);
+  --button-danger-primary-foreground: var(--foreground-inverse);
+  --button-danger-secondary-background-default: var(--status-danger-background);
+  --button-danger-secondary-background-hover: var(--status-danger-border);
+  --button-danger-secondary-foreground: var(--status-danger-foreground);
+  --button-danger-tertiary-background-hover: var(--status-danger-background);
+  --button-danger-tertiary-foreground: var(--status-danger-foreground);
+  --button-danger-outline-background-hover: var(--status-danger-background);
+  --button-danger-outline-foreground: var(--status-danger-foreground);
+  --button-danger-border: var(--status-danger-border);
+  --button-danger-foreground-disabled: var(--foreground-disabled);
+  --button-danger-border-disabled: var(--border-disabled);
 
-  /* Accent > Text-Icon */
-  --accent-text-disable: var(--yellow-300);
-  --accent-text-default: var(--yellow-800);
-  --accent-text-on-color: var(--color-black); /* black on yellow */
+  /* tooltip-card */
+  --tooltip-card-background: var(--background-surface);
+  --tooltip-card-border: var(--border-subtle);
+  --tooltip-card-title: var(--foreground-primary);
+  --tooltip-card-body: var(--foreground-secondary);
+  --tooltip-card-action-dismiss: var(--accent-foreground-default);
+  --tooltip-card-action-secondary: var(--foreground-secondary);
+  --tooltip-card-placeholder: var(--background-disabled);
+  --tooltip-card-progress-active: var(--accent-background-default);
+  --tooltip-card-progress-inactive: var(--foreground-disabled);
 
-  /* Accent > Divider */
-  --accent-divider-disable: var(--yellow-300);
-  --accent-divider-light: var(--yellow-200);
-  --accent-divider-default: var(--yellow-500);
-  --accent-divider-on-color: var(--color-black); /* black */
+  /* tabs */
+  --tabs-background-selected: var(--background-surface-raised);
 
-  /* Secondary > Surface (pink) */
-  --secondary-surface-disable: var(--pink-100);
-  --secondary-surface-surface: var(--pink-200);
-  --secondary-surface-light: var(--pink-300);
-  --secondary-surface-default: var(--pink-600);
-  --secondary-surface-dark: var(--pink-800);
-  --secondary-surface-darker: var(--pink-900);
+  /* shadow colours */
+  --shadow-neutral-soft: rgb(0 0 0 / 0.04);
+  --shadow-neutral-strong: rgb(0 0 0 / 0.09);
+  --shadow-accent-soft: rgb(255 88 155 / 0.08);
+  --shadow-accent-strong: rgb(255 88 155 / 0.12);
+  --shadow-accent-glow: rgb(255 88 155 / 1);
+  --shadow-danger-soft: rgb(231 0 11 / 0.08);
+  --shadow-danger-strong: rgb(231 0 11 / 0.12);
+  --shadow-success-soft: rgb(0 201 80 / 0.08);
+  --shadow-success-strong: rgb(0 201 80 / 0.12);
+  --shadow-warning-soft: rgb(255 153 69 / 0.08);
+  --shadow-warning-strong: rgb(255 153 69 / 0.12);
+  --shadow-highlight: rgb(255 255 255 / 0.5);
+  --shadow-highlight-strong: rgb(255 255 255 / 0.6);
 
-  /* Secondary > Text-Icon */
-  --secondary-text-on-color: var(--color-white);
-  --secondary-text-disable: var(--pink-300);
-  --secondary-text-default: var(--pink-600);
-
-  /* Secondary > Divider */
-  --secondary-divider-disable: var(--pink-300);
-  --secondary-divider-light: var(--pink-200);
-  --secondary-divider-default: var(--pink-600);
-  --secondary-divider-on-color: var(--color-white);
-
-  /* Danger (Figma: Brand Theme > Danger — Red scale) */
-  --danger-surface: var(--red-50);
+  /* ── Brand Theme (deprecated aliases — mirrors Figma “Brand Theme”) ── */
+  --neutral-surface-disable: var(--background-disabled);
+  --neutral-surface-surface: var(--background-subtle);
+  --neutral-surface-lighter: var(--gray-200);
+  --neutral-surface-light: var(--gray-500);
+  --neutral-surface-default: var(--gray-900);
+  --neutral-surface-dark: var(--gray-700);
+  --neutral-surface-darker: var(--gray-700);
+  --neutral-text-on-color: var(--foreground-inverse);
+  --neutral-text-disable: var(--foreground-disabled);
+  --neutral-text-tertiary: var(--foreground-tertiary);
+  --neutral-text-secondary: var(--foreground-secondary);
+  --neutral-text-primary: var(--foreground-primary);
+  --neutral-text-button: var(--action-primary-foreground);
+  --neutral-divider-light: var(--border-subtle);
+  --neutral-divider-default: var(--border-default);
+  --accent-surface-disable: var(--background-disabled);
+  --accent-surface-surface: var(--accent-background-subtle);
+  --accent-surface-light: var(--accent-background-selected);
+  --accent-surface-default: var(--accent-background-default);
+  --accent-surface-dark: var(--accent-background-hover);
+  --accent-surface-darker: var(--accent-background-pressed);
+  --accent-surface-btn-hover: var(--action-primary-background-hover);
+  --accent-text-disable: var(--foreground-disabled);
+  --accent-text-default: var(--accent-foreground-default);
+  --accent-text-on-color: var(--accent-foreground-on-accent);
+  --accent-divider-disable: var(--border-disabled);
+  --accent-divider-light: var(--accent-border-default);
+  --accent-divider-default: var(--accent-border-default);
+  --accent-divider-on-color: var(--accent-border-default);
+  --secondary-surface-disable: var(--background-disabled);
+  --secondary-surface-surface: var(--accent-background-subtle);
+  --secondary-surface-light: var(--accent-background-selected);
+  --secondary-surface-default: var(--accent-background-default);
+  --secondary-surface-dark: var(--accent-background-hover);
+  --secondary-surface-darker: var(--accent-background-pressed);
+  --secondary-text-default: var(--accent-foreground-default);
+  --secondary-text-on-color: var(--accent-foreground-on-accent);
+  --secondary-text-disable: var(--foreground-disabled);
+  --secondary-divider-default: var(--accent-border-default);
+  --secondary-divider-light: var(--accent-border-default);
+  --secondary-divider-disable: var(--border-disabled);
+  --secondary-divider-on-color: var(--accent-border-default);
+  --danger-surface: var(--status-danger-background);
   --danger-light: var(--red-200);
-  --danger-default: var(--red-600);
+  --danger-default: var(--red-500);
   --danger-dark: var(--red-900);
-
-  /* Success (Figma: Brand Theme > Success — Green scale) */
-  --success-surface: var(--green-50);
+  --success-surface: var(--status-success-background);
   --success-light: var(--green-200);
   --success-default: var(--green-600);
   --success-dark: var(--green-900);
+  --warning-surface: var(--status-warning-background);
+  --warning-light: var(--status-warning-border);
+  --warning-default: var(--status-warning-icon);
+  --warning-dark: var(--status-warning-foreground);
 
-  /* Warning (Figma: Brand Theme > Warning — Amber scale) */
-  --warning-surface: var(--amber-50);
-  --warning-light: var(--amber-200);
-  --warning-default: var(--amber-600);
-  --warning-dark: var(--amber-900);
+  /* ── Older site-level names (deprecated — use the V2 tokens above) ── */
+  --brand-primary: var(--action-neutral-background-default); /* Neutral primary (black on light, white on dark). */
+  --brand-secondary: var(--accent-background-default); /* Brand pink. */
+  --brand-accent: var(--accent-background-default); /* Was yellow; the accent is now pink. */
+  --color-background: var(--background-canvas);
+  --color-surface: var(--background-surface);
+  --color-surface-hover: var(--background-muted);
+  --color-border: var(--border-subtle);
+  --color-border-hover: var(--border-default);
+  --color-text-primary: var(--foreground-primary);
+  --color-text-secondary: var(--foreground-secondary);
+  --color-text-tertiary: var(--foreground-tertiary);
+  --color-text-inverse: var(--foreground-inverse);
+  --color-success: var(--status-success-icon);
+  --color-warning: var(--status-warning-icon);
+  --color-error: var(--status-danger-icon);
+  --color-info: var(--status-info-icon);
+}
 
-  /* Legacy status aliases */
-  --color-success: var(--green-600);
-  --color-warning: var(--amber-600);
-  --color-error: var(--red-600);
-  --color-info: #0d52ff;
+[data-theme="dark"] {
+  color-scheme: dark;
+  /* ── Semantic Color V2 ─────────────────────────────────────── */
 
-  /* === SHADOW COLORS === */
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --shadow-color-md: rgba(0, 0, 0, 0.15);
-  --shadow-color-lg: rgba(0, 0, 0, 0.2);
+  /* background */
+  --background-canvas: var(--gray-900);
+  --background-surface: var(--gray-850);
+  --background-surface-raised: var(--gray-800);
+  --background-subtle: var(--gray-800);
+  --background-muted: var(--gray-600);
+  --background-strong: var(--gray-850);
+  --background-disabled: var(--gray-850);
+  --background-inverse: var(--gray-100);
 
-  /* === SHADOWS === */
-  --shadow-sm: 0 1px 2px 0 var(--shadow-color);
-  --shadow-md:
-    0 4px 6px -1px var(--shadow-color-md), 0 2px 4px -2px var(--shadow-color);
-  --shadow-lg:
-    0 10px 15px -3px var(--shadow-color-md), 0 4px 6px -4px var(--shadow-color);
-  --shadow-xl:
-    0 20px 25px -5px var(--shadow-color-md), 0 8px 10px -6px var(--shadow-color);
+  /* foreground */
+  --foreground-primary: var(--gray-100);
+  --foreground-secondary: var(--gray-400);
+  --foreground-tertiary: var(--gray-500);
+  --foreground-placeholder: var(--gray-500);
+  --foreground-disabled: var(--gray-600);
+  --foreground-inverse: var(--gray-900);
+  --foreground-on-image-dark: var(--gray-900);
+  --foreground-on-image-dark-secondary: var(--gray-600);
+  --foreground-on-image-light: var(--base-white);
 
-  /* === TRANSITIONS === */
+  /* border */
+  --border-subtle: var(--gray-800);
+  --border-default: var(--gray-700);
+  --border-medium: var(--gray-600);
+  --border-strong: var(--gray-500);
+  --border-disabled: var(--gray-800);
+  --border-focus: var(--pink-400);
+
+  /* accent */
+  --accent-background-default: var(--pink-500);
+  --accent-background-hover: var(--pink-400);
+  --accent-background-pressed: var(--pink-300);
+  --accent-background-subtle: var(--pink-900);
+  --accent-background-selected: var(--pink-800);
+  --accent-background-faint: var(--pink-950);
+  --accent-foreground-default: var(--pink-300);
+  --accent-foreground-brand: var(--pink-500);
+  --accent-foreground-on-accent: var(--gray-900);
+  --accent-border-default: var(--pink-400);
+  --accent-focus-ring: var(--pink-400);
+
+  /* action */
+  --action-primary-background-default: var(--accent-background-default);
+  --action-primary-background-hover: var(--accent-background-hover);
+  --action-primary-background-pressed: var(--accent-background-pressed);
+  --action-primary-background-disabled: var(--background-disabled);
+  --action-primary-foreground: var(--accent-foreground-on-accent);
+  --action-primary-foreground-disabled: var(--foreground-disabled);
+  --action-primary-focus: var(--accent-focus-ring);
+  --action-secondary-background-default: var(--background-surface);
+  --action-secondary-background-hover: var(--background-subtle);
+  --action-secondary-background-selected: var(--background-subtle);
+  --action-secondary-foreground: var(--foreground-primary);
+  --action-secondary-border: var(--border-default);
+  --action-secondary-focus: var(--accent-focus-ring);
+  --action-tertiary-foreground-default: var(--foreground-primary);
+  --action-tertiary-foreground-hover: var(--accent-foreground-default);
+  --action-tertiary-background-hover: var(--background-subtle);
+  --action-tertiary-focus: var(--accent-focus-ring);
+  --action-neutral-background-default: var(--base-white);
+  --action-neutral-background-hover: var(--gray-400);
+  --action-neutral-background-pressed: var(--gray-550);
+  --action-danger-background-default: var(--red-400);
+  --action-danger-background-hover: var(--red-300);
+  --action-danger-background-pressed: var(--red-200);
+
+  /* status */
+  --status-danger-background: var(--red-950);
+  --status-danger-background-strong: var(--red-300);
+  --status-danger-foreground: var(--red-300);
+  --status-danger-border: var(--red-800);
+  --status-danger-icon: var(--red-400);
+  --status-success-background: var(--green-950);
+  --status-success-background-strong: var(--green-300);
+  --status-success-foreground: var(--green-300);
+  --status-success-border: var(--green-800);
+  --status-success-icon: var(--green-400);
+  --status-warning-background: var(--orange-950);
+  --status-warning-background-strong: var(--orange-300);
+  --status-warning-foreground: var(--orange-300);
+  --status-warning-border: var(--orange-700);
+  --status-warning-icon: var(--orange-400);
+  --status-info-background: var(--cyan-950);
+  --status-info-background-strong: var(--cyan-300);
+  --status-info-foreground: var(--cyan-300);
+  --status-info-border: var(--cyan-800);
+  --status-info-icon: var(--cyan-400);
+
+  /* button */
+  --button-accent-primary-foreground: var(--base-white);
+  --button-danger-primary-background-default: var(--action-danger-background-default);
+  --button-danger-primary-background-hover: var(--action-danger-background-hover);
+  --button-danger-primary-background-disabled: var(--background-disabled);
+  --button-danger-primary-foreground: var(--foreground-inverse);
+  --button-danger-secondary-background-default: var(--status-danger-background);
+  --button-danger-secondary-background-hover: var(--status-danger-border);
+  --button-danger-secondary-foreground: var(--status-danger-foreground);
+  --button-danger-tertiary-background-hover: var(--status-danger-background);
+  --button-danger-tertiary-foreground: var(--status-danger-foreground);
+  --button-danger-outline-background-hover: var(--status-danger-background);
+  --button-danger-outline-foreground: var(--status-danger-foreground);
+  --button-danger-border: var(--status-danger-border);
+  --button-danger-foreground-disabled: var(--foreground-disabled);
+  --button-danger-border-disabled: var(--border-disabled);
+
+  /* tooltip-card */
+  --tooltip-card-background: var(--background-surface);
+  --tooltip-card-border: var(--border-subtle);
+  --tooltip-card-title: var(--foreground-primary);
+  --tooltip-card-body: var(--foreground-secondary);
+  --tooltip-card-action-dismiss: var(--accent-foreground-default);
+  --tooltip-card-action-secondary: var(--foreground-secondary);
+  --tooltip-card-placeholder: var(--background-disabled);
+  --tooltip-card-progress-active: var(--accent-background-default);
+  --tooltip-card-progress-inactive: var(--foreground-disabled);
+
+  /* tabs */
+  --tabs-background-selected: var(--background-muted);
+
+  /* shadow colours */
+  --shadow-neutral-soft: rgb(0 0 0 / 0.04);
+  --shadow-neutral-strong: rgb(0 0 0 / 0.09);
+  --shadow-accent-soft: rgb(255 88 155 / 0.08);
+  --shadow-accent-strong: rgb(255 88 155 / 0.12);
+  --shadow-accent-glow: rgb(255 88 155 / 1);
+  --shadow-danger-soft: rgb(231 0 11 / 0.08);
+  --shadow-danger-strong: rgb(231 0 11 / 0.12);
+  --shadow-success-soft: rgb(0 201 80 / 0.08);
+  --shadow-success-strong: rgb(0 201 80 / 0.12);
+  --shadow-warning-soft: rgb(255 153 69 / 0.08);
+  --shadow-warning-strong: rgb(255 153 69 / 0.12);
+  --shadow-highlight: rgb(255 255 255 / 0.5);
+  --shadow-highlight-strong: rgb(255 255 255 / 0.6);
+
+  /* ── Brand Theme (deprecated aliases — mirrors Figma “Brand Theme”) ── */
+  --neutral-surface-disable: var(--background-disabled);
+  --neutral-surface-surface: var(--background-subtle);
+  --neutral-surface-lighter: var(--gray-800);
+  --neutral-surface-light: var(--gray-850);
+  --neutral-surface-default: var(--base-white);
+  --neutral-surface-dark: var(--gray-400);
+  --neutral-surface-darker: var(--gray-550);
+  --neutral-text-on-color: var(--foreground-inverse);
+  --neutral-text-disable: var(--foreground-disabled);
+  --neutral-text-tertiary: var(--foreground-tertiary);
+  --neutral-text-secondary: var(--foreground-secondary);
+  --neutral-text-primary: var(--foreground-primary);
+  --neutral-text-button: var(--action-primary-foreground);
+  --neutral-divider-light: var(--border-subtle);
+  --neutral-divider-default: var(--border-default);
+  --accent-surface-disable: var(--background-disabled);
+  --accent-surface-surface: var(--accent-background-subtle);
+  --accent-surface-light: var(--accent-background-selected);
+  --accent-surface-default: var(--accent-background-default);
+  --accent-surface-dark: var(--accent-background-hover);
+  --accent-surface-darker: var(--accent-background-pressed);
+  --accent-surface-btn-hover: var(--action-primary-background-hover);
+  --accent-text-disable: var(--foreground-disabled);
+  --accent-text-default: var(--accent-foreground-default);
+  --accent-text-on-color: var(--accent-foreground-on-accent);
+  --accent-divider-disable: var(--border-disabled);
+  --accent-divider-light: var(--accent-border-default);
+  --accent-divider-default: var(--accent-border-default);
+  --accent-divider-on-color: var(--accent-border-default);
+  --secondary-surface-disable: var(--background-disabled);
+  --secondary-surface-surface: var(--accent-background-subtle);
+  --secondary-surface-light: var(--accent-background-selected);
+  --secondary-surface-default: var(--accent-background-default);
+  --secondary-surface-dark: var(--accent-background-hover);
+  --secondary-surface-darker: var(--accent-background-pressed);
+  --secondary-text-default: var(--accent-foreground-default);
+  --secondary-text-on-color: var(--accent-foreground-on-accent);
+  --secondary-text-disable: var(--foreground-disabled);
+  --secondary-divider-default: var(--accent-border-default);
+  --secondary-divider-light: var(--accent-border-default);
+  --secondary-divider-disable: var(--border-disabled);
+  --secondary-divider-on-color: var(--accent-border-default);
+  --danger-surface: var(--status-danger-background);
+  --danger-light: var(--red-400);
+  --danger-default: var(--red-500);
+  --danger-dark: var(--red-300);
+  --success-surface: var(--status-success-background);
+  --success-light: #34d399;
+  --success-default: #34d399;
+  --success-dark: #6ee7b7;
+  --warning-surface: var(--status-warning-background);
+  --warning-light: var(--status-warning-border);
+  --warning-default: var(--status-warning-icon);
+  --warning-dark: var(--status-warning-foreground);
+
+  /* ── Older site-level names (deprecated — use the V2 tokens above) ── */
+  --brand-primary: var(--action-neutral-background-default); /* Neutral primary (black on light, white on dark). */
+  --brand-secondary: var(--accent-background-default); /* Brand pink. */
+  --brand-accent: var(--accent-background-default); /* Was yellow; the accent is now pink. */
+  --color-background: var(--background-canvas);
+  --color-surface: var(--background-surface);
+  --color-surface-hover: var(--background-surface-raised);
+  --color-border: var(--border-subtle);
+  --color-border-hover: var(--border-default);
+  --color-text-primary: var(--foreground-primary);
+  --color-text-secondary: var(--foreground-secondary);
+  --color-text-tertiary: var(--foreground-tertiary);
+  --color-text-inverse: var(--foreground-inverse);
+  --color-success: var(--status-success-icon);
+  --color-warning: var(--status-warning-icon);
+  --color-error: var(--status-danger-icon);
+  --color-info: var(--status-info-icon);
+}
+
+:root {
+  /* ── Shadows (legacy names — use --shadow-neutral-* from shadows.css) ── */
+  --shadow-sm: var(--shadow-neutral-2);
+  --shadow-md: var(--shadow-neutral-3);
+  --shadow-lg: var(--shadow-neutral-5);
+  --shadow-xl: var(--shadow-neutral-7);
+
+  /* ── Transitions ── */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* === LAYOUT === */
+  /* ── Layout ── */
   --sidebar-width: 280px;
   --header-height: 70px;
   --container-max: 1200px;
 }
-
-/* ── LIGHT MODE (explicit — resets tokens when nested inside a dark page) ── */
-[data-theme="light"] {
-  --brand-primary: var(--gray-900);
-  --brand-secondary: var(--pink-500);
-  --brand-accent: var(--yellow-500);
-
-  --color-background: var(--gray-0);
-  --color-surface: var(--gray-50);
-  --color-surface-hover: #ecedee;
-  --color-border: var(--gray-200);
-  --color-border-hover: var(--gray-300);
-
-  --color-text-primary: var(--gray-800);
-  --color-text-secondary: var(--gray-500);
-  --color-text-tertiary: var(--gray-400);
-  --color-text-inverse: var(--gray-0);
-
-  --neutral-surface-disable: var(--gray-100);
-  --neutral-surface-surface: #f4f4f4;
-  --neutral-surface-lighter: var(--gray-200);
-  --neutral-surface-light: var(--gray-400);
-  --neutral-surface-default: var(--gray-800);
-  --neutral-surface-dark: var(--gray-600);
-  --neutral-surface-darker: var(--gray-600);
-
-  --neutral-text-on-color: var(--color-white);
-  --neutral-text-disable: var(--gray-300);
-  --neutral-text-tertiary: var(--gray-400);
-  --neutral-text-secondary: var(--gray-500);
-  --neutral-text-primary: var(--gray-800);
-
-  --neutral-divider-light: var(--gray-100);
-  --neutral-divider-default: var(--gray-200);
-
-  --accent-surface-disable: var(--yellow-100);
-  --accent-surface-surface: var(--yellow-200);
-  --accent-surface-light: var(--yellow-300);
-  --accent-surface-default: var(--yellow-500);
-  --accent-surface-dark: var(--yellow-800);
-  --accent-surface-darker: var(--yellow-900);
-  --accent-surface-btn-hover: var(--yellow-600);
-
-  --accent-text-disable: var(--yellow-300);
-  --accent-text-default: var(--yellow-800);
-  --accent-text-on-color: var(--color-black);
-
-  --accent-divider-disable: var(--yellow-300);
-  --accent-divider-light: var(--yellow-200);
-  --accent-divider-default: var(--yellow-500);
-  --accent-divider-on-color: var(--color-black);
-
-  --secondary-surface-disable: var(--pink-100);
-  --secondary-surface-surface: var(--pink-200);
-  --secondary-surface-light: var(--pink-300);
-  --secondary-surface-default: var(--pink-600);
-  --secondary-surface-dark: var(--pink-800);
-  --secondary-surface-darker: var(--pink-900);
-
-  --secondary-text-on-color: var(--color-white);
-  --secondary-text-disable: var(--pink-300);
-  --secondary-text-default: var(--pink-600);
-
-  --secondary-divider-disable: var(--pink-300);
-  --secondary-divider-light: var(--pink-200);
-  --secondary-divider-default: var(--pink-600);
-  --secondary-divider-on-color: var(--color-white);
-
-  --danger-surface: var(--red-50);
-  --danger-light: var(--red-200);
-  --danger-default: var(--red-600);
-  --danger-dark: var(--red-900);
-
-  --success-surface: var(--green-50);
-  --success-light: var(--green-200);
-  --success-default: var(--green-600);
-  --success-dark: var(--green-900);
-
-  --warning-surface: var(--amber-50);
-  --warning-light: var(--amber-200);
-  --warning-default: var(--amber-600);
-  --warning-dark: var(--amber-900);
-
-  --color-success: var(--green-600);
-  --color-warning: var(--amber-600);
-  --color-error: var(--red-600);
-  --color-info: #0d52ff;
-}
-
-/* ── DARK MODE (priority — LayerProof brand: black bg, yellow accent, white text) ── */
-[data-theme="dark"] {
-  /* Brand */
-  --brand-primary: var(--color-white); /* primary UI action — white on dark bg */
-  --brand-secondary: var(--pink-500); /* hot pink — brand accent */
-  --brand-accent: var(--yellow-500); /* yellow — brand accent highlight */
-
-  /* Neutral surfaces */
-  --color-background: var(--gray-900);
-  --color-surface: var(--gray-850);
-  --color-surface-hover: #1c1c1c;
-  --color-border: #2a2a2a;
-  --color-border-hover: #3d3d3d;
-
-  /* Text */
-  --color-text-primary: var(--color-white);
-  --color-text-secondary: var(--gray-300);
-  --color-text-tertiary: #6b6b6b;
-  --color-text-inverse: var(--gray-900);
-
-  /* Brand Theme > Neutral > Surface (dark) */
-  --neutral-surface-disable: #2a2a2a;
-  --neutral-surface-surface: var(--gray-900);
-  --neutral-surface-lighter: var(--gray-850);
-  --neutral-surface-light: #1c1c1c;
-  --neutral-surface-default: var(--color-white);
-  --neutral-surface-dark: var(--gray-300);
-  --neutral-surface-darker: #6b6b6b;
-
-  /* Brand Theme > Neutral > Text-Icon (dark) */
-  --neutral-text-on-color: var(--gray-900);
-  --neutral-text-disable: var(--gray-600);
-  --neutral-text-tertiary: #6b6b6b;
-  --neutral-text-secondary: var(--gray-300);
-  --neutral-text-primary: var(--color-white);
-
-  /* Brand Theme > Neutral > Divider (dark) */
-  --neutral-divider-light: #1c1c1c;
-  --neutral-divider-default: #2a2a2a;
-
-  /* Brand Theme > Accent > Surface (yellow dark) */
-  --accent-surface-disable: var(--yellow-900);
-  --accent-surface-surface: var(--yellow-800);
-  --accent-surface-light: var(--yellow-700);
-  --accent-surface-default: var(--yellow-500);
-  --accent-surface-dark: var(--yellow-200);
-  --accent-surface-darker: var(--yellow-100);
-  --accent-surface-btn-hover: var(--yellow-600); /* hover state */
-
-  /* Brand Theme > Accent > Text-Icon (dark) */
-  --accent-text-disable: var(--yellow-700);
-  --accent-text-default: var(--yellow-500);
-  --accent-text-on-color: var(--color-black);
-
-  /* Brand Theme > Accent > Divider (dark) */
-  --accent-divider-disable: var(--yellow-700);
-  --accent-divider-light: var(--yellow-600);
-  --accent-divider-default: var(--yellow-500);
-  --accent-divider-on-color: var(--color-black);
-
-  /* Brand Theme > Secondary > Surface (pink dark) */
-  --secondary-surface-disable: var(--pink-900);
-  --secondary-surface-surface: var(--pink-800);
-  --secondary-surface-light: var(--pink-700);
-  --secondary-surface-default: var(--pink-500);
-  --secondary-surface-dark: var(--pink-200);
-  --secondary-surface-darker: var(--pink-100);
-
-  /* Brand Theme > Secondary > Text-Icon (pink dark) */
-  --secondary-text-on-color: var(--color-white);
-  --secondary-text-disable: var(--pink-700);
-  --secondary-text-default: var(--pink-500);
-
-  /* Brand Theme > Secondary > Divider (pink dark) */
-  --secondary-divider-disable: var(--pink-700);
-  --secondary-divider-light: var(--pink-800);
-  --secondary-divider-default: var(--pink-500);
-  --secondary-divider-on-color: var(--color-white);
-
-  /* Status (vivid for dark bg) */
-  --danger-surface: rgba(199, 0, 10, 0.12);
-  --danger-light: var(--red-400);
-  --danger-default: var(--red-400);
-  --danger-dark: #fca5a5;
-
-  --success-surface: rgba(0, 166, 62, 0.12);
-  --success-light: var(--green-400);
-  --success-default: var(--green-400);
-  --success-dark: #6ee7b7;
-
-  --warning-surface: rgba(225, 113, 0, 0.12);
-  --warning-light: var(--amber-400);
-  --warning-default: var(--amber-400);
-  --warning-dark: #fde68a;
-
-  /* Legacy aliases */
-  --color-success: var(--green-400);
-  --color-warning: var(--amber-400);
-  --color-error: var(--red-400);
-  --color-info: #60a5fa;
-
-  /* Shadows for dark mode */
-  --shadow-color: rgba(0, 0, 0, 0.5);
-  --shadow-color-md: rgba(0, 0, 0, 0.65);
-  --shadow-color-lg: rgba(0, 0, 0, 0.8);
-}
-

@@ -1,10 +1,10 @@
-import { Link } from 'react-router';
 import { FoundationShell } from '../components/FoundationShell';
+import { Section, Panel, Grid, LinkCard, CodeBlock, Prose, InlineCode, Callout } from '../components/docs';
 
 const tocItems = [
-  { id: 'gs-dev-overview',   label: 'Overview',     level: 1 as const },
   { id: 'gs-dev-setup',      label: 'Setup',        level: 1 as const },
-  { id: 'gs-dev-tokens',     label: 'Using Tokens', level: 1 as const },
+  { id: 'gs-dev-tokens',     label: 'Using tokens', level: 1 as const },
+  { id: 'gs-dev-dark',       label: 'Themes',       level: 1 as const },
   { id: 'gs-dev-components', label: 'Components',   level: 1 as const },
 ];
 
@@ -12,66 +12,52 @@ export function GetStartedDevelopersPage() {
   return (
     <FoundationShell
       tag="Get started"
-      title="For Developers"
-      description="Environment setup, CSS token integration, and component usage guides for building with LayerProof."
+      title="For developers"
+      description="Import the token stylesheet, build with semantic CSS variables, and use the React components."
       tocItems={tocItems}
     >
-      <section id="gs-dev-overview" className="mb-12">
-        <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>
-          Follow this guide to wire up your local dev environment, import the token stylesheet, and start using components.
-        </p>
-      </section>
+      <Section id="gs-dev-setup" title="Setup" desc="The stylesheet entry point loads fonts, primitives, semantic tokens, shadows and text-style classes in the right order.">
+        <CodeBlock lang="Terminal" code={`npm install\nnpm run dev`} />
+        <CodeBlock lang="CSS" style={{ marginTop: 12 }} code={`/* Everything: fonts, primitives, semantics, shadows, type */\n@import './styles/index.css';`} />
+      </Section>
 
-      <section id="gs-dev-setup" className="mb-12">
-        <h2 style={{ fontFamily: '"Anton", sans-serif', fontSize: '1.5rem', textTransform: 'uppercase', color: 'var(--color-text-primary)', marginBottom: '1rem' }}>
-          Setup
-        </h2>
-        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--color-border)' }}>
-          <div className="px-4 py-2 text-xs font-mono flex items-center gap-2" style={{ background: 'var(--color-surface-hover)', color: 'var(--color-text-tertiary)', borderBottom: '1px solid var(--color-border)' }}>
-            <span>terminal</span>
-          </div>
-          <div className="p-4" style={{ background: 'var(--color-surface)' }}>
-            <pre className="text-sm font-mono" style={{ color: '#f0d040' }}>npm run dev</pre>
-            <pre className="text-sm font-mono mt-2" style={{ color: 'var(--color-text-secondary)' }}>
-              {'# Import the token stylesheet\n@import \'./styles/brand-variables.css\';'}
-            </pre>
-          </div>
-        </div>
-      </section>
-
-      <section id="gs-dev-tokens" className="mb-12">
-        <h2 style={{ fontFamily: '"Anton", sans-serif', fontSize: '1.5rem', textTransform: 'uppercase', color: 'var(--color-text-primary)', marginBottom: '1rem' }}>
-          Using Tokens
-        </h2>
-        <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
-          All design tokens are CSS custom properties. Reference them directly in any stylesheet or inline style.
-        </p>
-        <div className="rounded-xl p-4" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-          <pre className="text-sm font-mono" style={{ color: 'var(--color-text-secondary)', whiteSpace: 'pre-wrap' }}>
-{`.heading {
-  font-family: var(--font-heading);
-  color: var(--color-text-primary);
+      <Section id="gs-dev-tokens" title="Using tokens" desc="Reach for semantic tokens first. Primitives (--pink-500, --gray-900) belong in token files, not components.">
+        <CodeBlock lang="CSS" code={`.heading {
+  font-family: var(--font-heading);   /* Mona Sans */
+  color: var(--foreground-primary);
 }
 
-.accent { color: var(--brand-primary); }   /* #f0d040 */
-.cta    { color: var(--brand-secondary); } /* #e8336c */`}
-          </pre>
-        </div>
-      </section>
+.card {
+  background: var(--background-surface-raised);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-neutral-2);
+}
 
-      <section id="gs-dev-components" className="mb-12">
-        <h2 style={{ fontFamily: '"Anton", sans-serif', fontSize: '1.5rem', textTransform: 'uppercase', color: 'var(--color-text-primary)', marginBottom: '1rem' }}>
-          Components
-        </h2>
-        <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
-          UI components are built with React, TypeScript, Radix UI primitives, and Tailwind CSS.
-        </p>
-        <Link to="/components"
-          className="inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-opacity hover:opacity-80"
-          style={{ background: '#ffffff', color: '#000000', textDecoration: 'none', fontFamily: '"Roboto", sans-serif' }}>
-          Browse Components →
-        </Link>
-      </section>
+.cta {
+  background: var(--action-primary-background-default); /* Pink 500 */
+  color: var(--action-primary-foreground);
+}
+.cta:hover { background: var(--action-primary-background-hover); }`} />
+        <Prose style={{ marginTop: 16 }}>
+          <p>For text, prefer the style classes generated from Figma — <InlineCode>.type-h3</InlineCode>, <InlineCode>.type-body-sm</InlineCode>, <InlineCode>.type-label-md</InlineCode> — which set family, size, line height, tracking and weight together.</p>
+        </Prose>
+      </Section>
+
+      <Section id="gs-dev-dark" title="Themes" desc="Every colour token has a light and a dark value. Switch with one attribute; nothing else changes.">
+        <CodeBlock lang="HTML" code={`<html data-theme="dark">\n<!-- or scope a region -->\n<section data-theme="light">…</section>\n<div data-density="spacious">…</div>`} />
+        <div style={{ marginTop: 12 }}>
+          <Callout>Light is LayerProof's primary mode. Check every new screen in dark mode before shipping.</Callout>
+        </div>
+      </Section>
+
+      <Section id="gs-dev-components" title="Components" desc="Built with React, TypeScript, Radix UI primitives and Tailwind, styled entirely through tokens.">
+        <Panel>
+          <Grid cols={2}>
+            <LinkCard to="/components" title="Browse components" text="Live examples, code and usage for each component." />
+            <LinkCard to="/foundations/tokens/code" title="Use tokens in code" text="Naming, theming and the rules for adding tokens." />
+          </Grid>
+        </Panel>
+      </Section>
     </FoundationShell>
   );
 }

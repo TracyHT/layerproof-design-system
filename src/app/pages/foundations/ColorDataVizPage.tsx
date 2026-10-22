@@ -4,15 +4,16 @@ import { DataVizSwatch } from '../../components/ColorHelpers';
 export function ColorDataVizPage() {
   return (
     <FoundationShell
-      title="Data Visualization"
-      description="A categorical palette optimized for charts, graphs, and data-dense UIs. Each color is distinct under dark backgrounds and maintains sufficient contrast for accessibility."
+      tag={['Foundations', 'Color']}
+      title="Data visualization"
+      description="A categorical palette for charts, graphs, and data-dense UIs. The brand slots now use Pink 500 and Yellow 500; the Figma UI kit doesn't define a data-viz palette yet, so the remaining slots are unchanged."
     >
-      <div className="space-y-12" style={{ color: 'var(--color-text-primary)' }}>
+      <div className="space-y-10" style={{ color: 'var(--foreground-primary)' }}>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
+        <div className="lp-grid lp-grid--4">
           {[
-            { label: 'Dataviz-1', hex: '#f0d040' },
-            { label: 'Dataviz-2', hex: '#e8336c' },
+            { label: 'Dataviz-1', hex: '#ffde42' },
+            { label: 'Dataviz-2', hex: '#ff589b' },
             { label: 'Dataviz-3', hex: '#3b82f6' },
             { label: 'Dataviz-4', hex: '#10b981' },
             { label: 'Dataviz-5', hex: '#f97316' },
@@ -23,32 +24,31 @@ export function ColorDataVizPage() {
         </div>
 
         {/* Example chart legend */}
-        <div className="rounded-2xl p-6" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-          <p className="text-xs font-semibold tracking-widest uppercase mb-4"
-            style={{ fontFamily: '"Roboto", sans-serif', color: 'var(--color-text-tertiary)' }}>Example — Chart Legend</p>
+        <h3 className="lp-subsection__title">Example chart</h3>
+        <div className="lp-panel" style={{ marginTop: 0 }}>
           <div className="flex flex-wrap gap-4">
             {[
-              { label: 'Revenue',    hex: '#f0d040' },
-              { label: 'Expenses',   hex: '#e8336c' },
+              { label: 'Revenue',    hex: '#ffde42' },
+              { label: 'Expenses',   hex: '#ff589b' },
               { label: 'Profit',     hex: '#10b981' },
               { label: 'Forecasted', hex: '#3b82f6' },
             ].map(({ label, hex }) => (
               <div key={label} className="flex items-center gap-2">
                 <div className="rounded-sm" style={{ width: 12, height: 12, background: hex }} />
-                <span className="text-sm" style={{ color: 'var(--color-text-secondary)', fontFamily: '"Roboto", sans-serif' }}>
+                <span className="text-sm" style={{ color: 'var(--foreground-secondary)', fontFamily: 'var(--font-body)' }}>
                   {label}
                 </span>
               </div>
             ))}
           </div>
-          <div className="mt-4 h-16 rounded-lg flex items-end gap-1.5 px-2 pb-2" style={{ background: '#0a0a0a' }}>
+          <div className="mt-4 h-40 rounded-lg flex items-end gap-1.5 px-2 pb-2" style={{ background: 'var(--background-surface-raised)' }}>
             {[60, 80, 45, 90, 55, 70, 35, 85].map((h, i) => (
               <div
                 key={i}
                 className="flex-1 rounded-t"
                 style={{
                   height: `${h}%`,
-                  background: ['#f0d040', '#e8336c', '#10b981', '#3b82f6'][i % 4],
+                  background: ['#ffde42', '#ff589b', '#10b981', '#3b82f6'][i % 4],
                   opacity: 0.85,
                 }}
               />

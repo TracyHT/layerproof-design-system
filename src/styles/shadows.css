@@ -1,0 +1,143 @@
+/* Generated from the Figma file “LayerProof — UI Kit” (variables + styles).
+   Source of truth is Figma; regenerate rather than hand-editing values. */
+
+/* Elevation — one variable per Figma effect style (Shadows/<Family>/<Level>). */
+:root {
+
+  /* neutral */
+  --shadow-neutral-1:
+    0 0 2px 0 var(--shadow-neutral-strong);
+  --shadow-neutral-2:
+    0 2px 4px 0 var(--shadow-neutral-soft),
+    0 0 2px 0 var(--shadow-neutral-strong);
+  --shadow-neutral-3:
+    0 3px 8px 0 var(--shadow-neutral-strong),
+    0 0 2px 0 var(--shadow-neutral-soft);
+  --shadow-neutral-4:
+    0 6px 12px 0 var(--shadow-neutral-strong),
+    0 0 2px 0 var(--shadow-neutral-soft);
+  --shadow-neutral-5:
+    0 8px 16px 0 var(--shadow-neutral-strong),
+    0 0 6px 0 var(--shadow-neutral-soft);
+  --shadow-neutral-6:
+    0 12px 20px 0 var(--shadow-neutral-strong),
+    0 0 12px 0 var(--shadow-neutral-soft);
+  --shadow-neutral-7:
+    0 16px 32px 4px var(--shadow-neutral-strong),
+    0 0 16px 4px var(--shadow-neutral-soft),
+    0 16px 60px 0 var(--shadow-neutral-soft);
+  --shadow-neutral-elevated-button:
+    0 3px 6px 0 var(--shadow-neutral-soft),
+    0 0 4px 0 var(--shadow-neutral-strong),
+    0 2px 3px 0 var(--shadow-neutral-soft);
+  --shadow-neutral-gradient-button:
+    0 2px 6px 1px var(--shadow-neutral-strong),
+    0 0 4px 0 var(--shadow-neutral-strong),
+    inset 0 0 10px 0 var(--shadow-highlight),
+    0 1px 2px 0 var(--shadow-neutral-strong);
+
+  /* accent */
+  --shadow-accent-1:
+    0 0 2px 0 var(--shadow-accent-strong);
+  --shadow-accent-2:
+    0 2px 4px 0 var(--shadow-accent-strong),
+    0 0 2px 0 var(--shadow-accent-soft);
+  --shadow-accent-3:
+    0 3px 8px 0 var(--shadow-accent-strong),
+    0 0 4px 0 var(--shadow-accent-soft);
+  --shadow-accent-4:
+    0 6px 12px 0 var(--shadow-accent-strong),
+    0 0 6px 0 var(--shadow-accent-soft);
+  --shadow-accent-5:
+    0 8px 16px 0 var(--shadow-accent-strong),
+    0 0 6px 0 var(--shadow-accent-soft);
+  --shadow-accent-6:
+    0 12px 20px 0 var(--shadow-accent-strong),
+    0 0 12px 0 var(--shadow-accent-soft);
+  --shadow-accent-7:
+    0 16px 32px 4px var(--shadow-accent-strong),
+    0 0 16px 4px var(--shadow-accent-soft),
+    0 0 60px 0 var(--shadow-accent-soft);
+
+  /* danger */
+  --shadow-danger-1:
+    0 0 2px 0 var(--shadow-danger-strong);
+  --shadow-danger-2:
+    0 2px 4px 0 var(--shadow-danger-strong),
+    0 0 2px 0 var(--shadow-danger-soft);
+  --shadow-danger-3:
+    0 3px 8px 0 var(--shadow-danger-strong),
+    0 0 4px 0 var(--shadow-danger-soft);
+  --shadow-danger-4:
+    0 6px 12px 0 var(--shadow-danger-strong),
+    0 0 6px 0 var(--shadow-danger-soft);
+  --shadow-danger-5:
+    0 8px 16px 0 var(--shadow-danger-strong),
+    0 0 6px 0 var(--shadow-danger-soft);
+  --shadow-danger-6:
+    0 12px 20px 0 var(--shadow-danger-strong),
+    0 0 12px 0 var(--shadow-danger-soft);
+  --shadow-danger-7:
+    0 16px 32px 4px var(--shadow-danger-strong),
+    0 0 16px 4px var(--shadow-danger-soft),
+    0 0 60px 0 var(--shadow-danger-soft);
+
+  /* success */
+  --shadow-success-1:
+    0 0 2px 0 var(--shadow-success-strong);
+  --shadow-success-2:
+    0 2px 4px 0 var(--shadow-success-strong),
+    0 0 2px 0 var(--shadow-success-soft);
+  --shadow-success-3:
+    0 3px 8px 0 var(--shadow-success-strong),
+    0 0 4px 0 var(--shadow-success-soft);
+  --shadow-success-4:
+    0 6px 12px 0 var(--shadow-success-strong),
+    0 0 6px 0 var(--shadow-success-soft);
+  --shadow-success-5:
+    0 8px 16px 0 var(--shadow-success-strong),
+    0 0 6px 0 var(--shadow-success-soft);
+  --shadow-success-6:
+    0 12px 20px 0 var(--shadow-success-strong),
+    0 0 12px 0 var(--shadow-success-soft);
+  --shadow-success-7:
+    0 16px 32px 4px var(--shadow-success-strong),
+    0 0 16px 4px var(--shadow-success-soft),
+    0 0 60px 0 var(--shadow-success-soft);
+
+  /* warning */
+  --shadow-warning-1:
+    0 0 2px 0 var(--shadow-warning-strong);
+  --shadow-warning-2:
+    0 2px 4px 0 var(--shadow-warning-strong),
+    0 0 2px 0 var(--shadow-warning-soft);
+  --shadow-warning-3:
+    0 3px 8px 0 var(--shadow-warning-strong),
+    0 0 4px 0 var(--shadow-warning-soft);
+  --shadow-warning-4:
+    0 6px 12px 0 var(--shadow-warning-strong),
+    0 0 6px 0 var(--shadow-warning-soft);
+  --shadow-warning-5:
+    0 8px 16px 0 var(--shadow-warning-strong),
+    0 0 6px 0 var(--shadow-warning-soft);
+  --shadow-warning-6:
+    0 12px 20px 0 var(--shadow-warning-strong),
+    0 0 12px 0 var(--shadow-warning-soft);
+  --shadow-warning-7:
+    0 16px 32px 4px var(--shadow-warning-strong),
+    0 0 16px 4px var(--shadow-warning-soft),
+    0 0 60px 0 var(--shadow-warning-soft);
+
+  /* accent */
+  --shadow-accent-gradient-button:
+    0 2px 4px 0 var(--shadow-neutral-strong),
+    0 2px 4px 0 var(--shadow-neutral-strong),
+    0 0 0 2px var(--shadow-accent-glow);
+
+  /* danger */
+  --shadow-danger-button:
+    0 2px 6px 1px var(--shadow-danger-strong),
+    0 0 4px 0 var(--shadow-danger-strong),
+    inset 0 0 10px 0 var(--shadow-highlight-strong),
+    0 1px 2px 0 var(--shadow-danger-strong);
+}

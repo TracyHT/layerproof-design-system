@@ -5,7 +5,8 @@ import { AllTokensTab, buildTocItems } from '../../components/TokenTable';
 export function PrimitivesPage() {
   return (
     <FoundationShell
-      title="Primitive Tokens"
+      tag={["Foundations", "Tokens"]}
+      title="Primitive tokens"
       description="Raw design primitives — the base color scales, radius steps, type scale, and spacing grid that semantic tokens reference."
       tocItems={buildTocItems(primitiveSections)}
     >

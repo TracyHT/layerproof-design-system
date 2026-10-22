@@ -1,62 +1,40 @@
-import { Link } from 'react-router';
 import { FoundationShell } from '../../components/FoundationShell';
+import { Section, Panel, Grid, LinkCard } from '../../components/docs';
 
-const sections = [
-  {
-    path: '/foundations/color/accents',
-    label: 'Accents',
-    description: 'Yellow and pink accent scales, pairings, and usage rules.',
-  },
-  {
-    path: '/foundations/color/dataviz',
-    label: 'Data Visualization',
-    description: 'Categorical palette for charts, graphs, and data-dense UIs.',
-  },
-  {
-    path: '/foundations/color/palette',
-    label: 'Color Palette',
-    description: 'Full primitive scale — Gray, Yellow, Pink, Red, Green, and Amber.',
-  },
-];
+function Strip({ stops }: { stops: string[] }) {
+  return (
+    <div style={{ display: 'flex', height: 44, borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
+      {stops.map((s) => <div key={s} style={{ flex: 1, background: `var(${s})` }} />)}
+    </div>
+  );
+}
 
 export function ColorPage() {
   return (
     <FoundationShell
       title="Color"
-      description="The LayerProof color system. Black and white drive all primary UI; yellow and pink are accent-only."
+      description="Neutrals drive the interface, pink #FF589B is the single brand accent, and status colours carry meaning only. Roughly 90% neutral, 10% accent."
     >
-      <div className="grid gap-4 md:grid-cols-3">
-        {sections.map(({ path, label, description }) => (
-          <Link
-            key={path}
-            to={path}
-            style={{
-              display: 'block',
-              padding: '1.5rem',
-              borderRadius: '0.75rem',
-              background: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
-              textDecoration: 'none',
-              transition: 'border-color 150ms, box-shadow 150ms',
-            }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--color-border-hover)';
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = 'var(--shadow-md)';
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--color-border)';
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = 'none';
-            }}
-          >
-            <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem', textTransform: 'uppercase', color: 'var(--color-text-primary)', marginBottom: '0.5rem' }}>
-              {label}
-            </p>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
-              {description}
-            </p>
-          </Link>
-        ))}
-      </div>
+      <Section>
+        <Panel>
+          <Grid cols={3}>
+            <LinkCard to="/foundations/color/accents" title="Accents" text="The pink scale, accent tokens, pairings and usage."
+              preview={<Strip stops={['--pink-50', '--pink-200', '--pink-500', '--pink-700', '--pink-900']} />} />
+            <LinkCard to="/foundations/color/palette" title="Color palette" text="Every primitive scale: gray, pink, red, green, orange, cyan and yellow."
+              preview={<Strip stops={['--gray-100', '--gray-400', '--gray-900', '--green-600', '--orange-500', '--cyan-600']} />} />
+            <LinkCard to="/foundations/color/dataviz" title="Data visualization" text="A categorical palette for charts and dense data."
+              preview={<Strip stops={['--pink-500', '--yellow-500', '--cyan-600', '--green-600', '--orange-500']} />} />
+          </Grid>
+        </Panel>
+      </Section>
+      <Section title="Semantic tokens" desc="Build UI with role-based tokens, never primitives. Each has a light and a dark value.">
+        <Panel>
+          <Grid cols={2}>
+            <LinkCard to="/foundations/tokens" title="All colour tokens" text="Background, foreground, border, accent, action and status." />
+            <LinkCard to="/foundations/tokens/explained" title="How tokens are named" text="Figma path → CSS variable, and when to use which." />
+          </Grid>
+        </Panel>
+      </Section>
     </FoundationShell>
   );
 }
